@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>看橘子哥</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='56' r='38' fill='%23E8862E'/%3E%3Cpath d='M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z' fill='%237A8B6F'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#f5f5f7;
+    --ink:#1d1d1f;
+    --grey:#6e6e73;
+    --line:#d2d2d7;
+    --orange:#E8862E;
+    --sage:#7A8B6F;
+    --ease:cubic-bezier(.28,.11,.32,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  html,body{height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow:hidden;
+  }
+  body.s3{overflow:auto;}
+
+  /* ================= 阶段1 · Logo 页 ================= */
+  .stage-1{
+    position:fixed;inset:0;
+    display:none;
+    flex-direction:column;align-items:center;justify-content:center;
+    background:var(--bg);
+    transition:opacity .5s ease;
+    z-index:2;
+  }
+  body.s1 .stage-1{display:flex;}
+  .stage-1.leaving{opacity:0;}
+  .s1-logo{
+    width:min(20vw,32vh);
+    height:auto;
+    display:block;
+  }
+  .s1-name{
+    margin-top:min(4.5vh,6vw);
+    color:var(--ink);
+    font-size:clamp(20px,3.4vw,42px);
+    font-weight:600;
+    letter-spacing:.35em;
+    text-indent:.35em; /* 抵消字距带来的视觉左偏，保持居中 */
+    line-height:1.2;
+    white-space:nowrap;
+    text-decoration:none;
+    cursor:pointer;
+    transition:opacity .25s ease;
+  }
+  .s1-name:hover{opacity:.85;}
+
+  /* ================= 阶段2 · Design 🍊 AI 封面 ================= */
+  .stage-2{
+    position:fixed;inset:0;
+    display:none;
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:7vmin;
+    background:var(--bg);
+    opacity:1;transform:translateY(0);
+    transition:opacity .9s var(--ease),transform .9s var(--ease),visibility 0s;
+    z-index:2;
+  }
+  body.s2 .stage-2{display:flex;}
+  .stage-2.leaving{
+    opacity:0;transform:translateY(-4vmin);
+    pointer-events:none;visibility:hidden;
+    transition:opacity .9s var(--ease),transform .9s var(--ease),visibility 0s .9s;
+  }
+  .hero-line{
+    display:flex;align-items:center;gap:3vmin;
+    line-height:1;white-space:nowrap;
+  }
+  .hero-line .word{
+    font-size:clamp(36px,13vmin,220px);
+    letter-spacing:-.045em;
+  }
+  .hero-line .design{font-weight:600;}
+  .hero-line .ai{font-weight:700;}
+  .hero-line svg{
+    width:.78em;height:.78em;
+    font-size:clamp(36px,13vmin,220px);
+    flex:none;
+  }
+
+  /* ---------- 署名按钮（封面唯一交互） ---------- */
+  .sig-btn{
+    display:flex;align-items:center;gap:1.6vmin;
+    background:none;border:none;padding:8px;
+    font:inherit;font-weight:600;color:var(--ink);
+    cursor:pointer;
+  }
+  .sig-btn svg{
+    width:clamp(20px,3.4vmin,34px);height:clamp(20px,3.4vmin,34px);
+    display:block;flex:none;
+    transition:transform .45s var(--ease);
+  }
+  .sig-btn .sig-name{
+    font-size:clamp(15px,2.6vmin,24px);
+    letter-spacing:.38em;margin-right:-.38em;
+    transition:opacity .45s var(--ease);
+  }
+  .sig-btn:hover svg{transform:scale(1.1);}
+  .sig-btn:hover .sig-name{opacity:.65;}
+  .sig-btn:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:4px;}
+
+  /* ================= 阶段3 · 六屏内容 ================= */
+  .stage-3{display:none;}
+  body.s3 .stage-3{display:block;}
+
+  /* ---------- 左上角固定导航标识（仅阶段3出现） ---------- */
+  .site-nav{
+    position:fixed;top:22px;left:26px;z-index:10;
+    display:none;align-items:center;gap:9px;
+    font-weight:600;
+    color:#1d1d1f;text-decoration:none;cursor:pointer;
+    transition:opacity .25s ease;
+  }
+  body.s3 .site-nav{display:flex;}
+  .site-nav:hover{opacity:.65;}
+  .site-nav svg{width:22px;height:22px;display:block;flex:none;}
+  .site-nav .nav-name{font-size:14px;letter-spacing:.3em;}
+
+  /* ---------- 通用屏 ---------- */
+  .screen{
+    position:relative;
+    min-height:100vh;min-height:100svh;
+    display:flex;align-items:center;
+    border-bottom:1px solid var(--line);
+    padding:96px 6vw;
+  }
+  .screen:last-child{border-bottom:none;}
+  .wrap{width:100%;max-width:880px;margin:0 auto;}
+  .sno{
+    position:absolute;left:26px;bottom:20px;
+    font-size:11px;letter-spacing:.18em;color:#aeaeb2;
+  }
+  h1{
+    font-size:clamp(34px,6.4vw,60px);
+    font-weight:700;line-height:1.22;letter-spacing:-.01em;
+  }
+  .sub{
+    margin-top:26px;
+    font-size:clamp(15px,2vw,19px);
+    color:var(--grey);line-height:1.6;
+  }
+
+  /* ---------- 索引行（屏2/3/4） ---------- */
+  .rows{margin-top:52px;border-top:1px solid var(--line);}
+  .row{
+    display:flex;align-items:baseline;justify-content:space-between;gap:24px;
+    padding:22px 2px;
+    border-bottom:1px solid var(--line);
+    font-size:clamp(19px,3vw,28px);
+    font-weight:600;line-height:1.45;
+  }
+  .row .city{
+    flex:none;
+    font-size:clamp(13px,1.7vw,16px);
+    font-weight:400;color:var(--grey);letter-spacing:.08em;
+  }
+
+  /* ---------- 屏5 · 关于我 ---------- */
+  .facts{margin-top:44px;}
+  .facts p{
+    font-size:clamp(16px,2.2vw,21px);
+    line-height:2.15;color:var(--ink);font-weight:400;
+  }
+
+  /* ---------- 屏6 · 联系 ---------- */
+  .screen-contact{
+    flex-direction:column;justify-content:center;text-align:center;
+    padding:96px 6vw 72px;
+  }
+  .contact-logo{
+    width:min(20vw,30vh);min-width:120px;height:auto;display:block;margin:0 auto;
+  }
+  .contact-name{
+    margin-top:min(4.5vh,6vw);
+    font-size:clamp(20px,3.4vw,42px);
+    font-weight:600;letter-spacing:.35em;text-indent:.35em;line-height:1.2;white-space:nowrap;
+  }
+  .qr{
+    margin:min(5vh,7vw) auto 0;
+    width:min(180px,44vw);aspect-ratio:1/1;
+    border:1px solid var(--line);
+    background:#ececf0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .qr span{font-size:14px;color:var(--grey);letter-spacing:.3em;text-indent:.3em;}
+  .domain{
+    position:absolute;left:0;right:0;bottom:20px;
+    text-align:center;
+    font-size:11px;letter-spacing:.22em;color:#aeaeb2;
+  }
+a.row{color:inherit;text-decoration:none;cursor:pointer}
+</style>
+</head>
+<body class="s1">
+
+  <!-- ===== 阶段1：Logo 页 ===== -->
+  <div class="stage-1" id="stage1">
+    <svg class="s1-logo" viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo">
+      <circle cx="50" cy="56" r="38" fill="#E8862E"/>
+      <path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/>
+    </svg>
+    <a class="s1-name" id="enter1" href="#">看橘子哥</a>
+  </div>
+
+  <!-- ===== 阶段2：Design 🍊 AI 封面 ===== -->
+  <main class="stage-2" id="stage2">
+    <div class="hero-line">
+      <span class="word design">Design</span>
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="56" r="38" fill="#E8862E"/>
+        <path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/>
+      </svg>
+      <span class="word ai">AI</span>
+    </div>
+    <button class="sig-btn" id="enterBtn" type="button" aria-label="看橘子哥">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="56" r="38" fill="#E8862E"/>
+        <path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/>
+      </svg>
+      <span class="sig-name">看橘子哥</span>
+    </button>
+  </main>
+
+  <!-- ===== 阶段3：六屏内容 ===== -->
+  <!-- 左上角固定导航标识：点击回主页（阶段1） -->
+  <a class="site-nav" id="homeLink" href="#" aria-label="回主页">
+    <svg viewBox="0 0 100 100">
+      <circle cx="50" cy="56" r="38" fill="#E8862E"/>
+      <path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/>
+    </svg>
+    <span class="nav-name">看橘子哥</span>
+  </a>
+
+  <div class="stage-3" id="stage3">
+
+    <!-- 屏1 · 定位 -->
+    <section class="screen">
+      <div class="wrap">
+        <h1>我先转了 AI。<br>现在，帮你转。</h1>
+        <p class="sub">1.0 靠设计吃饭，2.0 全面转向 AI，帮老板把 AI 用进生意里。</p>
+      </div>
+      <span class="sno">S1</span>
+    </section>
+
+    <!-- 屏2 · 我做的事 -->
+    <section class="screen">
+      <div class="wrap">
+        <h1>只做三件事。</h1>
+        <div class="rows">
+          <div class="row"><span>搭 AI 环境</span></div>
+          <div class="row"><span>陪跑用起来</span></div>
+          <div class="row"><span>走访分享</span></div>
+        </div>
+      </div>
+      <span class="sno">S2</span>
+    </section>
+
+    <!-- 屏3 · 走访手记 -->
+    <section class="screen">
+      <div class="wrap">
+        <h1>走访手记。</h1>
+        <div class="rows">
+          <a class="row" href="https://mp.weixin.qq.com/s/d3DbbO795mcWgBGP0fs0bw" target="_blank" rel="noopener"><span>AI 影视</span><span class="city">杭州</span></a>
+          <div class="row"><span>AI 编程与工厂</span><span class="city">温州</span></div>
+          <div class="row"><span>数字医学</span><span class="city">上海</span></div>
+        </div>
+      </div>
+      <span class="sno">S3</span>
+    </section>
+
+    <!-- 屏4 · 作品 -->
+    <section class="screen">
+      <div class="wrap">
+        <h1>作品。</h1>
+        <div class="rows">
+          <div class="row"><span>互动知识馆 — 把中考知识点做成能动手玩的图解</span></div>
+          <div class="row"><span>公众号 — 看橘子哥</span></div>
+        </div>
+      </div>
+      <span class="sno">S4</span>
+    </section>
+
+    <!-- 屏5 · 关于我 -->
+    <section class="screen">
+      <div class="wrap">
+        <h1>关于我。</h1>
+        <div class="facts">
+          <p>设计公司老板出身</p>
+          <p>在加拿大生活了 5 年，2026 年回国</p>
+          <p>44 岁，全面转向 AI</p>
+          <p>投资是存量，AI 是增量</p>
+        </div>
+      </div>
+      <span class="sno">S5</span>
+    </section>
+
+    <!-- 屏6 · 联系 -->
+    <section class="screen screen-contact">
+      <svg class="contact-logo" viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo">
+        <circle cx="50" cy="56" r="38" fill="#E8862E"/>
+        <path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/>
+      </svg>
+      <div class="contact-name">看橘子哥</div>
+      <div class="qr"><span>二维码</span></div>
+      <span class="sno">S6</span>
+      <div class="domain">juzige.com</div>
+    </section>
+
+  </div>
+
+<script>
+  var body = document.body;
+
+  /* 阶段1 → 阶段2：整页 0.5 秒淡出后切换 */
+  document.getElementById('enter1').addEventListener('click', function (e) {
+    e.preventDefault();
+    var s1 = document.getElementById('stage1');
+    s1.classList.add('leaving');
+    setTimeout(function () {
+      body.classList.remove('s1');
+      body.classList.add('s2');
+      s1.classList.remove('leaving');
+      window.scrollTo(0, 0);
+    }, 500);
+  });
+
+  /* 阶段2 → 阶段3：封面淡出上移后切换 */
+  document.getElementById('enterBtn').addEventListener('click', function () {
+    var s2 = document.getElementById('stage2');
+    s2.classList.add('leaving');
+    setTimeout(function () {
+      body.classList.remove('s2');
+      body.classList.add('s3');
+      s2.classList.remove('leaving');
+      window.scrollTo(0, 0);
+    }, 900);
+  });
+
+  /* 阶段3 → 阶段1：点左上角标识回主页 */
+  document.getElementById('homeLink').addEventListener('click', function (e) {
+    e.preventDefault();
+    body.classList.remove('s3');
+    body.classList.add('s1');
+    window.scrollTo(0, 0);
+  });
+</script>
+</body>
+</html>
