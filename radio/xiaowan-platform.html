@@ -53,6 +53,19 @@
     margin-top:70px;padding:26px 0 34px;border-top:1px solid var(--line);
     text-align:center;font-size:11px;letter-spacing:.22em;color:#aeaeb2;
   }
+
+  /* ---------- 文末分享 ---------- */
+  .share{margin:34px auto 0;max-width:560px;text-align:center;padding:26px 20px 4px;border-top:1px solid var(--line);}
+  .share .st{font-size:15px;font-weight:700;letter-spacing:.02em;}
+  .share .btns{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .share button{font:inherit;cursor:pointer;border-radius:999px;padding:11px 22px;font-size:15px;font-weight:600;}
+  .share .primary{background:var(--orange);color:#fff;border:1px solid var(--orange);}
+  .share .ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .share .hint{margin-top:12px;font-size:13px;color:var(--grey);line-height:1.6;}
+  .share .qr{margin-top:16px;width:132px;height:132px;border-radius:12px;border:1px solid var(--line);background:#fff;padding:6px;}
+  .share .qrcap{font-size:12.5px;color:var(--grey);margin-top:7px;letter-spacing:.05em;}
+  #share-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(16px);background:#1d1d1f;color:#fff;font-size:14px;padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s ease;z-index:99;white-space:nowrap;}
+  #share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
 </head>
 <body>
@@ -105,6 +118,19 @@
       <a class="backhome" href="/">← 回 juzige.com 首页</a>
     </div>
 
+
+    <div class="share">
+      <div class="st">觉得有用，分享给朋友</div>
+      <div class="btns">
+        <button class="primary" id="share-btn" type="button">分享这篇</button>
+        <button class="ghost" id="copy-btn" type="button">复制链接</button>
+      </div>
+      <p class="hint">在微信里打开的话，点右上角「···」就能分享到朋友圈。</p>
+      <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbwAAAG8CAIAAAAq0oeIAAAHw0lEQVR42u3d0W3jQAxF0fVCdQTbf1WLNKJUEEOACeKRc853YEsj+2LyQc/rvu8/ADzz1xIAiCaAaAKIJoBoAogmgGhaAgDRBBBNANEEEE0A0QQQTUsAIJoAogkgmgCiCSCaAKJpCQBEE0A0AUQTQDQBdrqqXujr69+xi/j9/X/cGj655qrr6Xyvrc994mds6/Oy0wQQTQDRBBBNANEEEE0ARBNANAFEE0A0AUQTYKmr882qZj87bZ3V7byvtJn6qmvunM33Pc35jNlpAogmgGgCiCaAaAKIJgCiCSCaAKIJIJoAogmw1JV2QRPnlNPuq1PaedxVZ4h3ntXeee6576mdJoBoAogmgGgCiCYAogkgmgCiCSCaAKIJIJoA/OKyBDk65507r6dqdjjttwI612fifLqdJgCiCSCaAKIJIJoAogkgmgCIJoBoAogmgGgCjGL2PEjVXHnnDHLa3HTauefmyu00AUQTANEEEE0A0QQQTQDRBBBNAEQTQDQBRBNgiLjZ85NnbNPOPU97r6qZ8c573zqffvL31E4TQDQBRBNANAFEE0A0ARBNANEEEE0A0QQQTYClWmfPO2eZ+fxZpJ393XlfT6T9VoDvqZ0mgGgCiCaAaAIgmgCiCSCaAKIJIJoAogmAaAJ8oGz2/ORzkDtNPCM77Xo61znt++V7aqcJIJoAogkgmgCiCYBoAogmgGgCiCaAaAKIJgC/KJs9Tzv/utOT+6qa+e1cn7RnkTbDPnF+f+v3y04TwL/nAKIJIJoAiCaAaAKIJoBoAogmgGgCIJoAH7s632zi/OzEc8Y7791nI+fe0z4bVc+i6nWq1tBOE0A0AUQTQDQBRBNANAEQTQDRBBBNANEEEE2ApVpnzyeey9w5F7z1bOu060k7g37i9aR9Vjtn8+00AUQTQDQBRBNANAFEEwDRBBBNANEEEE0A0QRY6kq7oK1zuGnvVSVtdjjtnPq0z/PEz4adJoBoAogmAKIJIJoAogkgmgCiCSCaAIgmgGgCtCibPd86Mz7xXOZOafPynXPladecdhZ52ve06rnbaQKIJoBoAogmgGgCiCYAogkgmgCiCSCaAKIJsFTZ7PnEM4475+XTztp2fnrO80pb5877mtgNO00A0QQQTQDRBBBNANEEQDQBRBNANAFEE0A0AZa60i4o7bzytGtOm3eeeIZ4531NPIs8bQ3T3stOE0A0AUQTQDQBRBNANAEQTQDRBBBNANEEEE2ApV73fY+76ImzsRNnkKtU3VfnPHjnvbvmnO+pnSaAaAKIJoBoAogmgGgCIJoAogkgmgCiCSCaAAeLO/c8bUY7bdZ76xx32n11XvPEz0/Ve6V1w04TwL/nAKIJIJoAogkgmgCIJoBoAogmgGgCiCbAweJmz9POODZf3MNvBfR8L9J+K2BiE+w0AUQTQDQBRBNANAFEEwDRBBBNANEEEE0A0QRY6nXfd8kLTZz5rbqvtPdKOzv+5Oee9jqd3+WJZ9nbaQKIJoBoAogmgGgCiCYAogkgmgCiCSCaAKIJcLCy2fMnts6nV9371hnkqmdx8u8bbF3Dzvuqel52mgCiCSCaAKIJIJoAogmAaAKIJoBoAogmgGgCLNV67vnJ5ztPXMOJZ753PveJ0ubTO6/H7DmAf88BRBNANAFEEwDRBBBNANEEEE0A0QQQTQDeujrfrHMm+gmzzJ77lPs6ecY/bV7eThNANAFEE0A0AUQTQDQBEE0A0QQQTQDRBBBNgKVaZ8/Tzux+Iu160nSuc9VnrPO5p30vOu994u8J2GkCiCaAaAKIJoBoAogmAKIJIJoAogkgmgCiCXCwK+2COmdIO+d5O6+583XS5qY7P4edvyfQuT5bzz2vui87TQDRBBBNANEEEE0A0QRANAFEE0A0AUQTQDQBlnrd913yQmnnMqc5+Wz0tPVJ+32Dk59p5xqaPQfw7zmAaAKIJoBoAiCaAKIJIJoAogkgmgCiCcBbZbPnvJc2P5t2FnnV9Uw8a3vrTH3aGpo9B/DvOYBoAogmgGgCIJoAogkgmgCiCSCaAKIJwFtX1Qs53/nzv3myhlUztlvPpK56r62f57TfHJh4zXaaAKIJIJoAogkgmgCiCYBoAogmgGgCiCaAaAIsdXW+WdpM6xNVM8hps8xp54Nv/YylPfe0s9HtNAH8ew6AaAKIJoBoAogmgGgCiCYAogkgmgCiCRDjSrugk+eUO89G73xeE+edq55F5/nyE2e9J/4ehZ0mgGgCiCaAaAKIJoBoAiCaAKIJIJoAogkgmgBLXZbgTFvPv+6c9U47833r+qT9DoCdJoBoAogmgGgCiCaAaAIgmgCiCSCaAKIJIJoAS5k9H2bi2eid885VrzPxPO7ONUybu+98XnaaAKIJIJoAogkgmgCiCYBoAogmgGgCiCaAaAIsFTd7vnXmt3NWd+KZ5mnz4CfP5k88z91OE0A0AUQTQDQBEE0A0QQQTQDRBBBNANEEQDQBPtY6e37yvGrnvW8917vzviae1V51X1XrnPY6dpoA/j0HEE0A0QQQTQBEE0A0AUQTQDQBRBNANAF463Xft1UAsNMEEE0A0QQQTQDRBBBNAEQTQDQBRBNANAFEE0A0ARBNANEEEE0A0QQQTQDRBEA0AUQTQDQBRBNANAHO9gNkMed5JGQMCAAAAABJRU5ErkJggg==" alt="本文二维码">
+      <div class="qrcap">扫码打开这篇</div>
+    </div>
+    <div id="share-toast"></div>
+
     <div class="foot">JUZIGE.COM</div>
   </main>
 
@@ -116,6 +142,37 @@
     for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
     var blob = new Blob([bytes], {type: "audio/mpeg"});
     document.getElementById("radio-audio").src = URL.createObjectURL(blob);
+  })();
+</script>
+
+<script>
+  (function(){
+    var url = "https://juzige.com/radio/xiaowan-platform.html";
+    var toast = document.getElementById('share-toast'), timer = null;
+    function showToast(msg){
+      toast.textContent = msg; toast.classList.add('show');
+      clearTimeout(timer); timer = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
+    }
+    function copyLink(){
+      function done(){ showToast('链接已复制，去分享给朋友吧'); }
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); }
+        catch(e){ showToast('复制没成功，长按地址栏复制链接'); }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, fallback);
+      else fallback();
+    }
+    document.getElementById('share-btn').addEventListener('click', function(){
+      if (navigator.share) {
+        navigator.share({title: document.title, text: '橘子电台｜新手起号，怎么选平台？——小红书、抖音、X 三种流量游戏', url: url})
+          .catch(function(err){ if (!err || err.name !== 'AbortError') copyLink(); });
+      } else copyLink();
+    });
+    document.getElementById('copy-btn').addEventListener('click', copyLink);
   })();
 </script>
 </body>
