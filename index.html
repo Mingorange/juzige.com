@@ -70,6 +70,7 @@
   .playbtn[disabled]{opacity:.6;cursor:wait;}
   img.cover{background:#ece3d0;aspect-ratio:16/9;object-fit:cover;}
 </style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="59feebcb-7ddd-48f8-94a1-3457c8f643f0"></script>
 </head>
 <body>
 
@@ -97,11 +98,11 @@
         <p class="sum">选平台这个问题问反了 — 先盘清你的核心资产、再想清靠什么赚钱、最后才匹配平台机制。小红书争「有用」、抖音争「停留」、X 争「生态位」。</p>
         <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 6:43</button>
         <audio id="ep-latest" controls preload="none" style="display:none"></audio>
-        <div class="cfoot"><span class="who">小晚不在 · 6 分 43 秒</span><a class="go" href="radio/xiaowan-platform.html">打开全文 →</a></div>
+        <div class="cfoot"><span class="who">小晚不在 · 6 分 43 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep1" href="radio/xiaowan-platform.html">打开全文 →</a></div>
       </div>
     </article>
 
-    <a class="card" href="https://mp.weixin.qq.com/s/BqdRtH9EDlb3GeJVd2nm7A" target="_blank" rel="noopener">
+    <a class="card" data-umami-event="article-click" data-umami-event-card="shanghai-mengoo" href="https://mp.weixin.qq.com/s/BqdRtH9EDlb3GeJVd2nm7A" target="_blank" rel="noopener">
       <img class="cover" data-cover="assets/cover-medical.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥与医生看心电图变成数据网络的大屏">
       <div class="cbody">
         <div class="meta">走访手记 · 2026 年 11 月 6 日</div>
@@ -111,7 +112,7 @@
       </div>
     </a>
 
-    <a class="card" href="https://mp.weixin.qq.com/s/oQzbhLFfnnrRSsN2qoQq4Q" target="_blank" rel="noopener">
+    <a class="card" data-umami-event="article-click" data-umami-event-card="shanghai-laochen" href="https://mp.weixin.qq.com/s/oQzbhLFfnnrRSsN2qoQq4Q" target="_blank" rel="noopener">
       <img class="cover" data-cover="assets/cover-exec.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥与西装高管在上海办公室看 AI 聊天笔记本">
       <div class="cbody">
         <div class="meta">走访手记 · 2026 年 11 月 5 日</div>
@@ -121,7 +122,7 @@
       </div>
     </a>
 
-    <a class="card" href="https://mp.weixin.qq.com/s/wD1vuZGDQZqE9IZSg5ng4A" target="_blank" rel="noopener">
+    <a class="card" data-umami-event="article-click" data-umami-event-card="wenzhou-factory" href="https://mp.weixin.qq.com/s/wD1vuZGDQZqE9IZSg5ng4A" target="_blank" rel="noopener">
       <img class="cover" data-cover="assets/cover-factory.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥与工厂老板在传送带和机械臂旁竖大拇指">
       <div class="cbody">
         <div class="meta">走访手记 · 2026 年 11 月 1 日</div>
@@ -131,7 +132,7 @@
       </div>
     </a>
 
-    <a class="card" href="https://mp.weixin.qq.com/s/d3DbbO795mcWgBGP0fs0bw" target="_blank" rel="noopener">
+    <a class="card" data-umami-event="article-click" data-umami-event-card="hangzhou-film" href="https://mp.weixin.qq.com/s/d3DbbO795mcWgBGP0fs0bw" target="_blank" rel="noopener">
       <img class="cover" data-cover="assets/cover-film.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥在片场看摄影机、场记板与监视器">
       <div class="cbody">
         <div class="meta">走访手记 · 2026 年 11 月 1 日</div>
@@ -184,6 +185,7 @@
       try { mount(window.EP_LATEST_B64); }
       catch(e){ try { a.src = 'data:audio/mpeg;base64,' + window.EP_LATEST_B64; a.load(); } catch(e2){} }
       btn.style.display = 'none'; a.style.display = '';
+      if (window.umami && umami.track) umami.track('audio-play', {page: 'home-ep1'});
       var p = a.play(); if (p && p.catch) p.catch(function(){});
     };
     sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };

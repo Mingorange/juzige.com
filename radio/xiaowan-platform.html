@@ -71,6 +71,7 @@
   .playbtn{margin-top:10px;display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;border:none;border-radius:999px;padding:12px 22px;font-size:15.5px;font-weight:700;cursor:pointer;font-family:inherit;}
   .playbtn[disabled]{opacity:.6;cursor:wait;}
 </style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="59feebcb-7ddd-48f8-94a1-3457c8f643f0"></script>
 </head>
 <body>
 
@@ -162,6 +163,7 @@
         try { mount(window.EP1_B64); }
         catch(e){ try { a.src = 'data:audio/mpeg;base64,' + window.EP1_B64; a.load(); } catch(e2){} }
         btn.style.display = 'none'; a.style.display = '';
+        if (window.umami && umami.track) umami.track('audio-play', {page: 'ep1'});
         var p = a.play(); if (p && p.catch) p.catch(function(){});
       };
       sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };
@@ -179,7 +181,7 @@
       clearTimeout(timer); timer = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
     }
     function copyLink(){
-      function done(){ showToast('链接已复制，去分享给朋友吧'); }
+      function done(){ if (window.umami && umami.track) umami.track('share', {via: 'copy'}); showToast('链接已复制，去分享给朋友吧'); }
       function fallback(){
         var ta = document.createElement('textarea');
         ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
@@ -193,6 +195,7 @@
     }
     document.getElementById('share-btn').addEventListener('click', function(){
       if (navigator.share) {
+        if (window.umami && umami.track) umami.track('share', {via: 'sheet'});
         navigator.share({title: document.title, text: '橘子电台｜新手起号，怎么选平台？——小红书、抖音、X 三种流量游戏', url: url})
           .catch(function(err){ if (!err || err.name !== 'AbortError') copyLink(); });
       } else copyLink();
