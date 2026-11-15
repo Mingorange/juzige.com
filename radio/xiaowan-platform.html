@@ -67,9 +67,6 @@
   #share-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(16px);background:#1d1d1f;color:#fff;font-size:14px;padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s ease;z-index:99;white-space:nowrap;}
   #share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-  .share .likebtn.liked{background:var(--orange);border-color:var(--orange);color:#fff;}
-  .share .likebtn .heart{color:#e0245e;font-style:normal;}
-  .share .likebtn.liked .heart{color:#fff;}
 </style>
 </head>
 <body>
@@ -116,9 +113,7 @@
     <div class="share">
       <div class="st">觉得有用，分享给朋友</div>
       <div class="btns">
-        <button class="ghost likebtn" id="like-btn" type="button"><i class="heart">♥</i> 点赞 · <span id="like-count">–</span></button>
         <button class="primary" id="share-btn" type="button">分享这篇</button>
-        <button class="ghost" id="copy-btn" type="button">复制链接</button>
       </div>
       <p class="hint">在微信里打开的话，点右上角「···」就能分享到朋友圈。</p>
       <img class="qr" src="data:image/png;base64,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" alt="本文二维码">
@@ -190,37 +185,8 @@
           .catch(function(err){ if (!err || err.name !== 'AbortError') copyLink(); });
       } else copyLink();
     });
-    document.getElementById('copy-btn').addEventListener('click', copyLink);
   })();
 </script>
 
-<script>
-  (function(){
-    var API = 'https://abacus.jasoncameron.dev', NS = 'juzige', KEY = 'ep1-likes', LK = 'liked:ep1';
-    var btn = document.getElementById('like-btn'), cnt = document.getElementById('like-count');
-    var toast = document.getElementById('share-toast'), timer = null;
-    function showToast(msg){
-      toast.textContent = msg; toast.classList.add('show');
-      clearTimeout(timer); timer = setTimeout(function(){ toast.classList.remove('show'); }, 2400);
-    }
-    function render(v){ cnt.textContent = v; }
-    var liked = false;
-    try { liked = localStorage.getItem(LK) === '1'; } catch(e){}
-    if (liked) btn.classList.add('liked');
-    fetch(API + '/get/' + NS + '/' + KEY)
-      .then(function(r){ return r.json(); })
-      .then(function(d){ render(d && typeof d.value === 'number' ? d.value : 0); })
-      .catch(function(){ render(0); });
-    btn.addEventListener('click', function(){
-      if (liked) { showToast('你已经赞过啦'); return; }
-      liked = true; btn.classList.add('liked');
-      try { localStorage.setItem(LK, '1'); } catch(e){}
-      fetch(API + '/hit/' + NS + '/' + KEY)
-        .then(function(r){ return r.json(); })
-        .then(function(d){ if (d && typeof d.value === 'number') render(d.value); showToast('谢谢你的赞'); })
-        .catch(function(){ showToast('谢谢你的赞'); });
-    });
-  })();
-</script>
 </body>
 </html>
