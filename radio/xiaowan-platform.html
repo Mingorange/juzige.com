@@ -67,6 +67,9 @@
   #share-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(16px);background:#1d1d1f;color:#fff;font-size:14px;padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s ease;z-index:99;white-space:nowrap;}
   #share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
+
+  .playbtn{margin-top:10px;display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;border:none;border-radius:999px;padding:12px 22px;font-size:15.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .playbtn[disabled]{opacity:.6;cursor:wait;}
 </style>
 </head>
 <body>
@@ -89,7 +92,8 @@
 
     <div class="player">
       <div class="plabel">听这一期 · 6:43</div>
-      <audio id="radio-audio" controls preload="metadata"></audio>
+      <button class="playbtn" id="radio-play" type="button">▶ 播放本集 · 6:43</button>
+      <audio id="radio-audio" controls preload="none" style="display:none"></audio>
     </div>
 
     <div class="script">
@@ -135,10 +139,9 @@
     <div class="foot">JUZIGE.COM</div>
   </main>
 
-<script src="/assets/ep1-audio.js"></script>
 <script>
   (function(){
-    var a = document.getElementById("radio-audio");
+    var btn = document.getElementById('radio-play'), a = document.getElementById('radio-audio'), started = false;
     function mount(b64){
       var parts = [], CH = 65536;
       for (var i = 0; i < b64.length; i += CH) {
@@ -150,11 +153,20 @@
       a.src = URL.createObjectURL(new Blob(parts, {type: "audio/mpeg"}));
       a.load();
     }
-    try {
-      if (window.EP1_B64) mount(window.EP1_B64);
-    } catch(e) {
-      try { a.src = "data:audio/mpeg;base64," + window.EP1_B64; a.load(); } catch(e2) {}
-    }
+    btn.addEventListener('click', function(){
+      if (started) return; started = true;
+      btn.disabled = true; btn.textContent = '正在加载音频…';
+      var sc = document.createElement('script');
+      sc.src = '/assets/ep1-audio.js';
+      sc.onload = function(){
+        try { mount(window.EP1_B64); }
+        catch(e){ try { a.src = 'data:audio/mpeg;base64,' + window.EP1_B64; a.load(); } catch(e2){} }
+        btn.style.display = 'none'; a.style.display = '';
+        var p = a.play(); if (p && p.catch) p.catch(function(){});
+      };
+      sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };
+      document.body.appendChild(sc);
+    });
   })();
 </script>
 
