@@ -91,7 +91,7 @@
 <main>
   <div class="feed">
 
-    <!-- 最新 · 橘子电台（音频外置＋点播加载；旧集在各自文章页） -->
+    <!-- 橘子电台（每集都带播放器：音频外置＋点播懒加载） -->
     <article class="card">
       <img class="cover" data-cover="assets/cover-xitang.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥站在十字路口的路牌前">
       <div class="cbody">
@@ -104,15 +104,17 @@
       </div>
     </article>
 
-    <a class="card" data-umami-event="article-click" data-umami-event-card="radio-ep1" href="radio/xiaowan-platform.html">
+    <article class="card">
       <img class="cover" data-cover="assets/cover-radio.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子电台封面：橘子哥站在三扇门前选平台">
       <div class="cbody">
         <div class="meta">橘子电台 · 2026 年 11 月 15 日</div>
         <h2>新手起号，怎么选平台？——小红书、抖音、X 三种流量游戏</h2>
         <p class="sum">选平台这个问题问反了 — 先盘清你的核心资产、再想清靠什么赚钱、最后才匹配平台机制。小红书争「有用」、抖音争「停留」、X 争「生态位」。</p>
-        <div class="cfoot"><span class="who">小晚不在 · 6 分 43 秒</span><span class="go">打开全文 →</span></div>
+        <button class="playbtn" id="ep1-play" type="button">▶ 播放本集 · 6:43</button>
+        <audio id="ep1-audio" controls preload="none" style="display:none"></audio>
+        <div class="cfoot"><span class="who">小晚不在 · 6 分 43 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep1" href="radio/xiaowan-platform.html">打开全文 →</a></div>
       </div>
-    </a>
+    </article>
 
     <a class="card" data-umami-event="article-click" data-umami-event-card="shanghai-mengoo" href="https://mp.weixin.qq.com/s/BqdRtH9EDlb3GeJVd2nm7A" target="_blank" rel="noopener">
       <img class="cover" data-cover="assets/cover-medical.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥与医生看心电图变成数据网络的大屏">
@@ -176,8 +178,7 @@
     imgs.forEach(function(img){ io.observe(img); });
   } else imgs.forEach(loadCover);
 
-  var btn = document.getElementById('ep-play'), a = document.getElementById('ep-latest'), started = false;
-  function mount(b64){
+  function mount(a, b64){
     var parts = [], CH = 65536;
     for (var i = 0; i < b64.length; i += CH) {
       var bin = atob(b64.slice(i, i + CH));
@@ -188,21 +189,27 @@
     a.src = URL.createObjectURL(new Blob(parts, {type: 'audio/mpeg'}));
     a.load();
   }
-  btn.addEventListener('click', function(){
-    if (started) return; started = true;
-    btn.disabled = true; btn.textContent = '正在加载音频…';
-    var sc = document.createElement('script');
-    sc.src = 'assets/ep-latest.js';
-    sc.onload = function(){
-      try { mount(window.EP_LATEST_B64); }
-      catch(e){ try { a.src = 'data:audio/mpeg;base64,' + window.EP_LATEST_B64; a.load(); } catch(e2){} }
-      btn.style.display = 'none'; a.style.display = '';
-      if (window.umami && umami.track) umami.track('audio-play', {page: 'home-ep2'});
-      var p = a.play(); if (p && p.catch) p.catch(function(){});
-    };
-    sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };
-    document.body.appendChild(sc);
-  });
+  function wirePlayer(btnId, audioId, src, globalName, page){
+    var btn = document.getElementById(btnId), a = document.getElementById(audioId), started = false;
+    if (!btn || !a) return;
+    btn.addEventListener('click', function(){
+      if (started) return; started = true;
+      btn.disabled = true; btn.textContent = '正在加载音频…';
+      var sc = document.createElement('script');
+      sc.src = src;
+      sc.onload = function(){
+        try { mount(a, window[globalName]); }
+        catch(e){ try { a.src = 'data:audio/mpeg;base64,' + window[globalName]; a.load(); } catch(e2){} }
+        btn.style.display = 'none'; a.style.display = '';
+        if (window.umami && umami.track) umami.track('audio-play', {page: page});
+        var p = a.play(); if (p && p.catch) p.catch(function(){});
+      };
+      sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };
+      document.body.appendChild(sc);
+    });
+  }
+  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep2');
+  wirePlayer('ep1-play', 'ep1-audio', 'assets/ep1-audio.js', 'EP1_B64', 'home-ep1');
 })();
 </script>
 
