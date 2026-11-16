@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>橘子电台 · 把好文章读给你听｜看橘子哥</title>
+<meta name="description" content="橘子电台 JUZI FM：橘子哥精选 AI 好长文，做成几分钟能听完的广播。长文不用啃，听完有收获。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<style>
+  :root{
+    --bg:#f5f5f7; --ink:#1d1d1f; --grey:#6e6e73; --line:#d2d2d7;
+    --orange:#F79343; --sage:#7A8B6F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .site-nav{
+    position:fixed;top:22px;left:26px;z-index:10;
+    display:flex;align-items:center;gap:9px;
+    font-weight:600;color:var(--ink);text-decoration:none;cursor:pointer;
+    transition:opacity .25s ease;
+  }
+  .site-nav:hover{opacity:.65;}
+  .site-nav svg{width:22px;height:22px;display:block;flex:none;}
+  .site-nav .name{font-size:14px;letter-spacing:.3em;}
+  .page{max-width:720px;margin:0 auto;padding:110px 6vw 40px;}
+  .hero{text-align:center;}
+  .hero svg{width:56px;height:56px;}
+  .hero h1{font-size:clamp(34px,7vw,52px);font-weight:800;letter-spacing:.06em;margin-top:16px;}
+  .hero .fm{margin-top:8px;font-size:13px;letter-spacing:.42em;color:var(--grey);font-weight:600;}
+  .hero .tagline{margin-top:22px;font-size:17px;line-height:1.9;color:var(--ink);}
+  .hero .intro{margin:22px auto 0;max-width:600px;font-size:15.5px;line-height:1.95;color:#3d3d40;text-align:left;}
+  .hero .hostline{margin-top:18px;font-size:13.5px;color:var(--grey);letter-spacing:.06em;}
+  .seclabel{margin-top:56px;font-size:12px;letter-spacing:.28em;color:var(--grey);font-weight:600;}
+  .ep{
+    margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  }
+  .ep img.cover{width:100%;height:auto;display:block;background:#ece3d0;aspect-ratio:16/9;object-fit:cover;}
+  .ep .ebody{padding:20px 22px 22px;}
+  .ep .meta{font-size:12.5px;color:var(--sage);letter-spacing:.1em;font-weight:600;}
+  .ep h2{font-size:21px;line-height:1.45;font-weight:800;margin-top:9px;}
+  .ep .sum{margin-top:9px;font-size:15px;line-height:1.7;color:#3d3d40;}
+  .ep .erow{margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .playbtn{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;border:none;border-radius:999px;padding:12px 22px;font-size:15.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .playbtn[disabled]{opacity:.6;cursor:wait;}
+  .ep audio{width:100%;margin-top:14px;}
+  .ep .full{font-size:14.5px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;font-weight:600;}
+  .hostcard{
+    margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;
+    font-size:15px;line-height:1.9;color:#3d3d40;
+  }
+  .hostcard b{color:var(--ink);}
+  .follow{text-align:center;margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 22px;}
+  .follow img{width:230px;max-width:80%;height:auto;border-radius:12px;}
+  .follow p{margin-top:14px;font-size:14.5px;color:var(--grey);line-height:1.8;}
+  .signoff{
+    margin-top:64px;padding-top:40px;border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .signoff svg{width:44px;height:44px;}
+  .signoff .colname{margin-top:14px;font-size:26px;font-weight:700;letter-spacing:.12em;}
+  .signoff .fm{margin-top:6px;font-size:12px;letter-spacing:.34em;color:var(--grey);font-weight:600;}
+  .signoff .tagline{margin-top:18px;font-size:15px;color:var(--grey);line-height:1.8;}
+  .backhome{margin-top:26px;display:inline-block;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px;}
+  .foot{
+    margin-top:70px;padding:26px 0 34px;border-top:1px solid var(--line);
+    text-align:center;font-size:11px;letter-spacing:.22em;color:#aeaeb2;
+  }
+</style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="59feebcb-7ddd-48f8-94a1-3457c8f643f0"></script>
+</head>
+<body>
+
+  <a class="site-nav" href="/" aria-label="回主页">
+    <svg viewBox="0 0 100 100"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+    <span class="name">看橘子哥</span>
+  </a>
+
+  <main class="page">
+
+    <div class="hero">
+      <svg viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+      <h1>橘子电台</h1>
+      <div class="fm">JUZI FM</div>
+      <p class="tagline">橘子哥精选，听广播学 AI。<br>长文不用啃，听完有收获。</p>
+      <p class="intro">这是一档把好文章读给你听的小栏目。每期挑一篇真正有料的长文——AI 创业实战、平台玩法、产品方法——拆开揉碎，做成几分钟能听完的广播。通勤、做饭、散步的时候点开一期，听完就能带走一个能用的判断。</p>
+      <p class="hostline">主播：看橘子哥 · 持续更新中</p>
+    </div>
+
+    <div class="seclabel">全部节目</div>
+
+    <article class="ep">
+      <img class="cover" data-cover="/assets/cover-xitang.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥站在十字路口的路牌前">
+      <div class="ebody">
+        <div class="meta">第 002 期 · 2026 年 11 月 16 日 · 6 分 34 秒</div>
+        <h2>一年挣不到一万，两年后月入十万：西堂的四次转身</h2>
+        <p class="sum">前腾讯程序员西堂：副业一年挣不到一万，押中 AI 视频换来第一单，靠培训筛人攒下团队；漫剧风口塌了果断收手，最后在公众号商单上跑通月入十万。</p>
+        <div class="erow">
+          <button class="playbtn" type="button" data-src="/assets/ep2-audio.js" data-var="EP2_B64" data-key="intro-ep2">▶ 播放本集 · 6:34</button>
+          <a class="full" href="/radio/xitang-ai-story.html">看全文 →</a>
+        </div>
+        <audio controls preload="none" style="display:none"></audio>
+      </div>
+    </article>
+
+    <article class="ep">
+      <img class="cover" data-cover="/assets/cover-radio.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥站在三扇门前选平台">
+      <div class="ebody">
+        <div class="meta">第 001 期 · 2026 年 11 月 15 日 · 6 分 43 秒</div>
+        <h2>新手起号，怎么选平台？——小红书、抖音、X 三种流量游戏</h2>
+        <p class="sum">选平台这个问题问反了——先盘清你的核心资产、再想清靠什么赚钱、最后才匹配平台机制。小红书争「有用」、抖音争「停留」、X 争「生态位」。</p>
+        <div class="erow">
+          <button class="playbtn" type="button" data-src="/assets/ep1-audio.js" data-var="EP1_B64" data-key="intro-ep1">▶ 播放本集 · 6:43</button>
+          <a class="full" href="/radio/xiaowan-platform.html">看全文 →</a>
+        </div>
+        <audio controls preload="none" style="display:none"></audio>
+      </div>
+    </article>
+
+    <div class="seclabel">关于主播</div>
+    <div class="hostcard">
+      <b>看橘子哥</b>，前设计公司老板。这几年专门研究一件事：怎么把 AI 用到实处——帮企业降本增效，也把一线踩过的坑、见过的好经验，写成文章、读成广播。公众号和网站都叫「看橘子哥」。
+    </div>
+
+    <div class="seclabel">关注更新</div>
+    <div class="follow">
+      <img id="qr-card" alt="看橘子哥公众号二维码卡">
+      <p>微信扫码关注公众号「看橘子哥」，<br>新一期上线，第一时间知道。</p>
+    </div>
+
+    <div class="signoff">
+      <svg viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+      <div class="colname">橘子电台</div>
+      <div class="fm">JUZI FM</div>
+      <p class="tagline">橘子哥精选，听广播学 AI。<br>长文不用啃，听完有收获。</p>
+      <a class="backhome" href="/">← 回 juzige.com 首页</a>
+    </div>
+
+    <div class="foot">JUZIGE.COM</div>
+  </main>
+
+<script>
+  (function(){
+    // 封面懒加载（与首页同款：.b64 文本取回后拼 data URI）
+    document.querySelectorAll('img[data-cover]').forEach(function(img){
+      fetch(img.getAttribute('data-cover')).then(function(r){ return r.text(); }).then(function(t){
+        img.src = 'data:image/webp;base64,' + t.trim();
+      }).catch(function(){});
+    });
+    // 公众号二维码卡
+    fetch('/assets/juzige-qr.b64').then(function(r){ return r.text(); }).then(function(t){
+      document.getElementById('qr-card').src = 'data:image/png;base64,' + t.trim();
+    }).catch(function(){});
+    // 播放器：点按才加载对应音频脚本
+    document.querySelectorAll('.playbtn').forEach(function(btn){
+      var a = btn.closest('.ebody').querySelector('audio'), started = false;
+      function mount(b64){
+        var parts = [], CH = 65536;
+        for (var i = 0; i < b64.length; i += CH) {
+          var bin = atob(b64.slice(i, i + CH));
+          var bytes = new Uint8Array(bin.length);
+          for (var j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
+          parts.push(bytes);
+        }
+        a.src = URL.createObjectURL(new Blob(parts, {type: "audio/mpeg"}));
+        a.load();
+      }
+      btn.addEventListener('click', function(){
+        if (started) return; started = true;
+        btn.disabled = true; btn.textContent = '正在加载音频…';
+        var sc = document.createElement('script');
+        sc.src = btn.getAttribute('data-src');
+        sc.onload = function(){
+          try { mount(window[btn.getAttribute('data-var')]); }
+          catch(e){ try { a.src = 'data:audio/mpeg;base64,' + window[btn.getAttribute('data-var')]; a.load(); } catch(e2){} }
+          btn.style.display = 'none'; a.style.display = '';
+          if (window.umami && umami.track) umami.track('audio-play', {page: btn.getAttribute('data-key')});
+          var p = a.play(); if (p && p.catch) p.catch(function(){});
+        };
+        sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };
+        document.body.appendChild(sc);
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
