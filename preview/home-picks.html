@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<title>看橘子哥 — 分享经验</title>
+<meta name="description" content="看橘子哥的经验分享：AI 走访手记、橘子电台、互动知识馆。每天都有新的。">
+<style>
+  :root{
+    --bg:#f6f1e7; --card:#fffefb; --line:#e7ddc9;
+    --ink:#1d1d1f; --grey:#6e6e73; --sage:#7A8B6F; --orange:#F79343;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ---------- 顶部品牌条 ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,241,231,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{max-width:1080px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:10px;}
+  .bar .mark{flex:none;display:flex;align-items:center;}
+  .bar .name{font-size:19px;font-weight:700;letter-spacing:.01em;}
+  .bar .tag{font-size:14px;color:var(--grey);letter-spacing:.06em;}
+  .bar .sp{flex:1;}
+  .bar a.about{
+    font-size:15px;color:var(--ink);text-decoration:none;font-weight:600;
+    border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 16px;
+  }
+  /* ---------- 瀑布流 ---------- */
+  main{max-width:1080px;margin:0 auto;padding:30px 22px 10px;}
+  .feed{columns:2;column-gap:22px;}
+  @media (max-width:760px){.feed{columns:1;}}
+  .card{
+    display:inline-block;width:100%;margin:0 0 22px;
+    background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+    break-inside:avoid;vertical-align:top;
+  }
+  a.card{color:inherit;text-decoration:none;}
+  .card img.cover{width:100%;height:auto;display:block;}
+  .tcover{
+    aspect-ratio:16/9;background:#1d1d1f;color:#f5f2ea;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:22px;position:relative;
+  }
+  .tcover::before{content:"";position:absolute;top:22px;left:22px;width:34px;height:4px;border-radius:2px;background:var(--orange);}
+  .tcover .th{font-size:clamp(26px,3.4vw,36px);font-weight:800;letter-spacing:.01em;line-height:1.2;}
+  .tcover .ct{margin-top:8px;font-size:15px;color:#b9b3a4;letter-spacing:.28em;}
+  .cbody{padding:20px 22px 22px;}
+  .meta{font-size:13px;color:var(--sage);letter-spacing:.08em;font-weight:600;}
+  .card h2{font-size:21px;line-height:1.45;font-weight:800;margin-top:9px;letter-spacing:.005em;}
+  .sum{margin-top:9px;font-size:15px;line-height:1.65;color:#3d3d40;}
+  .card audio{width:100%;margin-top:15px;height:42px;}
+  .cfoot{margin-top:15px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .cfoot .who{font-size:13.5px;color:var(--grey);}
+  .cfoot .go{font-size:15px;color:var(--orange);font-weight:700;white-space:nowrap;}
+  .badge{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;color:#fff;
+    background:var(--orange);border-radius:999px;padding:3px 10px;margin-right:8px;vertical-align:2px;
+  }
+  footer{max-width:1080px;margin:6px auto 0;padding:20px 22px 42px;color:var(--grey);font-size:13.5px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  footer a{color:var(--grey);text-decoration:none;}
+  footer .dot{color:var(--sage);}
+
+  .playbtn{margin-top:15px;display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;border:none;border-radius:999px;padding:12px 22px;font-size:15.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .playbtn[disabled]{opacity:.6;cursor:wait;}
+  img.cover{background:#ece3d0;aspect-ratio:16/9;object-fit:cover;}
+
+  /* ---------- 橘子精选 ---------- */
+  .picks{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 22px 14px;margin:0 0 22px;}
+  .picks-titlerow{display:flex;align-items:center;gap:2px;}
+  .picks-titlerow h2{font-size:23px;font-weight:800;letter-spacing:.01em;}
+  .picks-sub{margin-top:8px;font-size:14.5px;color:var(--grey);line-height:1.6;}
+  .pick{border-top:1px solid var(--line);margin-top:14px;}
+  .pick-head{width:100%;display:flex;align-items:center;gap:12px;background:none;border:none;cursor:pointer;font-family:inherit;text-align:left;padding:15px 2px 13px;color:var(--ink);}
+  .pick-no{font-size:19px;font-weight:800;color:var(--orange);flex:none;min-width:30px;}
+  .pick-main{flex:1;display:flex;flex-direction:column;gap:3px;min-width:0;}
+  .pick-cat{font-size:11.5px;color:var(--sage);font-weight:700;letter-spacing:.12em;}
+  .pick-name{font-size:16.5px;font-weight:700;line-height:1.45;}
+  .pick-chip{flex:none;font-size:12.5px;font-weight:700;color:var(--sage);border:1px solid var(--line);border-radius:999px;padding:4px 11px;background:#fbf7ec;white-space:nowrap;}
+  .pick-arrow{flex:none;font-size:19px;color:var(--grey);transition:transform .25s;}
+  .pick.open .pick-arrow{transform:rotate(180deg);}
+  .pick-body{padding:2px 2px 18px 42px;}
+  .pick-intro{font-size:15px;line-height:1.7;color:#3d3d40;}
+  .pick-plabel{margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--sage);}
+  .pick-prompt{margin-top:8px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-size:13.5px;line-height:1.65;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#2b2b2e;}
+  .pick-actions{margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .pick-copy{background:var(--orange);color:#fff;border:none;border-radius:999px;padding:10px 20px;font-size:14.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .pick-mail{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-size:14.5px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .pick-src{margin-left:auto;font-size:14.5px;color:var(--orange);font-weight:700;text-decoration:none;white-space:nowrap;}
+  .picks-foot{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--grey);line-height:1.6;}
+  .pick-metric{display:none;}
+  @media (max-width:760px){.pick-body{padding-left:2px;}.pick-chip{display:none;}.pick-metric{display:block;font-size:13px;font-weight:700;color:var(--sage);margin-bottom:8px;letter-spacing:.04em;}}
+</style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="59feebcb-7ddd-48f8-94a1-3457c8f643f0"></script>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <span class="mark">
+      <svg width="26" height="26" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C60 6 78 4 88 8 C86 20 74 28 60 26 C56 25 53 23 52 20 Z" fill="#7A8B6F"/></svg>
+    </span>
+    <span class="name">看橘子哥</span>
+    <span class="tag">分享经验</span>
+    <span class="sp"></span>
+    <a class="about" href="../about.html">关于我</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- 橘子精选 · 每日 Agent 案例（预览版） -->
+  <section class="picks" aria-label="橘子精选">
+    <div class="picks-head">
+      <div class="picks-titlerow"><span class="badge">每日更新</span><h2>橘子精选</h2></div>
+      <p class="picks-sub">每天 5 个真实 Agent 案例，提示词拿走就能用 · 2026 年 11 月 16 日</p>
+    </div>
+
+    <div class="pick" data-i="0">
+      <button class="pick-head" type="button" aria-expanded="false">
+        <span class="pick-no">01</span>
+        <span class="pick-main"><span class="pick-cat">内容创作 · 短剧 AGENT</span><span class="pick-name">5 个人 8 天，拍出 60 集短剧、4 天播放破 1 亿</span></span>
+        <span class="pick-chip">60 集 / 8 天</span>
+        <span class="pick-arrow" aria-hidden="true">⌄</span>
+      </button>
+      <div class="pick-body" hidden>
+        <p class="pick-metric">实测数字 · 60 集 / 8 天</p>
+        <p class="pick-intro">字节短剧 Agent 的内测案例：4 万多字剧本交进去，Agent 负责角色设定、按剧本拆分镜、渲染场景，产出一份能逐镜头编辑的「故事蓝图」，团队只在关键点微调。上线 4 天抖音播放破 1 亿，单集成本约 ¥500–1,000。缺陷也真实：等待久、偶有裁切和字幕乱码，排期要留人工审片时间。</p>
+        <div class="pick-plabel">抄作业提示词 · 英文原版</div>
+        <pre class="pick-prompt">I have a script of about [number] characters for a short drama called [title]. Break it into [number] episodes, create a character sheet for each main character, and write a storyboard with scene descriptions for the first [number] episodes. Finish with a folder of character profiles, episode outlines, and scene-by-scene prompts I can feed into a video generator, and check with me before using any paid service.</pre>
+        <div class="pick-actions">
+          <button class="pick-copy" type="button">复制提示词</button>
+          <button class="pick-mail" type="button">发到我的邮箱</button>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/produce-a-60-episode-short-drama-from-a-script" target="_blank" rel="noopener">原文案例 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="pick" data-i="1">
+      <button class="pick-head" type="button" aria-expanded="false">
+        <span class="pick-no">02</span>
+        <span class="pick-main"><span class="pick-cat">做产品 · CLAUDE CODE</span><span class="pick-name">一个总导演带一群并行工人，从规格书造出网店、SaaS 和 Steam 游戏</span></span>
+        <span class="pick-chip">订阅约 $1,000/月</span>
+        <span class="pick-arrow" aria-hidden="true">⌄</span>
+      </button>
+      <div class="pick-body" hidden>
+        <p class="pick-metric">实测数字 · 订阅约 $1,000/月</p>
+        <p class="pick-intro">一个主编排 Agent 先审规格书、用 git 盯进度，再把独立模块分给一群子 Agent 并行干活：独立的活并行跑，便宜的活交给便宜的模型。网店、SaaS、Steam 游戏同时推进，订阅合计约 $1,000/月。教训先行：开工前给每个模块定好验收标准和预算上限，再开闸。</p>
+        <div class="pick-plabel">抄作业提示词 · 英文原版</div>
+        <pre class="pick-prompt">Here is my spec for [product, e.g. small web shop or indie game]: [paste spec or file path]. Break it into independent modules, write a short brief for each with inputs, outputs and acceptance tests, then work through them using sub-agents in parallel where they don&#x27;t depend on each other. When all modules pass their tests and are integrated, give me a summary of what was built and what is left, and ask before deleting any files or deploying anything.</pre>
+        <div class="pick-actions">
+          <button class="pick-copy" type="button">复制提示词</button>
+          <button class="pick-mail" type="button">发到我的邮箱</button>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/orchestrate-parallel-ai-workers-to-build-products-from-a-spe" target="_blank" rel="noopener">原文案例 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="pick" data-i="2">
+      <button class="pick-head" type="button" aria-expanded="false">
+        <span class="pick-no">03</span>
+        <span class="pick-main"><span class="pick-cat">内容 · N8N / ELEVENLABS</span><span class="pick-name">一句话语音指挥，Newsletter 写稿配图、改线程剪视频全包</span></span>
+        <span class="pick-chip">每天 1 期 / 1 万订阅</span>
+        <span class="pick-arrow" aria-hidden="true">⌄</span>
+      </button>
+      <div class="pick-body" hidden>
+        <p class="pick-metric">实测数字 · 每天 1 期 / 1 万订阅</p>
+        <p class="pick-intro">ElevenLabs 语音 Agent 在前端接令，一个 webhook 把口头指令送进 n8n 流水线：抓 AI 新闻写 Newsletter、生成品牌图、改成推特线程和短视频脚本、跑研究。人只负责动嘴派活。关键细节：按日期记记忆键，同一天的后续指令能接上早上的产出。</p>
+        <div class="pick-plabel">抄作业提示词 · 英文原版</div>
+        <pre class="pick-prompt">Help me set up a content pipeline for my [topic] newsletter. Each day it should research the top [number] stories from [sources], write a newsletter draft in my voice using [sample past issue], and generate a header image idea. Then repurpose the draft into a thread and a short video script. Save everything as files in [folder] and stop for my review; do not publish or send anything.</pre>
+        <div class="pick-actions">
+          <button class="pick-copy" type="button">复制提示词</button>
+          <button class="pick-mail" type="button">发到我的邮箱</button>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/run-newsletter-and-content-repurposing-with-a-voice-agent" target="_blank" rel="noopener">原文案例 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="pick" data-i="3">
+      <button class="pick-head" type="button" aria-expanded="false">
+        <span class="pick-no">04</span>
+        <span class="pick-main"><span class="pick-cat">省钱 · CLAUDE</span><span class="pick-name">订酒店先算「真总价」：43 家实测，价差几小时内能到 60%</span></span>
+        <span class="pick-chip">43 家实测</span>
+        <span class="pick-arrow" aria-hidden="true">⌄</span>
+      </button>
+      <div class="pick-body" hidden>
+        <p class="pick-metric">实测数字 · 43 家实测</p>
+        <p class="pick-intro">把同一家酒店在多个平台的报价拉齐，算进旅游税和到店杂费，才是真总价——同房几小时内能差约 60%。可落地的打法：先订可退改价（最多贵约 11%，有时不到 2%），再让 Agent 每天复查，到取消截止日前降价就取消重订。</p>
+        <div class="pick-plabel">抄作业提示词 · 英文原版</div>
+        <pre class="pick-prompt">Find [hotel name] in [city] for [check-in] to [check-out], [number] guests, on [sites, e.g. Booking.com, Expedia, the hotel&#x27;s own site]. For each, record the room type, nightly rate, taxes, resort and other fees, and cancellation policy, then calculate the true total. Give me a comparison table ranked by total cost, and do not book anything.</pre>
+        <div class="pick-actions">
+          <button class="pick-copy" type="button">复制提示词</button>
+          <button class="pick-mail" type="button">发到我的邮箱</button>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/compare-hotel-total-costs-including-taxes-and-fees" target="_blank" rel="noopener">原文案例 →</a>
+        </div>
+      </div>
+    </div>
+    <div class="pick" data-i="4">
+      <button class="pick-head" type="button" aria-expanded="false">
+        <span class="pick-no">05</span>
+        <span class="pick-main"><span class="pick-cat">搞钱 · CHATGPT AGENT</span><span class="pick-name">给 Agent 一份客户名单，它把每家公司查清填进 CRM</span></span>
+        <span class="pick-chip">几周 → 几小时</span>
+        <span class="pick-arrow" aria-hidden="true">⌄</span>
+      </button>
+      <div class="pick-body" hidden>
+        <p class="pick-metric">实测数字 · 几周 → 几小时</p>
+        <p class="pick-intro">把客户名单交给 ChatGPT 的 Agent 模式：逐家查官网和 LinkedIn，把行业、规模、总部、关键联系人、近期动态补进 CRM，缺的字段标出来。诚实提醒：这则目前只有演示口述、没展示真实跑通结果——先拿 3 家小名单试跑、核对无误再放大。</p>
+        <div class="pick-plabel">抄作业提示词 · 英文原版</div>
+        <pre class="pick-prompt">Here is my lead list: [paste company names or a spreadsheet link]. For each company, research its website and LinkedIn page and collect [fields, e.g. industry, headcount, HQ location, key contacts, recent news]. Then fill in the matching fields in my CRM at [CRM link] and mark any value you could not verify. Do the first 3 and show me before continuing, and don&#x27;t send emails or overwrite existing data without asking.</pre>
+        <div class="pick-actions">
+          <button class="pick-copy" type="button">复制提示词</button>
+          <button class="pick-mail" type="button">发到我的邮箱</button>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/research-companies-and-fill-a-crm-from-a-lead-list" target="_blank" rel="noopener">原文案例 →</a>
+        </div>
+      </div>
+    </div>
+    <p class="picks-foot">来源 agentusecases.ai 每日收录 · 按「能省时间、能赚钱、今天就能抄作业」筛过，纯炫技的不要。</p>
+  </section>
+
+  <div class="feed">
+
+
+    <!-- 橘子电台（每集都带播放器：音频外置＋点播懒加载） -->
+    <article class="card">
+      <img class="cover" data-cover="../assets/cover-xitang.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥站在十字路口的路牌前">
+      <div class="cbody">
+        <div class="meta"><span class="badge">最新</span>橘子电台 · 2026 年 11 月 16 日</div>
+        <h2>一年挣不到一万，两年后月入十万：西堂的四次转身</h2>
+        <p class="sum">前腾讯程序员西堂：副业一年挣不到一万，押中 AI 视频换来第一单，靠培训筛人攒下团队；漫剧风口塌了果断收手，最后在公众号商单上跑通月入十万。</p>
+        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 6:34</button>
+        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <div class="cfoot"><span class="who">西堂 · 6 分 34 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep2" href="../radio/xitang-ai-story.html">打开全文 →</a></div>
+      </div>
+    </article>
+
+    <article class="card">
+      <img class="cover" data-cover="../assets/cover-radio.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子电台封面：橘子哥站在三扇门前选平台">
+      <div class="cbody">
+        <div class="meta">橘子电台 · 2026 年 11 月 15 日</div>
+        <h2>新手起号，怎么选平台？——小红书、抖音、X 三种流量游戏</h2>
+        <p class="sum">选平台这个问题问反了 — 先盘清你的核心资产、再想清靠什么赚钱、最后才匹配平台机制。小红书争「有用」、抖音争「停留」、X 争「生态位」。</p>
+        <button class="playbtn" id="ep1-play" type="button">▶ 播放本集 · 6:43</button>
+        <audio id="ep1-audio" controls preload="none" style="display:none"></audio>
+        <div class="cfoot"><span class="who">小晚不在 · 6 分 43 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep1" href="../radio/xiaowan-platform.html">打开全文 →</a></div>
+      </div>
+    </article>
+
+    <a class="card" data-umami-event="article-click" data-umami-event-card="shanghai-mengoo" href="https://mp.weixin.qq.com/s/BqdRtH9EDlb3GeJVd2nm7A" target="_blank" rel="noopener">
+      <img class="cover" data-cover="../assets/cover-medical.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥与医生看心电图变成数据网络的大屏">
+      <div class="cbody">
+        <div class="meta">走访手记 · 2026 年 11 月 6 日</div>
+        <h2>数字医学 — 上海</h2>
+        <p class="sum">时隔五年再访老客户：一家数字医学公司，怎么把最强的 AI 用进全公司。</p>
+        <div class="cfoot"><span class="who">公众号原文</span><span class="go">打开阅读 →</span></div>
+      </div>
+    </a>
+
+    <a class="card" data-umami-event="article-click" data-umami-event-card="shanghai-laochen" href="https://mp.weixin.qq.com/s/oQzbhLFfnnrRSsN2qoQq4Q" target="_blank" rel="noopener">
+      <img class="cover" data-cover="../assets/cover-exec.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥与西装高管在上海办公室看 AI 聊天笔记本">
+      <div class="cbody">
+        <div class="meta">走访手记 · 2026 年 11 月 5 日</div>
+        <h2>外企高管用上 AI — 上海</h2>
+        <p class="sum">不到 20 分钟，帮一位外企高管搭好整套 AI 环境、用上专属 AI。</p>
+        <div class="cfoot"><span class="who">公众号原文</span><span class="go">打开阅读 →</span></div>
+      </div>
+    </a>
+
+    <a class="card" data-umami-event="article-click" data-umami-event-card="wenzhou-factory" href="https://mp.weixin.qq.com/s/wD1vuZGDQZqE9IZSg5ng4A" target="_blank" rel="noopener">
+      <img class="cover" data-cover="../assets/cover-factory.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥与工厂老板在传送带和机械臂旁竖大拇指">
+      <div class="cbody">
+        <div class="meta">走访手记 · 2026 年 11 月 1 日</div>
+        <h2>AI 编程与工厂 — 温州</h2>
+        <p class="sum">大学室友的工厂年产值上亿 — 他每个月只多花 200 美元，把 AI 用进了生产。</p>
+        <div class="cfoot"><span class="who">公众号原文</span><span class="go">打开阅读 →</span></div>
+      </div>
+    </a>
+
+    <a class="card" data-umami-event="article-click" data-umami-event-card="hangzhou-film" href="https://mp.weixin.qq.com/s/d3DbbO795mcWgBGP0fs0bw" target="_blank" rel="noopener">
+      <img class="cover" data-cover="../assets/cover-film.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥在片场看摄影机、场记板与监视器">
+      <div class="cbody">
+        <div class="meta">走访手记 · 2026 年 11 月 1 日</div>
+        <h2>AI 影视 — 杭州</h2>
+        <p class="sum">AI 游记第一站：到杭州看 AI 怎么走进影视制作。</p>
+        <div class="cfoot"><span class="who">公众号原文</span><span class="go">打开阅读 →</span></div>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <span>看橘子哥</span><span class="dot">·</span><span>juzige.com</span><span class="dot">·</span><a href="mailto:ym@juzige.com">ym@juzige.com</a>
+</footer>
+
+<script>
+(function(){
+  var imgs = document.querySelectorAll('img[data-cover]');
+  function loadCover(img){
+    fetch(img.getAttribute('data-cover')).then(function(r){ return r.text(); }).then(function(t){
+      img.src = 'data:image/webp;base64,' + t.trim();
+    }).catch(function(){});
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting) { loadCover(en.target); io.unobserve(en.target); } });
+    }, {rootMargin: '400px'});
+    imgs.forEach(function(img){ io.observe(img); });
+  } else imgs.forEach(loadCover);
+
+  function mount(a, b64){
+    var parts = [], CH = 65536;
+    for (var i = 0; i < b64.length; i += CH) {
+      var bin = atob(b64.slice(i, i + CH));
+      var bytes = new Uint8Array(bin.length);
+      for (var j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
+      parts.push(bytes);
+    }
+    a.src = URL.createObjectURL(new Blob(parts, {type: 'audio/mpeg'}));
+    a.load();
+  }
+  function wirePlayer(btnId, audioId, src, globalName, page){
+    var btn = document.getElementById(btnId), a = document.getElementById(audioId), started = false;
+    if (!btn || !a) return;
+    btn.addEventListener('click', function(){
+      if (started) return; started = true;
+      btn.disabled = true; btn.textContent = '正在加载音频…';
+      var sc = document.createElement('script');
+      sc.src = src;
+      sc.onload = function(){
+        try { mount(a, window[globalName]); }
+        catch(e){ try { a.src = 'data:audio/mpeg;base64,' + window[globalName]; a.load(); } catch(e2){} }
+        btn.style.display = 'none'; a.style.display = '';
+        if (window.umami && umami.track) umami.track('audio-play', {page: page});
+        var p = a.play(); if (p && p.catch) p.catch(function(){});
+      };
+      sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };
+      document.body.appendChild(sc);
+    });
+  }
+  wirePlayer('ep-play', 'ep-latest', '../assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep2');
+  wirePlayer('ep1-play', 'ep1-audio', '../assets/ep1-audio.js', 'EP1_B64', 'home-ep1');
+})();
+</script>
+
+
+
+<script>
+(function(){
+  var PICKS = [{"name": "5 个人 8 天，拍出 60 集短剧、4 天播放破 1 亿", "intro": "字节短剧 Agent 的内测案例：4 万多字剧本交进去，Agent 负责角色设定、按剧本拆分镜、渲染场景，产出一份能逐镜头编辑的「故事蓝图」，团队只在关键点微调。上线 4 天抖音播放破 1 亿，单集成本约 ¥500–1,000。缺陷也真实：等待久、偶有裁切和字幕乱码，排期要留人工审片时间。", "prompt": "I have a script of about [number] characters for a short drama called [title]. Break it into [number] episodes, create a character sheet for each main character, and write a storyboard with scene descriptions for the first [number] episodes. Finish with a folder of character profiles, episode outlines, and scene-by-scene prompts I can feed into a video generator, and check with me before using any paid service.", "url": "https://agentusecases.ai/use-case/produce-a-60-episode-short-drama-from-a-script"}, {"name": "一个总导演带一群并行工人，从规格书造出网店、SaaS 和 Steam 游戏", "intro": "一个主编排 Agent 先审规格书、用 git 盯进度，再把独立模块分给一群子 Agent 并行干活：独立的活并行跑，便宜的活交给便宜的模型。网店、SaaS、Steam 游戏同时推进，订阅合计约 $1,000/月。教训先行：开工前给每个模块定好验收标准和预算上限，再开闸。", "prompt": "Here is my spec for [product, e.g. small web shop or indie game]: [paste spec or file path]. Break it into independent modules, write a short brief for each with inputs, outputs and acceptance tests, then work through them using sub-agents in parallel where they don't depend on each other. When all modules pass their tests and are integrated, give me a summary of what was built and what is left, and ask before deleting any files or deploying anything.", "url": "https://agentusecases.ai/use-case/orchestrate-parallel-ai-workers-to-build-products-from-a-spe"}, {"name": "一句话语音指挥，Newsletter 写稿配图、改线程剪视频全包", "intro": "ElevenLabs 语音 Agent 在前端接令，一个 webhook 把口头指令送进 n8n 流水线：抓 AI 新闻写 Newsletter、生成品牌图、改成推特线程和短视频脚本、跑研究。人只负责动嘴派活。关键细节：按日期记记忆键，同一天的后续指令能接上早上的产出。", "prompt": "Help me set up a content pipeline for my [topic] newsletter. Each day it should research the top [number] stories from [sources], write a newsletter draft in my voice using [sample past issue], and generate a header image idea. Then repurpose the draft into a thread and a short video script. Save everything as files in [folder] and stop for my review; do not publish or send anything.", "url": "https://agentusecases.ai/use-case/run-newsletter-and-content-repurposing-with-a-voice-agent"}, {"name": "订酒店先算「真总价」：43 家实测，价差几小时内能到 60%", "intro": "把同一家酒店在多个平台的报价拉齐，算进旅游税和到店杂费，才是真总价——同房几小时内能差约 60%。可落地的打法：先订可退改价（最多贵约 11%，有时不到 2%），再让 Agent 每天复查，到取消截止日前降价就取消重订。", "prompt": "Find [hotel name] in [city] for [check-in] to [check-out], [number] guests, on [sites, e.g. Booking.com, Expedia, the hotel's own site]. For each, record the room type, nightly rate, taxes, resort and other fees, and cancellation policy, then calculate the true total. Give me a comparison table ranked by total cost, and do not book anything.", "url": "https://agentusecases.ai/use-case/compare-hotel-total-costs-including-taxes-and-fees"}, {"name": "给 Agent 一份客户名单，它把每家公司查清填进 CRM", "intro": "把客户名单交给 ChatGPT 的 Agent 模式：逐家查官网和 LinkedIn，把行业、规模、总部、关键联系人、近期动态补进 CRM，缺的字段标出来。诚实提醒：这则目前只有演示口述、没展示真实跑通结果——先拿 3 家小名单试跑、核对无误再放大。", "prompt": "Here is my lead list: [paste company names or a spreadsheet link]. For each company, research its website and LinkedIn page and collect [fields, e.g. industry, headcount, HQ location, key contacts, recent news]. Then fill in the matching fields in my CRM at [CRM link] and mark any value you could not verify. Do the first 3 and show me before continuing, and don't send emails or overwrite existing data without asking.", "url": "https://agentusecases.ai/use-case/research-companies-and-fill-a-crm-from-a-lead-list"}];
+  document.querySelectorAll('.pick').forEach(function(pick){
+    var i = +pick.getAttribute('data-i');
+    var head = pick.querySelector('.pick-head'), body = pick.querySelector('.pick-body');
+    head.addEventListener('click', function(){
+      var willOpen = body.hidden;
+      document.querySelectorAll('.pick').forEach(function(o){
+        o.classList.remove('open'); o.querySelector('.pick-body').hidden = true;
+        o.querySelector('.pick-head').setAttribute('aria-expanded', 'false');
+      });
+      if (willOpen) {
+        body.hidden = false; pick.classList.add('open'); head.setAttribute('aria-expanded', 'true');
+        if (window.umami && umami.track) umami.track('picks-open', {item: PICKS[i].name});
+      }
+    });
+    pick.querySelector('.pick-copy').addEventListener('click', function(){
+      var btn = this, txt = PICKS[i].prompt;
+      function done(){ btn.textContent = '已复制 ✓'; setTimeout(function(){ btn.textContent = '复制提示词'; }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(done).catch(function(){ fallback(); });
+      } else fallback();
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+      if (window.umami && umami.track) umami.track('picks-copy', {item: PICKS[i].name});
+    });
+    pick.querySelector('.pick-mail').addEventListener('click', function(){
+      var subject = '橘子精选｜' + PICKS[i].name;
+      var bodyText = PICKS[i].intro + '\n\n抄作业提示词：\n' + PICKS[i].prompt + '\n\n原文案例：' + PICKS[i].url + '\n\n来自 juzige.com · 橘子精选（每天 5 个真实 Agent 案例）';
+      if (window.umami && umami.track) umami.track('picks-mail', {item: PICKS[i].name});
+      location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
