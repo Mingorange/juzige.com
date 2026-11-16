@@ -51,12 +51,12 @@
   .share button{font:inherit;cursor:pointer;border-radius:999px;padding:11px 22px;font-size:15px;font-weight:600;}
   .share .primary{background:var(--orange);color:#fff;border:1px solid var(--orange);}
   .share .hint{margin-top:12px;font-size:13px;color:var(--grey);line-height:1.6;}
-  .share .qr{margin-top:16px;width:132px;height:132px;border-radius:12px;border:1px solid var(--line);background:#fff;padding:6px;}
-  .share .qrcap{font-size:12.5px;color:var(--grey);margin-top:7px;letter-spacing:.05em;}
+  .share .qr{display:block;margin:16px auto 0;width:132px;height:132px;border-radius:12px;border:1px solid var(--line);background:#fff;padding:6px;}
+  .share .qrcap{display:block;text-align:center;font-size:12.5px;color:var(--grey);margin-top:7px;letter-spacing:.05em;}
   #share-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(16px);background:#1d1d1f;color:#fff;font-size:14px;padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .25s ease;z-index:99;white-space:nowrap;}
   #share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
   .signoff{ margin-top:64px;padding-top:40px;border-top:1px solid var(--line); text-align:center; }
-  .signoff svg{width:44px;height:44px;}
+  .signoff svg{width:44px;height:44px;display:block;margin:0 auto;}
   .signoff .colname{margin-top:14px;font-size:26px;font-weight:700;letter-spacing:.12em;}
   .signoff .fm{margin-top:6px;font-size:12px;letter-spacing:.34em;color:var(--grey);font-weight:600;}
   .signoff .tagline{margin-top:18px;font-size:15px;color:var(--grey);line-height:1.8;}
@@ -245,16 +245,23 @@
     btn.addEventListener('click', function(){
       if (started) return; started = true;
       btn.disabled = true; btn.textContent = '正在加载视频…';
-      var sc = document.createElement('script');
-      sc.src = '/assets/flower-video.js';
-      sc.onload = function(){
-        try { mount(window.FLOWER_B64); } catch(e){}
-        btn.style.display = 'none'; v.style.display = '';
-        if (window.umami && umami.track) umami.track('video-play', {page: 'flower-shop'});
-        var p = v.play(); if (p && p.catch) p.catch(function(){});
+      function fail(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; }
+      var sa = document.createElement('script');
+      sa.src = '/assets/flower-video-a.js';
+      sa.onload = function(){
+        var sb = document.createElement('script');
+        sb.src = '/assets/flower-video-b.js';
+        sb.onload = function(){
+          try { mount(window.FLOWER_B64_A + window.FLOWER_B64_B); } catch(e){}
+          btn.style.display = 'none'; v.style.display = '';
+          if (window.umami && umami.track) umami.track('video-play', {page: 'flower-shop'});
+          var p = v.play(); if (p && p.catch) p.catch(function(){});
+        };
+        sb.onerror = fail;
+        document.body.appendChild(sb);
       };
-      sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };
-      document.body.appendChild(sc);
+      sa.onerror = fail;
+      document.body.appendChild(sa);
     });
   })();
 </script>
