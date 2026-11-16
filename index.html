@@ -92,24 +92,11 @@
   <div class="feed">
 
 
-    <!-- 视频教程（成片可直接在卡上播：视频外置＋点播懒加载） -->
-    <article class="card">
-      <img class="cover" data-cover="assets/cover-flower.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="花店三镜：黄昏的花店里，姑娘低头包花">
-      <div class="cbody">
-        <div class="meta"><span class="badge">最新</span>视频教程 · 2026 年 11 月 16 日</div>
-        <h2>《花店三镜》手动复刻手册</h2>
-        <p class="sum">用 Muse 免费额度做一部 24 秒三镜短片：定妆照、参考图改场景、图生视频、拼接成片、声音处理——每一步都附实测提示词（可直接抄）和验收清单。</p>
-        <button class="playbtn" id="flower-play" type="button">▶ 看成片 · 0:24</button>
-        <video id="flower-video" controls preload="none" style="display:none;width:100%;margin-top:15px;border-radius:10px;background:#000"></video>
-        <div class="cfoot"><span class="who">看橘子哥 · 成片 24 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="flower-tutorial" href="tutorial/flower-shop.html">打开教程 →</a></div>
-      </div>
-    </article>
-
     <!-- 橘子电台（每集都带播放器：音频外置＋点播懒加载） -->
     <article class="card">
       <img class="cover" data-cover="assets/cover-xitang.b64" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="橘子哥站在十字路口的路牌前">
       <div class="cbody">
-        <div class="meta">橘子电台 · 2026 年 11 月 16 日</div>
+        <div class="meta"><span class="badge">最新</span>橘子电台 · 2026 年 11 月 16 日</div>
         <h2>一年挣不到一万，两年后月入十万：西堂的四次转身</h2>
         <p class="sum">前腾讯程序员西堂：副业一年挣不到一万，押中 AI 视频换来第一单，靠培训筛人攒下团队；漫剧风口塌了果断收手，最后在公众号商单上跑通月入十万。</p>
         <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 6:34</button>
@@ -228,35 +215,5 @@
 </script>
 
 
-<script>
-  (function(){
-    var btn = document.getElementById('flower-play'), v = document.getElementById('flower-video'), started = false;
-    function mount(b64){
-      var parts = [], CH = 65536;
-      for (var i = 0; i < b64.length; i += CH) {
-        var bin = atob(b64.slice(i, i + CH));
-        var bytes = new Uint8Array(bin.length);
-        for (var j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
-        parts.push(bytes);
-      }
-      v.src = URL.createObjectURL(new Blob(parts, {type: 'video/mp4'}));
-      v.load();
-    }
-    if (btn) btn.addEventListener('click', function(){
-      if (started) return; started = true;
-      btn.disabled = true; btn.textContent = '正在加载视频…';
-      var sc = document.createElement('script');
-      sc.src = 'assets/flower-video.js';
-      sc.onload = function(){
-        try { mount(window.FLOWER_B64); } catch(e){}
-        btn.style.display = 'none'; v.style.display = '';
-        if (window.umami && umami.track) umami.track('video-play', {page: 'home-flower'});
-        var p = v.play(); if (p && p.catch) p.catch(function(){});
-      };
-      sc.onerror = function(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; };
-      document.body.appendChild(sc);
-    });
-  })();
-</script>
 </body>
 </html>
