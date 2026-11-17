@@ -98,6 +98,14 @@
   .pick-actions{margin-top:12px;display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
   .pick-copy{background:var(--orange);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
   .pick-mail{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+  .pick-mailform{margin-top:11px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .pick-mailform[hidden]{display:none;}
+  .pick-mailform input{flex:1;min-width:210px;border:1px solid var(--line);border-radius:999px;padding:9px 15px;font-size:14px;font-family:inherit;background:#fff;color:var(--ink);}
+  .pick-mailform .pick-send{background:var(--orange);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
+  .pick-mailform .pick-send[disabled]{opacity:.55;cursor:default;}
+  .pick-mailstatus{flex-basis:100%;margin:2px 0 0;font-size:13px;color:var(--grey);line-height:1.55;}
+  .pick-mailstatus.ok{color:var(--sage);font-weight:600;}
+  .pick-mailstatus.err{color:#c0392b;}
   .pick-src{margin-left:auto;font-size:14px;color:var(--orange);font-weight:700;text-decoration:none;white-space:nowrap;}
   .pick-entoggle{margin-top:13px;background:none;border:none;padding:0;font-family:inherit;font-size:13px;font-weight:600;color:var(--grey);cursor:pointer;}
   .pick-en{margin-top:8px;}
@@ -125,7 +133,7 @@
 <main>
 
   <!-- 橘子精选 · 每日 Agent 案例（预览版） -->
-  <section class="picks" aria-label="橘子精选">
+  <section class="picks" aria-label="橘子精选" data-src="../assets/picks.json">
     <div class="picks-head">
       <div class="picks-titlerow"><span class="badge">每日更新</span><h2>橘子精选</h2><span class="picks-date">2026 年 11 月 16 日</span></div>
       <p class="picks-sub">真实 Agent 案例 · 提示词拿走就能用</p>
@@ -379,7 +387,19 @@
 <script>
 (function(){
   var PICKS = [{"name": "5 个人 8 天，拍出 60 集短剧、4 天播放破 1 亿", "intro": "字节短剧 Agent 的内测案例：4 万多字剧本交进去，Agent 负责角色设定、按剧本拆分镜、渲染场景，产出一份能逐镜头编辑的「故事蓝图」，团队只在关键点微调。上线 4 天抖音播放破 1 亿，单集成本约 ¥500–1,000。缺陷也真实：等待久、偶有裁切和字幕乱码，排期要留人工审片时间。", "prompt": "我有一部短剧剧本，大约 [字数] 字，片名叫《[片名]》。请把它拆成 [集数] 集，为每个主要角色做一份角色设定表，并为前 [集数] 集写出带场景描述的分镜脚本。最后交付一个文件夹，包含：角色档案、每集大纲，以及可以逐条喂给视频生成工具的场景提示词。在使用任何付费服务之前，先向我确认。", "promptEn": "I have a script of about [number] characters for a short drama called [title]. Break it into [number] episodes, create a character sheet for each main character, and write a storyboard with scene descriptions for the first [number] episodes. Finish with a folder of character profiles, episode outlines, and scene-by-scene prompts I can feed into a video generator, and check with me before using any paid service.", "url": "https://agentusecases.ai/use-case/produce-a-60-episode-short-drama-from-a-script"}, {"name": "一个总导演带一群并行工人，从规格书造出网店、SaaS 和 Steam 游戏", "intro": "一个主编排 Agent 先审规格书、用 git 盯进度，再把独立模块分给一群子 Agent 并行干活：独立的活并行跑，便宜的活交给便宜的模型。网店、SaaS、Steam 游戏同时推进，订阅合计约 $1,000/月。教训先行：开工前给每个模块定好验收标准和预算上限，再开闸。", "prompt": "这是我要做的产品规格书——[产品，例如一个小型网店或独立游戏]：[粘贴规格书或填写文件路径]。请把它拆成互相独立的模块，为每个模块写一份简短说明，写清输入、输出和验收标准；然后用子 Agent 并行处理互不依赖的模块。等所有模块通过测试并完成集成后，给我一份总结：已经做出了什么、还剩下什么。在删除任何文件或部署任何东西之前，先问我。", "promptEn": "Here is my spec for [product, e.g. small web shop or indie game]: [paste spec or file path]. Break it into independent modules, write a short brief for each with inputs, outputs and acceptance tests, then work through them using sub-agents in parallel where they don't depend on each other. When all modules pass their tests and are integrated, give me a summary of what was built and what is left, and ask before deleting any files or deploying anything.", "url": "https://agentusecases.ai/use-case/orchestrate-parallel-ai-workers-to-build-products-from-a-spe"}, {"name": "一句话语音指挥，Newsletter 写稿配图、改线程剪视频全包", "intro": "ElevenLabs 语音 Agent 在前端接令，一个 webhook 把口头指令送进 n8n 流水线：抓 AI 新闻写 Newsletter、生成品牌图、改成推特线程和短视频脚本、跑研究。人只负责动嘴派活。关键细节：按日期记记忆键，同一天的后续指令能接上早上的产出。", "prompt": "帮我为 [主题] 的 Newsletter 搭一条内容流水线。它每天应该从 [信息来源] 里研究出最重要的 [数量] 条新闻，用我的语气写一份 Newsletter 草稿（参考往期样稿：[粘贴一期旧稿]），并给出一个头图创意。然后把草稿再改写成一条社交媒体长帖和一份短视频脚本。所有产出都保存到 [文件夹]，停下来等我审核；不要发布或发送任何东西。", "promptEn": "Help me set up a content pipeline for my [topic] newsletter. Each day it should research the top [number] stories from [sources], write a newsletter draft in my voice using [sample past issue], and generate a header image idea. Then repurpose the draft into a thread and a short video script. Save everything as files in [folder] and stop for my review; do not publish or send anything.", "url": "https://agentusecases.ai/use-case/run-newsletter-and-content-repurposing-with-a-voice-agent"}, {"name": "订酒店先算「真总价」：43 家实测，价差几小时内能到 60%", "intro": "把同一家酒店在多个平台的报价拉齐，算进旅游税和到店杂费，才是真总价——同房几小时内能差约 60%。可落地的打法：先订可退改价（最多贵约 11%，有时不到 2%），再让 Agent 每天复查，到取消截止日前降价就取消重订。", "prompt": "帮我在 [城市] 找 [酒店名]，日期 [入住日期] 到 [退房日期]，[人数] 位客人，在这些平台上查：[平台，例如 Booking.com、Expedia、酒店官网]。每个结果都要记录：房型、每晚价格、税费、度假费和其他附加费、取消政策，然后算出真实总价。最后给我一张按总价从低到高排序的对比表，不要预订任何房间。", "promptEn": "Find [hotel name] in [city] for [check-in] to [check-out], [number] guests, on [sites, e.g. Booking.com, Expedia, the hotel's own site]. For each, record the room type, nightly rate, taxes, resort and other fees, and cancellation policy, then calculate the true total. Give me a comparison table ranked by total cost, and do not book anything.", "url": "https://agentusecases.ai/use-case/compare-hotel-total-costs-including-taxes-and-fees"}, {"name": "给 Agent 一份客户名单，它把每家公司查清填进 CRM", "intro": "把客户名单交给 ChatGPT 的 Agent 模式：逐家查官网和 LinkedIn，把行业、规模、总部、关键联系人、近期动态补进 CRM，缺的字段标出来。诚实提醒：这则目前只有演示口述、没展示真实跑通结果——先拿 3 家小名单试跑、核对无误再放大。", "prompt": "这是我的客户名单：[粘贴公司名或表格链接]。请逐家研究它们的官网和 LinkedIn 页面，收集这些信息：[字段，例如行业、员工人数、总部所在地、关键联系人、近期动态]。然后把结果填进我的 CRM 对应字段：[CRM 链接]；无法核实的值要明确标注。先做前 3 家给我看，再继续；不要发邮件，也不要在没问我的情况下覆盖已有数据。", "promptEn": "Here is my lead list: [paste company names or a spreadsheet link]. For each company, research its website and LinkedIn page and collect [fields, e.g. industry, headcount, HQ location, key contacts, recent news]. Then fill in the matching fields in my CRM at [CRM link] and mark any value you could not verify. Do the first 3 and show me before continuing, and don't send emails or overwrite existing data without asking.", "url": "https://agentusecases.ai/use-case/research-companies-and-fill-a-crm-from-a-lead-list"}];
-  function copyText(txt, btn, label) {
+
+  var MAIL_API = 'https://juzi-picks-mail.workers.dev/send'; /* Worker 上线后换成真实地址 */
+  (function(){
+    var secEl = document.querySelector('.picks');
+    if (!secEl || !secEl.getAttribute('data-src') || !window.fetch) return;
+    fetch(secEl.getAttribute('data-src')).then(function(r){ return r.json(); }).then(function(d){
+      if (d && d.items && d.items.length === PICKS.length) {
+        PICKS = d.items.map(function(it){ return {name: it.name, intro: it.intro, prompt: it.promptZh, promptEn: it.promptEn, url: it.url}; });
+        var mm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d.date || '');
+        if (mm) { var dl = document.querySelector('.picks-date'); if (dl) dl.textContent = mm[1] + ' 年 ' + (+mm[2]) + ' 月 ' + (+mm[3]) + ' 日'; }
+      }
+    }).catch(function(){});
+  })();  function copyText(txt, btn, label) {
     function done(){ btn.textContent = '已复制 ✓'; setTimeout(function(){ btn.textContent = label; }, 1600); }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(txt).then(done).catch(function(){ fallback(); });
@@ -422,11 +442,49 @@
       copyText(PICKS[i].promptEn, this, '复制英文版');
       if (window.umami && umami.track) umami.track('picks-copy', {item: PICKS[i].name, lang: 'en'});
     });
-    pick.querySelector('.pick-mail').addEventListener('click', function(){
-      var subject = '橘子精选｜' + PICKS[i].name;
-      var bodyText = PICKS[i].intro + '\n\n抄作业提示词：\n' + PICKS[i].prompt + '\n\n原文案例：' + PICKS[i].url + '\n\n来自 juzige.com · 橘子精选（每天 5 个真实 Agent 案例）';
-      if (window.umami && umami.track) umami.track('picks-mail', {item: PICKS[i].name});
-      location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+    var mailBtn = pick.querySelector('.pick-mail');
+    var mailForm = null, mailInput = null, mailStatus = null, mailSend = null;
+    function ensureMailForm(){
+      if (mailForm) return;
+      mailForm = document.createElement('form');
+      mailForm.className = 'pick-mailform'; mailForm.hidden = true; mailForm.noValidate = true;
+      mailForm.innerHTML = '<input type="email" placeholder="你的邮箱地址" autocomplete="email" aria-label="邮箱地址"><button class="pick-send" type="submit">发送</button><p class="pick-mailstatus" role="status"></p>';
+      var actEl = body.querySelector('.pick-actions');
+      if (actEl && actEl.after) actEl.after(mailForm); else body.appendChild(mailForm);
+      mailInput = mailForm.querySelector('input');
+      mailSend = mailForm.querySelector('.pick-send');
+      mailStatus = mailForm.querySelector('.pick-mailstatus');
+      mailForm.addEventListener('submit', function(ev){
+        ev.preventDefault();
+        var email = (mailInput.value || '').trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+          mailStatus.className = 'pick-mailstatus err'; mailStatus.textContent = '邮箱地址好像不对，检查一下再发。'; mailInput.focus(); return;
+        }
+        mailSend.disabled = true; mailInput.disabled = true;
+        mailStatus.className = 'pick-mailstatus'; mailStatus.textContent = '正在发送…';
+        fetch(MAIL_API, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({email: email, no: i + 1})})
+          .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return {ok: r.ok, j: j}; }); })
+          .then(function(res){
+            if (res.ok) {
+              mailStatus.className = 'pick-mailstatus ok';
+              mailStatus.textContent = '已发送到 ' + email + '，请查收（没看到就翻一下垃圾箱）。';
+              if (window.umami && umami.track) umami.track('picks-mail', {item: PICKS[i].name, method: 'server'});
+            } else {
+              mailSend.disabled = false; mailInput.disabled = false;
+              mailStatus.className = 'pick-mailstatus err';
+              mailStatus.textContent = res.j && res.j.error === 'rate limited' ? '这个邮箱今天发送次数已满，明天再试。' : '发送失败，稍后再试一次。';
+            }
+          })
+          .catch(function(){
+            mailSend.disabled = false; mailInput.disabled = false;
+            mailStatus.className = 'pick-mailstatus err'; mailStatus.textContent = '发送失败，像是网络问题，稍后再试。';
+          });
+      });
+    }
+    mailBtn.addEventListener('click', function(){
+      ensureMailForm();
+      mailForm.hidden = !mailForm.hidden;
+      if (!mailForm.hidden) mailInput.focus();
     });
   });
 })();
