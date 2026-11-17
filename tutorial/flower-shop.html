@@ -248,22 +248,21 @@
       if (started) return; started = true;
       btn.disabled = true; btn.textContent = '正在加载视频…';
       function fail(){ started = false; btn.disabled = false; btn.textContent = '加载失败，点我重试'; }
-      var sa = document.createElement('script');
-      sa.src = '/assets/flower-video-a.js';
-      sa.onload = function(){
-        var sb = document.createElement('script');
-        sb.src = '/assets/flower-video-b.js';
-        sb.onload = function(){
-          try { mount(window.FLOWER_B64_A + window.FLOWER_B64_B); } catch(e){}
+      var urls = ['/assets/flower-v1.js','/assets/flower-v2.js','/assets/flower-v3.js','/assets/flower-v4.js'];
+      (function next(i){
+        if (i === urls.length) {
+          try { mount(window.FLOWER_P1 + window.FLOWER_P2 + window.FLOWER_P3 + window.FLOWER_P4); } catch(e){}
           btn.style.display = 'none'; v.style.display = '';
           if (window.umami && umami.track) umami.track('video-play', {page: 'flower-shop'});
           var p = v.play(); if (p && p.catch) p.catch(function(){});
-        };
-        sb.onerror = fail;
-        document.body.appendChild(sb);
-      };
-      sa.onerror = fail;
-      document.body.appendChild(sa);
+          return;
+        }
+        var sc = document.createElement('script');
+        sc.src = urls[i];
+        sc.onload = function(){ next(i + 1); };
+        sc.onerror = fail;
+        document.body.appendChild(sc);
+      })(0);
     });
   })();
 </script>
