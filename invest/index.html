@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>每日晨报</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    /* 方案四：Apple 经典极简白 — warm paper, hairlines, pure typography. */
+    --bg: #faf9f6;
+    --surface: #faf9f6;
+    --text: #1d1d1f;
+    --dim: #86868b;
+    --border: #e4e2dc;
+    --accent: #1d1d1f;
+    --ink: #1d1d1f;
+    --paper-line: #e4e2dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161615;
+      --surface: #161615;
+      --text: #f4f4ef;
+      --dim: #9b9b96;
+      --border: #2d2d2b;
+      --accent: #f4f4ef;
+      --ink: #f4f4ef;
+      --paper-line: #2d2d2b;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family:
+      -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+      "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: var(--bg);
+    color: var(--text);
+  }
+  button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) {
+    min-height: 2rem;
+  }
+  button { font-family: inherit; }
+  .display-num { font-weight: 200; letter-spacing: -0.03em; }
+
+  /* Hairline seek bar */
+  input[type="range"].seek {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--border);
+    outline: none;
+    min-height: 0;
+    cursor: pointer;
+  }
+  input[type="range"].seek::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px; height: 12px;
+    border-radius: 999px;
+    background: var(--ink);
+    border: none;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
+  }
+  input[type="range"].seek::-moz-range-thumb {
+    width: 12px; height: 12px;
+    border-radius: 999px;
+    background: var(--ink);
+    border: none;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.25);
+  }
+  input[type="range"].seek:disabled::-webkit-slider-thumb { background: var(--dim); }
+  input[type="range"].seek:disabled::-moz-range-thumb { background: var(--dim); }
+  input[type="range"].seek:disabled { cursor: default; }
+
+  main { max-width: 48rem; margin: 0 auto; padding: 20px 20px 144px; }
+  .loading { padding: 64px 0; text-align: center; font-size: 14px; color: var(--dim); }
+
+  /* top bars */
+  .topbar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--paper-line); padding-bottom: 16px; }
+  .topbar .vol { font-size: 14px; line-height: 20px; color: var(--dim); }
+  .btn-text { font-size: 14px; line-height: 20px; font-weight: 500; color: var(--text); background: none; border: none; cursor: pointer; flex-shrink: 0; }
+  .histbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--paper-line); padding-bottom: 16px; }
+  .monthnav { display: flex; align-items: center; gap: 4px; }
+  .mnav-btn { display: flex; width: 32px; height: 32px; align-items: center; justify-content: center; font-size: 18px; color: var(--text); background: none; border: none; cursor: pointer; }
+  .month-title { min-width: 7rem; text-align: center; font-size: 16px; line-height: 24px; font-weight: 600; color: var(--text); }
+
+  /* episode block */
+  .ep-head { display: flex; align-items: flex-end; gap: 16px; }
+  .ep-head.big { padding-bottom: 28px; }
+  .ep-head.small { padding-bottom: 20px; }
+  .daynum { line-height: 0.78; color: var(--text); }
+  .daynum.big { font-size: 120px; }
+  .daynum.small { font-size: 76px; }
+  .ep-head .md1 { padding-bottom: 6px; }
+  .monthline { font-weight: 500; line-height: 1.25; color: var(--text); }
+  .monthline.big { font-size: 18px; }
+  .monthline.small { font-size: 16px; }
+  .kicker { margin-top: 6px; font-size: 14px; line-height: 20px; color: var(--dim); }
+  .oneliner-wrap { border-top: 1px solid var(--paper-line); }
+  .oneliner-wrap.big { padding: 28px 0; }
+  .oneliner-wrap.small { padding: 20px 0; }
+  .oneliner { font-weight: 500; color: var(--text); text-align: justify; text-justify: inter-character; }
+  .oneliner.big { font-size: 24px; line-height: 1.7; }
+  .oneliner.small { font-size: 20px; line-height: 1.65; }
+  .oneliner strong { font-weight: 600; }
+  .player-wrap { border-top: 1px solid var(--paper-line); padding-top: 24px; }
+  .player-row { display: flex; flex-wrap: wrap; align-items: center; column-gap: 20px; row-gap: 12px; }
+  .playbtn { display: flex; width: 44px; height: 44px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 999px; background: var(--ink); color: var(--bg); border: none; cursor: pointer; box-shadow: 0 2px 10px rgb(0 0 0 / 0.22); }
+  .progress-box { flex: 1; min-width: 190px; }
+  .progress-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .progress-label { font-size: 14px; line-height: 20px; font-weight: 500; color: var(--text); }
+  .clock { flex-shrink: 0; font-size: 12px; line-height: 16px; font-variant-numeric: tabular-nums; letter-spacing: 0.025em; color: var(--dim); }
+  .progress-box .seek { margin-top: 10px; width: 100%; }
+  .toggle-wrap { display: flex; align-items: center; gap: 20px; }
+  .toggle-wrap .chev { color: var(--dim); }
+  .expanded { margin-top: 24px; border-top: 1px solid var(--paper-line); padding-top: 24px; }
+
+  /* markdown lite */
+  .md { font-size: 15px; color: var(--text); }
+  .md > * + * { margin-top: 12px; }
+  .md p { font-weight: 500; line-height: 1.85; }
+  .md p.it { font-size: 14px; font-style: italic; line-height: 1.85; color: var(--dim); font-weight: 400; }
+  .md ul { list-style: disc; padding-left: 20px; }
+  .md li { font-weight: 500; line-height: 1.85; }
+  .md li + li { margin-top: 6px; }
+  .md hr { border: none; border-top: 1px solid var(--paper-line); }
+  .md h3.bordered { border-bottom: 1px solid var(--paper-line); padding-bottom: 6px; padding-top: 12px; font-size: 18px; line-height: 28px; font-weight: 600; color: var(--text); }
+  .md h3.plain { padding-top: 4px; font-size: 18px; line-height: 28px; font-weight: 600; color: var(--text); }
+  .md h4 { padding-top: 8px; font-size: 16px; line-height: 24px; font-weight: 600; color: var(--text); }
+  .md strong { font-weight: 600; }
+
+  /* calendar */
+  .cal-section { border-bottom: 1px solid var(--paper-line); padding: 20px 0; }
+  .cal-week { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; }
+  .cal-week div { padding-bottom: 8px; font-size: 12px; line-height: 16px; color: var(--dim); }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .cal-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
+  button.cal-cell { background: none; border: none; cursor: pointer; width: 100%; padding: 0; }
+  .cal-day { display: flex; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: 999px; font-size: 16px; line-height: 1; color: var(--text); }
+  .cal-day.none { color: var(--dim); opacity: 0.5; }
+  .cal-day.selected { background: var(--ink); font-weight: 600; color: var(--bg); }
+  .cal-day.today { box-shadow: 0 0 0 1px var(--border); }
+  .selected-wrap { padding-top: 28px; scroll-margin-top: 16px; }
+
+  /* all episodes */
+  .all-section { margin-top: 40px; border-top: 1px solid var(--paper-line); padding-top: 24px; }
+  .all-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .all-head h2 { font-size: 18px; line-height: 28px; font-weight: 600; color: var(--text); }
+  .all-head .count { font-size: 12px; line-height: 16px; color: var(--dim); }
+  .search { margin-top: 8px; width: 100%; border: none; border-bottom: 1px solid var(--border); background: transparent; padding: 10px 0; font-size: 15px; color: var(--text); outline: none; font-family: inherit; }
+  .search::placeholder { color: var(--dim); }
+  .search:focus { border-bottom-color: var(--text); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .eplist { list-style: none; }
+  .eplist li:not(:last-child) { border-bottom: 1px solid var(--paper-line); }
+  .ep-row { display: flex; width: 100%; align-items: center; gap: 16px; padding: 16px 0; text-align: left; background: none; border: none; cursor: pointer; color: var(--text); }
+  .ep-row .d1 { width: 48px; flex-shrink: 0; }
+  .ep-row .dnum { display: block; font-size: 28px; line-height: 1; color: var(--text); }
+  .ep-row .dsub { display: block; margin-top: 4px; font-size: 11px; color: var(--dim); }
+  .ep-row .t1 { flex: 1; min-width: 0; font-size: 15px; line-height: 1.375; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ep-row.active .t1 { font-weight: 600; }
+  .ep-row .chev { flex-shrink: 0; color: var(--dim); }
+  .empty-note { padding: 24px 0; text-align: center; font-size: 14px; line-height: 20px; color: var(--dim); }
+
+  /* player bar */
+  .playerbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; border-top: 1px solid var(--border); background: var(--bg); padding-bottom: env(safe-area-inset-bottom); }
+  .bar-in { max-width: 48rem; margin: 0 auto; padding: 12px 20px; }
+  .bar-row { display: flex; align-items: center; gap: 14px; }
+  .bar-btn { display: flex; width: 40px; height: 40px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 999px; background: var(--ink); color: var(--bg); border: none; cursor: pointer; box-shadow: 0 2px 8px rgb(0 0 0 / 0.2); }
+  .bar-btn:disabled { opacity: 0.3; box-shadow: none; cursor: default; }
+  .bar-main { flex: 1; min-width: 0; }
+  .bar-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .bar-title { font-size: 14px; line-height: 1.25; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-title.dim { color: var(--dim); font-weight: 400; }
+  .bar-main .seek { margin-top: 8px; width: 100%; }
+</style>
+</head>
+<body>
+<main id="app"><p class="loading">正在加载晨报…</p></main>
+<div class="playerbar" id="playerbar"></div>
+<script>
+"use strict";
+/* ------------------------------- helpers -------------------------------- */
+const $ = (sel, el) => (el || document).querySelector(sel);
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }[c]));
+}
+function parseDate(date) { return new Date(date + "T00:00:00"); }
+function weekdayLabel(date) {
+  const wd = parseDate(date).getDay();
+  return "周" + ["日", "一", "二", "三", "四", "五", "六"][wd];
+}
+function monthTitle(year, month) { return year + " 年 " + (month + 1) + " 月"; }
+function fmtClock(sec) {
+  if (!Number.isFinite(sec) || sec < 0) sec = 0;
+  const total = Math.floor(sec);
+  return Math.floor(total / 60) + ":" + String(total % 60).padStart(2, "0");
+}
+
+/* ---------------------------- markdown (lite) ---------------------------- */
+function renderInline(text) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return "<strong>" + esc(part.slice(2, -2)) + "</strong>";
+    }
+    return esc(part);
+  }).join("");
+}
+function markdownLite(text) {
+  const out = [];
+  const lines = text.split("\n");
+  let list = [];
+  const flushList = () => {
+    if (list.length === 0) return;
+    out.push("<ul>" + list.map((item) => "<li>" + renderInline(item) + "</li>").join("") + "</ul>");
+    list = [];
+  };
+  for (const raw of lines) {
+    const line = raw.replace(/\s+$/, "");
+    const trimmed = line.trim();
+    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+      list.push(trimmed.slice(2));
+      continue;
+    }
+    flushList();
+    if (!trimmed) continue;
+    if (trimmed === "---") {
+      out.push("<hr>");
+    } else if (trimmed.startsWith("### ")) {
+      out.push("<h4>" + renderInline(trimmed.slice(4)) + "</h4>");
+    } else if (trimmed.startsWith("## ")) {
+      out.push('<h3 class="bordered">' + renderInline(trimmed.slice(3)) + "</h3>");
+    } else if (trimmed.startsWith("# ")) {
+      out.push('<h3 class="plain">' + renderInline(trimmed.slice(2)) + "</h3>");
+    } else if (trimmed.startsWith("*") && trimmed.endsWith("*") && trimmed.length > 2) {
+      out.push('<p class="it">' + renderInline(trimmed.slice(1, -1)) + "</p>");
+    } else {
+      out.push("<p>" + renderInline(trimmed) + "</p>");
+    }
+  }
+  flushList();
+  return '<div class="md">' + out.join("") + "</div>";
+}
+
+/* ------------------------- one-liner (一句话摘要) ------------------------- */
+const NUM_TOKEN = /\$[\d,]+(?:\.\d+)?[BM]?|-?\d+(?:\.\d+)?%|\d[\d,]*(?:\.\d+)?(?:亿|万)/;
+const NUM_TOKEN_SPLIT = new RegExp("(" + NUM_TOKEN.source + ")", "g");
+const NUM_TOKEN_FULL = new RegExp("^" + NUM_TOKEN.source + "$");
+function renderOneLiner(text) {
+  return text.split(NUM_TOKEN_SPLIT).map((part) =>
+    NUM_TOKEN_FULL.test(part) ? "<strong>" + esc(part) + "</strong>" : esc(part)
+  ).join("");
+}
+
+/* ------------------------------- glyphs --------------------------------- */
+function playGlyph(size) {
+  return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 14 14" aria-hidden="true"><path d="M3.5 1.8v10.4c0 .8.9 1.3 1.6.9l8-5.2c.6-.4.6-1.4 0-1.8l-8-5.2c-.7-.4-1.6.1-1.6.9z" fill="currentColor"/></svg>';
+}
+function pauseGlyph(size) {
+  return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1.5" width="3.4" height="11" rx="1" fill="currentColor"/><rect x="8.6" y="1.5" width="3.4" height="11" rx="1" fill="currentColor"/></svg>';
+}
+
+/* --------------------------------- state --------------------------------- */
+let episodes = [];            // newest first, audio episodes only
+let byDate = new Map();
+let view = "today";           // "today" | "history"
+let selectedDate = null;
+let calYear = null, calMonth = null;
+let search = "";
+let fullOpenFor = null;       // date whose 全文 is expanded
+
+const audio = new Audio();
+let playingDate = null;
+let isPlaying = false;
+let currentTime = 0;
+let playDuration = 0;
+let loadedDate = null;
+
+const latest = () => episodes[0] || null;
+const selectedMeta = () => (selectedDate ? byDate.get(selectedDate) || null : null);
+
+function progressFor(meta) {
+  if (playingDate === meta.date) {
+    return { currentTime, duration: playDuration || meta.duration || 0, seekEnabled: true };
+  }
+  return { currentTime: 0, duration: meta.duration || 0, seekEnabled: false };
+}
+function seekGradient(pct) {
+  return "linear-gradient(to right, var(--ink) " + pct + "%, var(--border) " + pct + "%)";
+}
+
+/* ----------------------------- episode block ----------------------------- */
+function episodeBlockHTML(meta, big) {
+  const d = parseDate(meta.date);
+  const size = big ? "big" : "small";
+  const prog = progressFor(meta);
+  const playingThis = isPlaying && playingDate === meta.date;
+  const pct = prog.duration > 0 ? Math.min(100, (prog.currentTime / prog.duration) * 100) : 0;
+  const open = fullOpenFor === meta.date;
+  let h = "<article>";
+  h += '<div class="ep-head ' + size + '">';
+  h += '<span class="daynum display-num ' + size + '">' + d.getDate() + "</span>";
+  h += '<div class="md1"><p class="monthline ' + size + '">' + (d.getMonth() + 1) + " 月 · " + weekdayLabel(meta.date) + '</p><p class="kicker">早间快讯</p></div>';
+  h += "</div>";
+  h += '<div class="oneliner-wrap ' + size + '"><h2 class="oneliner ' + size + '">' + renderOneLiner(meta.one_liner) + "</h2></div>";
+  h += '<div class="player-wrap">';
+  h += '<div class="player-row">';
+  h += '<button type="button" class="playbtn" data-play-for="' + meta.date + '" aria-label="' + (playingThis ? "暂停 " : "播放 ") + meta.date + ' 晨报">' + (playingThis ? pauseGlyph(15) : playGlyph(15)) + "</button>";
+  h += '<div class="progress-box"><div class="progress-top">';
+  h += '<p class="progress-label" data-playlabel-for="' + meta.date + '">' + (playingThis ? "正在播放本期晨报" : "收听本期晨报") + "</p>";
+  h += '<p class="clock" data-clock-for="' + meta.date + '">' + fmtClock(prog.currentTime) + " / " + (prog.duration > 0 ? fmtClock(prog.duration) : "--:--") + "</p>";
+  h += "</div>";
+  h += '<input type="range" class="seek" data-seek-for="' + meta.date + '" aria-label="播放进度" min="0" max="' + (prog.duration || 0) + '" step="0.5" value="' + Math.min(prog.currentTime, prog.duration || 0) + '"' + (prog.seekEnabled && prog.duration !== 0 ? "" : " disabled") + ' style="background:' + seekGradient(pct) + '">';
+  h += "</div>";
+  h += '<div class="toggle-wrap"><button type="button" class="btn-text" data-fulltoggle aria-expanded="' + open + '" aria-label="' + (open ? "收起" : "展开") + '晨报全文">全文 <span class="chev" aria-hidden="true">' + (open ? "⌃" : "⌄") + "</span></button></div>";
+  h += "</div>"; // player-row
+  if (open) {
+    h += '<div class="expanded">' + markdownLite(meta.full_text) + "</div>";
+  }
+  h += "</div>"; // player-wrap
+  h += "</article>";
+  return h;
+}
+
+/* ------------------------------- calendar -------------------------------- */
+const WEEKDAYS = ["一", "二", "三", "四", "五", "六", "日"]; // Monday-first
+function calendarHTML(year, month) {
+  const first = new Date(year, month, 1);
+  const startOffset = (first.getDay() + 6) % 7;
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const now = new Date();
+  const p2 = (n) => String(n).padStart(2, "0");
+  const todayStr = now.getFullYear() + "-" + p2(now.getMonth() + 1) + "-" + p2(now.getDate());
+  const cells = [];
+  for (let i = 0; i < startOffset; i++) cells.push(null);
+  for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+  while (cells.length % 7 !== 0) cells.push(null);
+  let h = '<div class="cal-week">' + WEEKDAYS.map((w) => "<div>" + w + "</div>").join("") + "</div>";
+  h += '<div class="cal-grid">';
+  cells.forEach((day, i) => {
+    if (day == null) { h += '<div class="cal-cell"></div>'; return; }
+    const dateStr = year + "-" + p2(month + 1) + "-" + p2(day);
+    const ep = byDate.get(dateStr);
+    const selected = dateStr === selectedDate;
+    const isToday = dateStr === todayStr;
+    const cls = "cal-day" + (selected ? " selected" : ep ? "" : " none") + (isToday && !selected ? " today" : "");
+    const circle = '<span class="' + cls + '">' + day + "</span>";
+    if (ep) {
+      h += '<button type="button" class="cal-cell" data-caldate="' + dateStr + '" aria-label="' + (month + 1) + "月" + day + '日晨报" aria-pressed="' + selected + '">' + circle + "</button>";
+    } else {
+      h += '<div class="cal-cell" aria-hidden="true">' + circle + "</div>";
+    }
+  });
+  h += "</div>";
+  return h;
+}
+
+/* --------------------------------- views --------------------------------- */
+function renderMain() {
+  const app = $("#app");
+  if (episodes.length === 0) {
+    app.innerHTML = '<p class="loading">正在加载晨报…</p>';
+    return;
+  }
+  let h = "";
+  if (view === "today" && latest()) {
+    const ep = latest();
+    h += '<div class="topbar"><p class="vol">每日晨播 <span aria-hidden="true">·</span> VOL.' + ep.vol + '</p><button type="button" class="btn-text" id="btn-history" aria-label="查看历史晨报">历史 <span aria-hidden="true">↗</span></button></div>';
+    h += episodeBlockHTML(ep, true);
+  } else if (view === "history") {
+    h += '<div class="histbar"><button type="button" class="btn-text" id="btn-today" aria-label="返回今日晨报"><span aria-hidden="true">‹ </span>今日</button>';
+    h += '<div class="monthnav"><button type="button" class="mnav-btn" id="btn-prev-month" aria-label="上个月">‹</button>';
+    h += '<h1 class="month-title">' + (calYear != null && calMonth != null ? monthTitle(calYear, calMonth) : "晨报日历") + "</h1>";
+    h += '<button type="button" class="mnav-btn" id="btn-next-month" aria-label="下个月">›</button></div></div>';
+    h += '<section class="cal-section" aria-label="晨报日历">';
+    h += (calYear != null && calMonth != null) ? calendarHTML(calYear, calMonth) : '<p class="loading">加载中…</p>';
+    h += "</section>";
+    const sel = selectedMeta();
+    h += '<div class="selected-wrap" id="card-anchor">';
+    if (sel) h += episodeBlockHTML(sel, false);
+    h += "</div>";
+    const q = search.trim().toLowerCase();
+    const filtered = q
+      ? episodes.filter((e) => e.date.includes(q) || e.one_liner.toLowerCase().includes(q))
+      : episodes;
+    h += '<section class="all-section" aria-label="全部期数">';
+    h += '<div class="all-head"><h2>全部期数</h2><span class="count">' + filtered.length + " 期</span></div>";
+    h += '<label class="sr-only" for="ep-search">搜索晨报</label>';
+    h += '<input id="ep-search" class="search" type="search" placeholder="搜关键词或日期" value="' + esc(search) + '">';
+    h += '<ul class="eplist">';
+    for (const ep of filtered) {
+      const d = parseDate(ep.date);
+      const active = ep.date === selectedDate;
+      h += '<li><button type="button" class="ep-row' + (active ? " active" : "") + '" data-select="' + ep.date + '" aria-label="查看 ' + ep.date + ' 晨报" aria-pressed="' + active + '">';
+      h += '<span class="d1"><span class="dnum display-num">' + d.getDate() + '</span><span class="dsub">' + (d.getMonth() + 1) + "月 " + weekdayLabel(ep.date) + "</span></span>";
+      h += '<span class="t1">' + esc(ep.one_liner) + "</span>";
+      h += '<span class="chev" aria-hidden="true">›</span>';
+      h += "</button></li>";
+    }
+    if (filtered.length === 0) {
+      h += '<li class="empty-note">没有匹配「' + esc(search) + "」的期数。</li>";
+    }
+    h += "</ul></section>";
+  }
+  app.innerHTML = h;
+  bindMainEvents();
+  renderBar();
+}
+
+function renderBar() {
+  const bar = $("#playerbar");
+  const playerMeta = (playingDate ? byDate.get(playingDate) : null) || selectedMeta();
+  const sel = selectedMeta();
+  const barTime = (playingDate === selectedDate || playingDate == null) ? currentTime : 0;
+  const barDur = (playingDate === selectedDate || playingDate == null)
+    ? (playDuration || (sel ? sel.duration || 0 : 0))
+    : playDuration;
+  const max = barDur > 0 ? barDur : 0;
+  const pct = max > 0 ? Math.min(100, (barTime / max) * 100) : 0;
+  let h = '<div class="bar-in"><div class="bar-row">';
+  h += '<button type="button" class="bar-btn" id="bar-toggle" aria-label="' + (isPlaying ? "暂停播放" : "开始播放") + '"' + (playerMeta ? "" : " disabled") + ">" + (isPlaying ? pauseGlyph(14) : playGlyph(14)) + "</button>";
+  h += '<div class="bar-main"><div class="bar-top">';
+  if (playerMeta) {
+    h += '<p class="bar-title" id="bar-title">' + esc(playerMeta.date.slice(5) + " 晨报 · " + playerMeta.one_liner) + "</p>";
+  } else {
+    h += '<p class="bar-title dim">还没有可播放的期数</p>';
+  }
+  h += '<p class="clock" id="bar-clock">' + fmtClock(barTime) + " / " + (max > 0 ? fmtClock(max) : "--:--") + "</p>";
+  h += "</div>";
+  h += '<input type="range" class="seek" id="bar-seek" aria-label="播放进度" min="0" max="' + (max || 0) + '" step="0.5" value="' + Math.min(barTime, max || 0) + '"' + (!playerMeta || max === 0 ? " disabled" : "") + ' style="background:' + seekGradient(pct) + '">';
+  h += "</div></div></div>";
+  bar.innerHTML = h;
+  const tgl = $("#bar-toggle");
+  if (tgl) tgl.addEventListener("click", () => { if (playerMeta) togglePlayFor(playerMeta.date); });
+  const sk = $("#bar-seek");
+  if (sk) sk.addEventListener("input", (e) => seekTo(Number(e.target.value)));
+}
+
+/* ------------------------------- playback -------------------------------- */
+function loadAndPlay(date) {
+  const meta = byDate.get(date);
+  if (!meta) return;
+  if (loadedDate !== date) {
+    audio.src = meta.audio;
+    loadedDate = date;
+  }
+  playingDate = date;
+  audio.play().catch(() => undefined);
+}
+function selectAndPlay(date) {
+  selectedDate = date;
+  fullOpenFor = null;
+  const d = parseDate(date);
+  calYear = d.getFullYear();
+  calMonth = d.getMonth();
+  loadAndPlay(date);
+  renderMain();
+}
+function togglePlayFor(date) {
+  if (playingDate === date && loadedDate === date) {
+    if (isPlaying) audio.pause();
+    else audio.play().catch(() => undefined);
+    return;
+  }
+  selectAndPlay(date);
+}
+function seekTo(sec) {
+  if (loadedDate == null) return;
+  audio.currentTime = sec;
+  currentTime = sec;
+  syncProgress();
+}
+
+function syncProgress() {
+  // Block seek + clock for the playing episode
+  document.querySelectorAll("[data-seek-for]").forEach((input) => {
+    const date = input.getAttribute("data-seek-for");
+    const meta = byDate.get(date);
+    if (!meta) return;
+    const prog = progressFor(meta);
+    input.max = prog.duration || 0;
+    input.value = Math.min(prog.currentTime, prog.duration || 0);
+    const pct = prog.duration > 0 ? Math.min(100, (prog.currentTime / prog.duration) * 100) : 0;
+    input.style.background = seekGradient(pct);
+  });
+  document.querySelectorAll("[data-clock-for]").forEach((el) => {
+    const meta = byDate.get(el.getAttribute("data-clock-for"));
+    if (!meta) return;
+    const prog = progressFor(meta);
+    el.textContent = fmtClock(prog.currentTime) + " / " + (prog.duration > 0 ? fmtClock(prog.duration) : "--:--");
+  });
+  // Bar
+  const sel = selectedMeta();
+  const barTime = (playingDate === selectedDate || playingDate == null) ? currentTime : 0;
+  const barDur = (playingDate === selectedDate || playingDate == null)
+    ? (playDuration || (sel ? sel.duration || 0 : 0))
+    : playDuration;
+  const max = barDur > 0 ? barDur : 0;
+  const bClock = $("#bar-clock");
+  if (bClock) bClock.textContent = fmtClock(barTime) + " / " + (max > 0 ? fmtClock(max) : "--:--");
+  const bSeek = $("#bar-seek");
+  if (bSeek) {
+    bSeek.max = max || 0;
+    bSeek.value = Math.min(barTime, max || 0);
+    const pct = max > 0 ? Math.min(100, (barTime / max) * 100) : 0;
+    bSeek.style.background = seekGradient(pct);
+  }
+}
+function syncPlayUI() {
+  document.querySelectorAll("[data-play-for]").forEach((btn) => {
+    const date = btn.getAttribute("data-play-for");
+    const playingThis = isPlaying && playingDate === date;
+    btn.innerHTML = playingThis ? pauseGlyph(15) : playGlyph(15);
+    btn.setAttribute("aria-label", (playingThis ? "暂停 " : "播放 ") + date + " 晨报");
+  });
+  document.querySelectorAll("[data-playlabel-for]").forEach((el) => {
+    const date = el.getAttribute("data-playlabel-for");
+    el.textContent = (isPlaying && playingDate === date) ? "正在播放本期晨报" : "收听本期晨报";
+  });
+  const tgl = $("#bar-toggle");
+  if (tgl) {
+    tgl.innerHTML = isPlaying ? pauseGlyph(14) : playGlyph(14);
+    tgl.setAttribute("aria-label", isPlaying ? "暂停播放" : "开始播放");
+  }
+}
+
+audio.addEventListener("timeupdate", () => { currentTime = audio.currentTime; syncProgress(); });
+audio.addEventListener("loadedmetadata", () => { playDuration = audio.duration || 0; syncProgress(); });
+audio.addEventListener("play", () => { isPlaying = true; syncPlayUI(); });
+audio.addEventListener("pause", () => { isPlaying = false; syncPlayUI(); });
+audio.addEventListener("ended", () => {
+  isPlaying = false;
+  syncPlayUI();
+  // Autoplay: roll straight into the next (older) episode.
+  const idx = episodes.findIndex((e) => e.date === playingDate);
+  const older = idx >= 0 ? episodes[idx + 1] : undefined;
+  if (older) selectAndPlay(older.date);
+});
+
+/* -------------------------------- events --------------------------------- */
+function selectDate(date, scroll) {
+  selectedDate = date;
+  fullOpenFor = null;
+  const d = parseDate(date);
+  calYear = d.getFullYear();
+  calMonth = d.getMonth();
+  renderMain();
+  if (scroll) {
+    requestAnimationFrame(() => {
+      const el = $("#card-anchor");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
+function bindMainEvents() {
+  const bh = $("#btn-history");
+  if (bh) bh.addEventListener("click", () => { view = "history"; fullOpenFor = null; renderMain(); });
+  const bt = $("#btn-today");
+  if (bt) bt.addEventListener("click", () => {
+    view = "today";
+    if (latest()) selectDate(latest().date, false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    renderMain();
+  });
+  const pm = $("#btn-prev-month");
+  if (pm) pm.addEventListener("click", () => shiftMonth(-1));
+  const nm = $("#btn-next-month");
+  if (nm) nm.addEventListener("click", () => shiftMonth(1));
+  document.querySelectorAll("[data-caldate]").forEach((btn) => {
+    btn.addEventListener("click", () => selectDate(btn.getAttribute("data-caldate"), false));
+  });
+  document.querySelectorAll("[data-select]").forEach((btn) => {
+    btn.addEventListener("click", () => selectDate(btn.getAttribute("data-select"), true));
+  });
+  document.querySelectorAll("[data-play-for]").forEach((btn) => {
+    btn.addEventListener("click", () => togglePlayFor(btn.getAttribute("data-play-for")));
+  });
+  document.querySelectorAll("[data-seek-for]").forEach((input) => {
+    input.addEventListener("input", (e) => seekTo(Number(e.target.value)));
+  });
+  const ft = document.querySelector("[data-fulltoggle]");
+  if (ft) ft.addEventListener("click", () => {
+    const meta = view === "today" ? latest() : selectedMeta();
+    if (!meta) return;
+    fullOpenFor = fullOpenFor === meta.date ? null : meta.date;
+    renderMain();
+  });
+  const si = $("#ep-search");
+  if (si) si.addEventListener("input", (e) => {
+    search = e.target.value;
+    const pos = e.target.selectionStart;
+    renderMain();
+    const el = $("#ep-search");
+    if (el) { el.focus(); el.setSelectionRange(pos, pos); }
+  });
+}
+function shiftMonth(delta) {
+  if (calYear == null || calMonth == null) return;
+  const d = new Date(calYear, calMonth + delta, 1);
+  calYear = d.getFullYear();
+  calMonth = d.getMonth();
+  renderMain();
+}
+
+/* --------------------------------- init ---------------------------------- */
+fetch("episodes.json")
+  .then((r) => r.json())
+  .then((data) => {
+    episodes = (data.episodes || []).slice().sort((a, b) => (a.date < b.date ? 1 : -1));
+    byDate = new Map(episodes.map((e) => [e.date, e]));
+    if (episodes.length > 0) {
+      selectedDate = episodes[0].date;
+      const d = parseDate(episodes[0].date);
+      calYear = d.getFullYear();
+      calMonth = d.getMonth();
+    }
+    renderMain();
+  })
+  .catch(() => {
+    $("#app").innerHTML = '<p class="loading">晨报没能加载出来。</p>';
+  });
+</script>
+</body>
+</html>
