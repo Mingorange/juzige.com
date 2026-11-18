@@ -1,55 +1,55 @@
 {
-  "date": "2026-11-16",
+  "date": "2026-11-18",
   "items": [
     {
+      "cat": "搞钱 · Claude",
+      "chip": "自称半年 +153%",
+      "intro": "一位日线交易者用 Claude 从世界大事出发找市场机会，映射到相关公司，汇总空头文章，再草拟期权策略；决策权始终在人手里。发帖人自称半年收益 153.34%，无实证。",
+      "name": "从世界大事到交易策略：Claude 帮交易者做研判",
       "no": 1,
-      "cat": "内容创作 · 短剧 AGENT",
-      "chip": "60 集 / 8 天",
-      "name": "5 个人 8 天，拍出 60 集短剧、4 天播放破 1 亿",
-      "intro": "字节短剧 Agent 的内测案例：4 万多字剧本交进去，Agent 负责角色设定、按剧本拆分镜、渲染场景，产出一份能逐镜头编辑的「故事蓝图」，团队只在关键点微调。上线 4 天抖音播放破 1 亿，单集成本约 ¥500–1,000。缺陷也真实：等待久、偶有裁切和字幕乱码，排期要留人工审片时间。",
-      "promptZh": "我有一部短剧剧本，大约 [字数] 字，片名叫《[片名]》。请把它拆成 [集数] 集，为每个主要角色做一份角色设定表，并为前 [集数] 集写出带场景描述的分镜脚本。最后交付一个文件夹，包含：角色档案、每集大纲，以及可以逐条喂给视频生成工具的场景提示词。在使用任何付费服务之前，先向我确认。",
-      "promptEn": "I have a script of about [number] characters for a short drama called [title]. Break it into [number] episodes, create a character sheet for each main character, and write a storyboard with scene descriptions for the first [number] episodes. Finish with a folder of character profiles, episode outlines, and scene-by-scene prompts I can feed into a video generator, and check with me before using any paid service.",
-      "url": "https://agentusecases.ai/use-case/produce-a-60-episode-short-drama-from-a-script"
+      "promptEn": "Research how [a world event or theme, e.g. a trade dispute] could affect markets. List the companies most exposed, find sources that support or challenge each link, and gather recent articles from short sellers about those companies. Then outline 2 or 3 possible option strategies for [a ticker I'm watching], with the max loss, max gain and key assumptions for each. Finish with a one-page summary, and treat it as research only, not a recommendation.",
+      "promptZh": "研究[某个世界大事或主题，例如贸易争端]可能如何影响市场。列出受影响最大的公司，找出支持或质疑每条关联的依据，并收集关于这些公司的近期空头文章。然后为[我在关注的某只股票代码]草拟 2 到 3 种可能的期权策略，每种注明最大亏损、最大收益和关键假设。最后附一页摘要，仅作研究参考，不构成投资建议。",
+      "url": "https://agentusecases.ai/use-case/research-market-ideas-and-option-strategies-with-claude"
     },
     {
+      "cat": "搞钱省钱 · Meta Muse",
+      "chip": "机票 $462–$725",
+      "intro": "评测者让 Meta Muse 每天早晚各发一次 eBay 捡漏清单，顺带扫邮件防漏看；另查了纽约到突尼斯的机票，并按 eBay 成交价给旧相机套装估价，卖出价是实体店报价的 10 倍多。",
+      "name": "每天两次捡漏清单：eBay、机票、旧相机一并比价",
       "no": 2,
-      "cat": "做产品 · CLAUDE CODE",
-      "chip": "订阅约 $1,000/月",
-      "name": "一个总导演带一群并行工人，从规格书造出网店、SaaS 和 Steam 游戏",
-      "intro": "一个主编排 Agent 先审规格书、用 git 盯进度，再把独立模块分给一群子 Agent 并行干活：独立的活并行跑，便宜的活交给便宜的模型。网店、SaaS、Steam 游戏同时推进，订阅合计约 $1,000/月。教训先行：开工前给每个模块定好验收标准和预算上限，再开闸。",
-      "promptZh": "这是我要做的产品规格书——[产品，例如一个小型网店或独立游戏]：[粘贴规格书或填写文件路径]。请把它拆成互相独立的模块，为每个模块写一份简短说明，写清输入、输出和验收标准；然后用子 Agent 并行处理互不依赖的模块。等所有模块通过测试并完成集成后，给我一份总结：已经做出了什么、还剩下什么。在删除任何文件或部署任何东西之前，先问我。",
-      "promptEn": "Here is my spec for [product, e.g. small web shop or indie game]: [paste spec or file path]. Break it into independent modules, write a short brief for each with inputs, outputs and acceptance tests, then work through them using sub-agents in parallel where they don't depend on each other. When all modules pass their tests and are integrated, give me a summary of what was built and what is left, and ask before deleting any files or deploying anything.",
-      "url": "https://agentusecases.ai/use-case/orchestrate-parallel-ai-workers-to-build-products-from-a-spe"
+      "promptEn": "Every day at [two times, e.g. 8am and 6pm], send me a list of the best new eBay deals for [item or search terms] under [price], with links and why each looks like a good deal. Also check my recent email for anything I may have missed from [sender or topic] and flag it. You're finished when the first deal list is in my inbox and you've told me what you flagged; ask before contacting any seller or buying anything.",
+      "promptZh": "每天在[两个时间，例如早上 8 点和晚上 6 点]，给我发一份[商品或搜索关键词]在[价格]以下最新最值得买的 eBay 优惠清单，附链接和每件值得买的理由。同时检查我最近的邮件，看看有没有漏看的来自[发件人或主题]的邮件并提醒我。第一份清单发到我邮箱、并告诉我你提醒了什么，就算完成；联系卖家或下单前先问我。",
+      "url": "https://agentusecases.ai/use-case/track-ebay-deals-research-flights-and-price-used-items"
     },
     {
+      "cat": "知识管理 · Claude",
+      "chip": "旧教案变新教案",
+      "intro": "一位老师把 AI 时代之前最满意的旧教案全部喂进 Claude 项目当检索库，再配一份详细的 claude.md 写死风格规约，新教案按既定风格直接生成，还会列出参考来源供核对。",
+      "name": "把旧教案喂给 Claude：新教案按你的风格自动生成",
       "no": 3,
-      "cat": "内容 · N8N / ELEVENLABS",
-      "chip": "每天 1 期 / 1 万订阅",
-      "name": "一句话语音指挥，Newsletter 写稿配图、改线程剪视频全包",
-      "intro": "ElevenLabs 语音 Agent 在前端接令，一个 webhook 把口头指令送进 n8n 流水线：抓 AI 新闻写 Newsletter、生成品牌图、改成推特线程和短视频脚本、跑研究。人只负责动嘴派活。关键细节：按日期记记忆键，同一天的后续指令能接上早上的产出。",
-      "promptZh": "帮我为 [主题] 的 Newsletter 搭一条内容流水线。它每天应该从 [信息来源] 里研究出最重要的 [数量] 条新闻，用我的语气写一份 Newsletter 草稿（参考往期样稿：[粘贴一期旧稿]），并给出一个头图创意。然后把草稿再改写成一条社交媒体长帖和一份短视频脚本。所有产出都保存到 [文件夹]，停下来等我审核；不要发布或发送任何东西。",
-      "promptEn": "Help me set up a content pipeline for my [topic] newsletter. Each day it should research the top [number] stories from [sources], write a newsletter draft in my voice using [sample past issue], and generate a header image idea. Then repurpose the draft into a thread and a short video script. Save everything as files in [folder] and stop for my review; do not publish or send anything.",
-      "url": "https://agentusecases.ai/use-case/run-newsletter-and-content-repurposing-with-a-voice-agent"
+      "promptEn": "I'm uploading my past lesson plans for [subject and grade level] to this project as reference material. Using their format, tone, and teaching style, write a new lesson plan on [topic] for [duration] that includes objectives, activities, materials, and an assessment. Finish with one complete plan, and then list which of my past plans you drew from so I can check it.",
+      "promptZh": "我把过去[学科和年级]的教案上传到这个项目作参考资料。请按它们的格式、语气和教学风格，为[主题]写一份[时长]的新教案，包含目标、活动、材料和评估。最后给出一份完整教案，并列出你参考了我的哪些旧教案，方便我核对。",
+      "url": "https://agentusecases.ai/use-case/generate-lesson-plans-from-a-rag-library-of-past-plans"
     },
     {
+      "cat": "小生意 · ChatGPT",
+      "chip": "揪出 2 年隐私泄露",
+      "intro": "ChatGPT 自主助手每小时查 Outlook、认出发票就转发给财务；某次执行中发现附件 Excel 藏着其他公司的个人数据，当场停发并先问用户——问题疑似已存在约两年。",
+      "name": "每小时扫邮箱转发发票：顺手揪出藏了 2 年的隐私泄露",
       "no": 4,
-      "cat": "省钱 · CLAUDE",
-      "chip": "43 家实测",
-      "name": "订酒店先算「真总价」：43 家实测，价差几小时内能到 60%",
-      "intro": "把同一家酒店在多个平台的报价拉齐，算进旅游税和到店杂费，才是真总价——同房几小时内能差约 60%。可落地的打法：先订可退改价（最多贵约 11%，有时不到 2%），再让 Agent 每天复查，到取消截止日前降价就取消重订。",
-      "promptZh": "帮我在 [城市] 找 [酒店名]，日期 [入住日期] 到 [退房日期]，[人数] 位客人，在这些平台上查：[平台，例如 Booking.com、Expedia、酒店官网]。每个结果都要记录：房型、每晚价格、税费、度假费和其他附加费、取消政策，然后算出真实总价。最后给我一张按总价从低到高排序的对比表，不要预订任何房间。",
-      "promptEn": "Find [hotel name] in [city] for [check-in] to [check-out], [number] guests, on [sites, e.g. Booking.com, Expedia, the hotel's own site]. For each, record the room type, nightly rate, taxes, resort and other fees, and cancellation policy, then calculate the true total. Give me a comparison table ranked by total cost, and do not book anything.",
-      "url": "https://agentusecases.ai/use-case/compare-hotel-total-costs-including-taxes-and-fees"
+      "promptEn": "Help me find invoices in my email from [vendors or sender domains] over [date range] and prepare them to forward to [accounting email address]. List each invoice you find with sender, date, and amount, and flag anything that looks sensitive, such as personal data or messages that aren't really invoices. Pause and show me the full list and the draft forwards before sending anything. You're done when I've approved the list and every approved invoice is forwarded.",
+      "promptZh": "帮我找出[日期范围]内来自[供应商或发件域名]的发票邮件，准备转发给[财务邮箱地址]。把找到的每张发票按发件人、日期、金额列出来，并标出任何看起来敏感的内容，比如个人数据或根本不是发票的邮件。先停下来，把完整清单和转发草稿给我看，确认后再发。等我批准清单、且所有批准的发票都已转发，才算完成。",
+      "url": "https://agentusecases.ai/use-case/forward-invoices-from-email-with-an-autonomous-assistant"
     },
     {
+      "cat": "做产品 · 自定义 Agent",
+      "chip": "29m56s → 5m06s",
+      "intro": "装一个 GitHub App、改一行 runs-on，Agent 就读 workflow 和运行日志开优化 PR，人只审只合；Mastra 最慢流程从 29 分 56 秒降到 5 分 06 秒。",
+      "name": "Agent 开 PR 给 CI 提速：最慢流程从 30 分钟压到 5 分钟",
       "no": 5,
-      "cat": "搞钱 · CHATGPT AGENT",
-      "chip": "几周 → 几小时",
-      "name": "给 Agent 一份客户名单，它把每家公司查清填进 CRM",
-      "intro": "把客户名单交给 ChatGPT 的 Agent 模式：逐家查官网和 LinkedIn，把行业、规模、总部、关键联系人、近期动态补进 CRM，缺的字段标出来。诚实提醒：这则目前只有演示口述、没展示真实跑通结果——先拿 3 家小名单试跑、核对无误再放大。",
-      "promptZh": "这是我的客户名单：[粘贴公司名或表格链接]。请逐家研究它们的官网和 LinkedIn 页面，收集这些信息：[字段，例如行业、员工人数、总部所在地、关键联系人、近期动态]。然后把结果填进我的 CRM 对应字段：[CRM 链接]；无法核实的值要明确标注。先做前 3 家给我看，再继续；不要发邮件，也不要在没问我的情况下覆盖已有数据。",
-      "promptEn": "Here is my lead list: [paste company names or a spreadsheet link]. For each company, research its website and LinkedIn page and collect [fields, e.g. industry, headcount, HQ location, key contacts, recent news]. Then fill in the matching fields in my CRM at [CRM link] and mark any value you could not verify. Do the first 3 and show me before continuing, and don't send emails or overwrite existing data without asking.",
-      "url": "https://agentusecases.ai/use-case/research-companies-and-fill-a-crm-from-a-lead-list"
+      "promptEn": "Look through the CI workflows in my repo [repo name or path] and find the slowest or most expensive ones using recent run times from [CI provider, e.g. GitHub Actions]. For the top [number] offenders, propose and make changes such as caching, parallelizing jobs, or skipping redundant steps. Open a separate draft PR for each fix that includes before and after timing estimates, and stop once each PR is ready for my review. Do not merge anything or change secrets or deployment settings without showing me first.",
+      "promptZh": "查看我[仓库名称或路径]里的 CI 工作流，用[CI 服务商，例如 GitHub Actions]的近期运行时间找出最慢或最贵的那几个。针对排前[数量]名的问题，提出并实施缓存、并行任务、跳过冗余步骤等改进。每个修复单独开一个草稿 PR，附上修改前后的耗时预估；PR 准备好待我审核就停下来。未经我确认，不要合并任何内容，也不要改密钥或部署设置。",
+      "url": "https://agentusecases.ai/use-case/ship-prs-that-speed-up-and-cut-cost-of-ci-workflows"
     }
   ]
 }
