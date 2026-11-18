@@ -259,13 +259,25 @@
 
     <!-- 橘子电台（每集都带播放器：音频外置＋点播懒加载） -->
     <article class="card">
+      <img class="cover" src="assets/cover-wangdake.webp" loading="lazy" decoding="async" alt="橘子电台封面：戴黑 alo 帽的少年与机器人一起核对学情报告">
+      <div class="cbody">
+        <div class="meta">橘子电台 · 2026 年 11 月 18 日</div>
+        <h2>Agent 能走的走完，剩下的人来定——王大可的 AI 入企五十天</h2>
+        <p class="sum">十九岁的王大可，账号被封的五十天里给一家年营收千万的教育公司做 AI 化转型：一个人补六个岗位，把学情报告从五道人工转手做到表单一提交自动开跑。他留下的分工原则只有一句——Agent 能走的流程走完，剩下的人来定。</p>
+        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 5:44</button>
+        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <div class="cfoot"><span class="who">王大可 · 5 分 44 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep4" href="radio/wangdake-ai-edu.html">打开全文 →</a></div>
+      </div>
+    </article>
+
+    <article class="card">
       <img class="cover" src="assets/cover-baoyu.webp" loading="lazy" decoding="async" alt="橘子电台封面：戴黑 alo 帽的少年与两只橙色小机器人">
       <div class="cbody">
         <div class="meta">橘子电台 · 2026 年 11 月 17 日</div>
         <h2>像训练大模型一样训练自己——宝玉的 AI 原生思维</h2>
         <p class="sum">宝玉用自己做了三年的字幕翻译软件，讲透 AI 产品怎么做：盯着模型能力边界找需求，连闯能力、成本、价值三关；最小验证、推倒重设计；人的价值在定义问题和验收结果两头——像训练大模型一样训练自己。</p>
-        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 7:58</button>
-        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <button class="playbtn" id="ep3-play" type="button">▶ 播放本集 · 7:58</button>
+        <audio id="ep3-audio" controls preload="none" style="display:none"></audio>
         <div class="cfoot"><span class="who">宝玉 · 7 分 58 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep3" href="radio/baoyu-ai-native.html">打开全文 →</a></div>
       </div>
     </article>
@@ -386,7 +398,8 @@
       document.body.appendChild(sc);
     });
   }
-  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep3');
+  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep4');
+  wirePlayer('ep3-play', 'ep3-audio', 'assets/ep3-audio.js', 'EP3_B64', 'home-ep3');
   wirePlayer('ep2-play', 'ep2-audio', 'assets/ep2-audio.js', 'EP2_B64', 'home-ep2');
   wirePlayer('ep1-play', 'ep1-audio', 'assets/ep1-audio.js', 'EP1_B64', 'home-ep1');
 })();
