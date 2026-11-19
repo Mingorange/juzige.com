@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>深蹲 · 视频形式样本</title>
+<style>
+  :root{ --ink:#1d1d1f; --sub:#6e6e73; --faint:#c7c7cc; --green:#1f9d4d; --stage:#efefea; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{ font-family:-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif; background:var(--stage); color:var(--ink); }
+  .wrap{ max-width:520px; margin:0 auto; min-height:100dvh; display:flex; flex-direction:column; padding:calc(14px + env(safe-area-inset-top)) 24px calc(30px + env(safe-area-inset-bottom)); }
+  .top{ display:flex; justify-content:space-between; align-items:center; }
+  .top .grid{ font-size:16px; color:var(--sub); }
+  .top .timer{ font-size:15px; color:var(--sub); font-variant-numeric:tabular-nums; }
+  .pos{ font-size:14px; color:var(--sub); margin-top:16px; letter-spacing:.08em; }
+  h1{ font-size:40px; font-weight:800; margin-top:6px; }
+  .setsline{ font-size:19px; margin-top:10px; }
+  .setsline .tgt{ color:var(--sub); font-size:16px; margin-left:8px; }
+  .stage{ display:flex; justify-content:center; margin-top:2px; }
+  video{ width:min(80vw, 350px); height:auto; display:block; }
+  .cue{ background:rgba(255,255,255,.55); border-radius:10px; padding:10px 14px; font-size:15px; line-height:1.55; margin-top:2px; }
+  .segs{ display:flex; gap:6px; margin-top:20px; }
+  .seg{ flex:1; height:8px; border-radius:99px; background:#d9d9d2; }
+  .seg.on{ background:var(--green); }
+  .setcount{ font-size:15px; color:var(--sub); margin-top:10px; }
+  .checkbtn{ display:block; width:56%; min-height:64px; border-radius:999px; margin:20px auto 0; background:var(--green); color:#fff; font-size:21px; font-weight:700; letter-spacing:.05em; padding:16px; border:none; cursor:pointer; font-family:inherit; }
+  .checkbtn:active{ opacity:.85; }
+  .checkbtn:disabled{ opacity:.35; }
+  .foot{ font-size:13.5px; color:var(--sub); line-height:1.7; margin-top:26px; }
+  .foot b{ color:var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span class="grid">▦ 九宫格</span><span class="timer" id="timer">00:00</span></div>
+  <div class="pos">视频形式样本</div>
+  <h1>深蹲</h1>
+  <div class="setsline"><b>3 组 × 10 次</b><span class="tgt">目标：大腿与地面平行</span></div>
+  <div class="stage"><video src="assets/squat.mp4" autoplay muted loop playsinline></video></div>
+  <div class="cue">膝盖对准脚尖，蹲到大腿与地面平行，脚跟不离地；起身膝盖别锁死。</div>
+  <div class="segs" id="segs"><div class="seg"></div><div class="seg"></div><div class="seg"></div></div>
+  <div class="setcount" id="setcount">已完成 0 / 3 组</div>
+  <button class="checkbtn" id="check">✓ 完成一组</button>
+  <div class="foot">这是<b>视频形式</b>：直接用你库里的原视频，一个动作一个文件，这个深蹲 <b>332KB</b>。画质就是你现在看到的这样，也是几种形式里最精致的；代价是角度固定、不能转着看。跟刚才的 3D 版并排比比。</div>
+</div>
+<script>
+  var t0 = Date.now();
+  setInterval(function(){
+    var s = Math.floor((Date.now()-t0)/1000);
+    var m = Math.floor(s/60); s = s%60;
+    document.getElementById('timer').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }, 500);
+  var done = 0;
+  document.getElementById('check').addEventListener('click', function(){
+    if (done >= 3) return;
+    done++;
+    var segs = document.getElementById('segs').children;
+    segs[done-1].className = 'seg on';
+    document.getElementById('setcount').textContent = '已完成 ' + done + ' / 3 组';
+    if (done === 3) {
+      this.textContent = '✓ 全部完成';
+      this.disabled = true;
+      document.getElementById('setcount').textContent = '深蹲练完了';
+    }
+  });
+</script>
+</body>
+</html>
