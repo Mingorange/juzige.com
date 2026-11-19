@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>训练打卡</title>
+<style>
+  :root{
+    --bg:#ffffff; --ink:#1d1d1f; --sub:#6e6e73; --faint:#aeaeb2;
+    --page:#f5f5f7; --card:#f5f5f7; --line:#e8e8ec;
+    --orange:#F79343; --orange-ink:#ffffff;
+    --green:#1f9d4d; --green-wash:#e3f5e9; --orange-wash:#fdeeda;
+    --cream:#faf6f0; --seg-off:#e6e1d8;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#000000; --ink:#f5f5f7; --sub:#a1a1a6; --faint:#636366;
+      --page:#1c1c1e; --card:#1c1c1e; --line:#2c2c2e;
+      --green-wash:rgba(46,190,100,.20); --orange-wash:rgba(247,147,67,.20);
+      --cream:#17140f; --seg-off:#3a352c;
+    }
+  }
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    max-width:520px; margin:0 auto; min-height:100dvh;
+    -webkit-font-smoothing:antialiased;
+  }
+  button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; padding:0; }
+  .view{ min-height:100dvh; display:flex; flex-direction:column; }
+
+  /* ---------- 首页（海报风） ---------- */
+  .home{ padding:calc(18px + env(safe-area-inset-top)) 28px calc(26px + env(safe-area-inset-bottom)); background:var(--bg); }
+  .home .date{ font-size:13px; letter-spacing:.14em; color:var(--sub); }
+  .home .spacer{ flex:1; }
+  .home .dayname{
+    font-size:min(38vw,168px); font-weight:800; line-height:1.02; letter-spacing:-.01em;
+    text-align:left; width:100%; padding:12px 0 4px; color:var(--ink);
+  }
+  .home .fact{ font-size:17px; color:var(--ink); margin-top:10px; }
+  .home .progline{ font-size:14px; color:var(--sub); margin-top:8px; min-height:20px; }
+  .home .hint{ font-size:13px; color:var(--faint); margin-top:6px; }
+  .home .doneflag{ font-size:19px; color:var(--green); font-weight:600; margin-top:12px; }
+  .bigbtn{
+    display:block; width:100%; min-height:60px; border-radius:16px;
+    background:var(--orange); color:var(--orange-ink);
+    font-size:20px; font-weight:700; letter-spacing:.06em;
+    margin-top:26px; padding:16px;
+  }
+  .bigbtn:active{ filter:brightness(.94); }
+
+  /* ---------- 选日页 ---------- */
+  .days{ padding:calc(30px + env(safe-area-inset-top)) 28px calc(26px + env(safe-area-inset-bottom)); background:var(--bg); }
+  .days .cap{ font-size:13px; letter-spacing:.14em; color:var(--sub); margin-bottom:14px; }
+  .dayrow{
+    display:block; width:100%; text-align:left;
+    font-size:52px; font-weight:800; line-height:1.25; padding:12px 0;
+    border-bottom:1px solid var(--line); color:var(--ink); min-height:84px;
+  }
+  .dayrow:last-of-type{ border-bottom:none; }
+  .dayrow .meta{ display:block; font-size:14px; font-weight:400; color:var(--sub); margin-top:2px; }
+  .dayrow .today{ font-size:13px; font-weight:600; color:var(--orange); margin-left:10px; vertical-align:middle; }
+  .backlink{ font-size:16px; color:var(--sub); min-height:44px; padding:10px 0; margin-top:10px; }
+
+  /* ---------- 九宫格 ---------- */
+  .gridwrap{ background:var(--bg); }
+  .gridhead{ padding:calc(16px + env(safe-area-inset-top)) 18px 12px; }
+  .gridhead .t{ font-size:26px; font-weight:800; }
+  .gridhead .s{ font-size:14px; color:var(--sub); margin-top:3px; }
+  .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border-top:2px solid var(--line); border-bottom:2px solid var(--line); }
+  .cell{
+    position:relative; background:var(--card); min-height:118px;
+    padding:10px; text-align:left; display:flex; flex-direction:column;
+  }
+  .cell .num{ font-size:14px; font-weight:700; color:var(--sub); width:100%; text-align:left; }
+  .cell .nm{ margin-top:auto; font-size:16px; font-weight:600; line-height:1.3; width:100%; text-align:left; }
+  .cell .st{ font-size:12.5px; color:var(--sub); margin-top:3px; line-height:1.35; width:100%; text-align:left; }
+  .cell .ck{ position:absolute; top:8px; right:10px; font-size:17px; font-weight:800; color:var(--green); display:none; }
+  .cell.done{ background:var(--green-wash); }
+  .cell.done .ck{ display:block; }
+  .cell.doing{ background:var(--orange-wash); }
+  .gridbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 18px calc(14px + env(safe-area-inset-bottom));
+  }
+  .gridbar button{ min-height:48px; font-size:17px; padding:10px 6px; }
+  .gridbar .finish{ color:var(--orange); font-weight:700; }
+
+  /* ---------- 单动作页 ---------- */
+  .ex{ background:var(--cream); padding:calc(14px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom)); }
+  .ex .top{ display:flex; justify-content:space-between; align-items:center; }
+  .ex .back{ font-size:16px; color:var(--sub); min-height:44px; padding:10px 4px; }
+  .ex .timer{ font-size:15px; color:var(--sub); font-variant-numeric:tabular-nums; }
+  .ex .pos{ font-size:14px; color:var(--sub); margin-top:16px; letter-spacing:.08em; }
+  .ex h1{ font-size:40px; font-weight:800; margin:6px 0 0; line-height:1.15; }
+  .ex .setsline{ font-size:19px; margin-top:10px; }
+  .ex .setsline b{ font-weight:700; }
+  .ex .setsline .tgt{ color:var(--sub); font-size:16px; margin-left:8px; }
+  .ex .cue{ font-size:15.5px; line-height:1.55; color:var(--ink); background:var(--orange-wash); border-radius:10px; padding:10px 12px; margin-top:14px; }
+  .segs{ display:flex; gap:6px; margin-top:30px; }
+  .seg{ flex:1; height:14px; border-radius:7px; background:transparent; border:none; padding:0; min-height:44px; position:relative; }
+  .seg::after{ content:""; position:absolute; left:0; right:0; top:15px; height:14px; border-radius:7px; background:var(--seg-off); }
+  .seg.on::after{ background:var(--ink); }
+  .seg.next::after{ background:var(--orange); opacity:.45; }
+  .ex .setcount{ font-size:16px; color:var(--sub); margin-top:12px; }
+  .wrow{ display:flex; align-items:center; gap:10px; margin-top:26px; }
+  .wrow .lab{ font-size:16px; color:var(--sub); }
+  .wrow input{
+    width:110px; font-size:24px; font-weight:700; text-align:center;
+    border:1px solid var(--line); border-radius:10px; padding:8px 4px;
+    background:var(--bg); color:var(--ink); min-height:48px;
+  }
+  .wrow .unit{ font-size:17px; }
+  .wrow .bw{ font-size:22px; font-weight:700; }
+  .checkbtn{
+    display:block; width:100%; min-height:64px; border-radius:16px; margin-top:34px;
+    background:var(--ink); color:var(--bg); font-size:21px; font-weight:700; letter-spacing:.05em; padding:16px;
+  }
+  .checkbtn:active{ opacity:.85; }
+  .checkbtn:disabled{ opacity:.35; }
+  .undobtn{ display:block; width:100%; min-height:48px; font-size:15px; color:var(--sub); margin-top:8px; padding:10px; }
+  .exnav{ display:flex; justify-content:space-between; margin-top:14px; }
+  .exnav button{ min-height:48px; font-size:16px; color:var(--sub); padding:10px 4px; }
+  .exnav button:disabled{ color:var(--faint); }
+
+  /* ---------- 结束页 ---------- */
+  .done{ background:var(--cream); align-items:center; justify-content:center; text-align:center; padding:30px; cursor:pointer; }
+  .done .bigcheck{ font-size:110px; line-height:1; color:var(--green); font-weight:300; }
+  .done h1{ font-size:34px; font-weight:800; margin:14px 0 0; }
+  .done .dayline{ font-size:16px; color:var(--sub); margin-top:8px; }
+  .done .stats{ display:flex; gap:44px; margin-top:44px; }
+  .done .stat .v{ font-size:40px; font-weight:800; font-variant-numeric:tabular-nums; }
+  .done .stat .k{ font-size:14px; color:var(--sub); margin-top:4px; }
+  .done .tap{ font-size:13px; color:var(--faint); margin-top:52px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+"use strict";
+/* 组数×次数取自 upload.html 动作库 sets 字段（区间取上限）；腿日取自已上线 App 同一套数据（build_final.py）。 */
+var DAYS = [
+  { id:"chest", name:"胸日", exercises:[
+    { name:"上斜杠铃卧推", sets:"3 × 8–10", n:3, target:"10 次" },
+    { name:"上斜哑铃卧推", sets:"2 × 10", n:2, target:"10 次" },
+    { name:"下斜哑铃卧推", sets:"3 × 8–12", n:3, target:"12 次" },
+    { name:"哑铃飞鸟", sets:"2–3 × 10–15", n:3, target:"15 次" },
+    { name:"双杠臂屈伸", sets:"3 × 8–12", n:3, target:"12 次", bw:true },
+    { name:"俯卧撑", sets:"3 × 10–20", n:3, target:"20 次", bw:true }
+  ]},
+  { id:"back", name:"背日", exercises:[
+    { name:"传统硬拉", sets:"3–4 × 5–8", n:4, target:"8 次" },
+    { name:"引体向上", sets:"3–4 × 3–8", n:4, target:"8 次", bw:true },
+    { name:"T杠划船", sets:"3 × 8–12", n:3, target:"12 次" },
+    { name:"单臂哑铃划船", sets:"3 × 10 / 侧", n:3, target:"10 次 / 侧" },
+    { name:"高位下拉", sets:"3–4 × 10", n:4, target:"10 次", w:33 },
+    { name:"坐姿划船", sets:"3 × 10–12", n:3, target:"12 次", w:35 },
+    { name:"直臂下压", sets:"2–3 × 12–15", n:3, target:"15 次" },
+    { name:"山羊挺身（背屈伸）", sets:"3 × 10–15", n:3, target:"15 次", bw:true }
+  ]},
+  { id:"legs", name:"腿日", exercises:[
+    { name:"杠铃深蹲", sets:"4 组 · 8–10 次", n:4, target:"10 次" },
+    { name:"45度腿举", sets:"4 组 · 8–10 次", n:4, target:"10 次" },
+    { name:"罗马尼亚硬拉", sets:"3 组 · 10 次", n:3, target:"10 次" },
+    { name:"保加利亚剪蹲", sets:"3 组 · 8–10 次/侧", n:3, target:"10 次 / 侧" },
+    { name:"哑铃箭步蹲", sets:"3 组 · 8–10 次/侧", n:3, target:"10 次 / 侧" },
+    { name:"俯卧腿弯举", sets:"3 组 · 10–12 次", n:3, target:"12 次" },
+    { name:"坐姿腿伸展", sets:"3 组 · 12 次", n:3, target:"12 次" },
+    { name:"站姿提踵", sets:"3 组 · 12–15 次", n:3, target:"15 次" },
+    { name:"坐姿提踵", sets:"3 组 · 12–15 次", n:3, target:"15 次" }
+  ]},
+  { id:"shoulder", name:"肩臂日", exercises:[
+    { name:"阿诺德推举", sets:"3 × 8–12", n:3, target:"12 次" },
+    { name:"器械推举", sets:"3 × 10–12", n:3, target:"12 次" },
+    { name:"侧平举", sets:"3 × 12–15", n:3, target:"15 次", w:5, cue:"5kg 严格版：肘带手起，到肩高停半秒，慢放，别耸肩甩腰。" },
+    { name:"俯身飞鸟", sets:"3 × 12–15", n:3, target:"15 次", w:5, cue:"5kg 干净版：不借力弹跳，顶峰停一下。" },
+    { name:"面拉", sets:"3 × 12–15", n:3, target:"15 次" },
+    { name:"杠铃弯举", sets:"3 × 8–12", n:3, target:"12 次" },
+    { name:"锤式弯举", sets:"2–3 × 10–12", n:3, target:"12 次" },
+    { name:"绳索三头下压", sets:"3 × 10–12", n:3, target:"12 次" },
+    { name:"过顶臂屈伸", sets:"2–3 × 10–12", n:3, target:"12 次" }
+  ]},
+  { id:"abs", name:"腹肌日", exercises:[
+    { name:"卷腹", sets:"3 × 12–15", n:3, target:"15 次", bw:true },
+    { name:"仰卧举腿", sets:"3 × 10–15", n:3, target:"15 次", bw:true },
+    { name:"反向卷腹", sets:"3 × 10–12", n:3, target:"12 次", bw:true },
+    { name:"俄罗斯转体", sets:"3 × 12–20（左右合计）", n:3, target:"20 次（左右合计）", bw:true },
+    { name:"死虫式", sets:"3 × 8–10 / 侧", n:3, target:"10 次 / 侧", bw:true },
+    { name:"登山者", sets:"3 × 30–40 秒", n:3, target:"40 秒", bw:true },
+    { name:"健腹轮", sets:"3 × 6–10", n:3, target:"10 次", bw:true },
+    { name:"平板支撑", sets:"3 × 40–60 秒", n:3, target:"60 秒", bw:true }
+  ]}
+];
+var WEEKDAY_DAY = { 0:"abs", 1:"chest", 2:"back", 3:"legs", 4:"shoulder", 5:"abs", 6:"chest" }; /* 周一胸/周二背/周三腿/周四肩臂/周五腹肌 */
+var WD = ["日","一","二","三","四","五","六"];
+
+function dayById(id){ for (var i=0;i<DAYS.length;i++) if (DAYS[i].id===id) return DAYS[i]; return DAYS[0]; }
+function totalSets(day){ var t=0; day.exercises.forEach(function(e){ t+=e.n; }); return t; }
+function estMinutes(day){ return Math.round(totalSets(day)*2.4); }
+function factLine(day){ return day.exercises.length + " 个动作 · " + totalSets(day) + " 组 · 约 " + estMinutes(day) + " 分钟"; }
+
+function todayStr(d){
+  d = d || new Date();
+  function p(x){ return (x<10?"0":"")+x; }
+  return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate());
+}
+function storeKey(dayId){ return "tdq:v1:"+todayStr()+":"+dayId; }
+function blankProg(day){ return { done: day.exercises.map(function(){return 0;}), w:{}, start:0, end:0, finished:false }; }
+function getProg(day){
+  try{
+    var raw = localStorage.getItem(storeKey(day.id));
+    if (raw){ var p = JSON.parse(raw); if (p && p.done && p.done.length===day.exercises.length) return p; }
+  }catch(e){}
+  return blankProg(day);
+}
+function saveProg(day,p){ try{ localStorage.setItem(storeKey(day.id), JSON.stringify(p)); }catch(e){} }
+function doneSets(p){ var t=0; p.done.forEach(function(x){ t+=x; }); return t; }
+
+var app = document.getElementById("app");
+var curDay = dayById(WEEKDAY_DAY[new Date().getDay()]);
+var curEx = 0;
+var timerId = null;
+
+function stopTimer(){ if (timerId){ clearInterval(timerId); timerId=null; } }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+/* ---------- 首页 ---------- */
+function renderHome(){
+  stopTimer();
+  var now = new Date();
+  var day = curDay;
+  var p = getProg(day);
+  var done = doneSets(p), total = totalSets(day);
+  var btnText = "开始训练", prog = "";
+  if (p.finished){ btnText = "查看成绩"; }
+  else if (done>0){ btnText = "继续训练"; prog = "已完成 " + done + " / " + total + " 组"; }
+  app.innerHTML =
+    '<div class="view home">' +
+      '<div class="date">' + now.getFullYear() + '年' + (now.getMonth()+1) + '月' + now.getDate() + '日 · 星期' + WD[now.getDay()] + '</div>' +
+      '<div class="spacer"></div>' +
+      '<button class="dayname" id="hDay" style="font-size:' + Math.min(168, Math.floor((Math.min(window.innerWidth,520)-56)/day.name.length*0.97)) + 'px;white-space:nowrap">' + esc(day.name) + '</button>' +
+      '<div class="fact">' + factLine(day) + '</div>' +
+      (p.finished ? '<div class="doneflag">✓ 今天练完了</div>' : '<div class="progline">' + prog + '</div>') +
+      '<div class="hint">点上面的日子，可以换练其他天</div>' +
+      '<div class="spacer"></div>' +
+      '<button class="bigbtn" id="hGo">' + btnText + '</button>' +
+    '</div>';
+  document.getElementById("hDay").addEventListener("click", renderDays);
+  document.getElementById("hGo").addEventListener("click", function(){
+    if (p.finished) renderDone(day); else renderGrid(day);
+  });
+}
+
+/* ---------- 选日页 ---------- */
+function renderDays(){
+  stopTimer();
+  var schedId = WEEKDAY_DAY[new Date().getDay()];
+  var html = '<div class="view days"><div class="cap">选一天开练</div>';
+  DAYS.forEach(function(d){
+    html += '<button class="dayrow" data-day="' + d.id + '">' + esc(d.name) +
+      (d.id===schedId ? '<span class="today">今天</span>' : '') +
+      '<span class="meta">' + factLine(d) + '</span></button>';
+  });
+  html += '<button class="backlink" id="dBack">‹ 返回</button></div>';
+  app.innerHTML = html;
+  var rows = app.querySelectorAll(".dayrow");
+  for (var i=0;i<rows.length;i++){
+    rows[i].addEventListener("click", function(){
+      curDay = dayById(this.getAttribute("data-day"));
+      renderGrid(curDay);
+    });
+  }
+  document.getElementById("dBack").addEventListener("click", renderHome);
+}
+
+/* ---------- 九宫格 ---------- */
+function renderGrid(day){
+  stopTimer();
+  curDay = day;
+  var p = getProg(day);
+  var done = doneSets(p), total = totalSets(day);
+  var html =
+    '<div class="view gridwrap">' +
+      '<div class="gridhead"><div class="t">' + esc(day.name) + '</div>' +
+      '<div class="s">' + factLine(day) + ' · 已完成 ' + done + ' / ' + total + ' 组</div></div>' +
+      '<div class="grid">';
+  day.exercises.forEach(function(e, i){
+    var cls = "cell";
+    if (p.done[i] >= e.n) cls += " done";
+    else if (p.done[i] > 0) cls += " doing";
+    html += '<button class="' + cls + '" data-i="' + i + '">' +
+      '<span class="num">' + (i+1) + '</span><span class="ck">✓</span>' +
+      '<span class="nm">' + esc(e.name) + '</span>' +
+      '<span class="st">' + esc(e.sets) + (p.done[i]>0 && p.done[i]<e.n ? ' · 已做 ' + p.done[i] + ' 组' : '') + '</span>' +
+    '</button>';
+  });
+  html += '</div><div class="spacer" style="flex:1"></div>' +
+    '<div class="gridbar"><button id="gHome">‹ 首页</button><button class="finish" id="gFinish">结束训练</button></div></div>';
+  app.innerHTML = html;
+  var cells = app.querySelectorAll(".cell");
+  for (var i=0;i<cells.length;i++){
+    cells[i].addEventListener("click", function(){ renderEx(day, parseInt(this.getAttribute("data-i"),10)); });
+  }
+  document.getElementById("gHome").addEventListener("click", renderHome);
+  document.getElementById("gFinish").addEventListener("click", function(){ finishDay(day); });
+}
+
+function finishDay(day){
+  var p = getProg(day);
+  if (!p.end) p.end = Date.now();
+  p.finished = true;
+  saveProg(day, p);
+  renderDone(day);
+}
+
+/* ---------- 单动作页 ---------- */
+function fmtClock(ms){
+  var s = Math.max(0, Math.floor(ms/1000));
+  var m = Math.floor(s/60); s = s%60;
+  return (m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+}
+function renderEx(day, idx){
+  stopTimer();
+  curDay = day; curEx = idx;
+  var e = day.exercises[idx];
+  var p = getProg(day);
+  var d = p.done[idx];
+  var wVal = (p.w[idx] !== undefined) ? p.w[idx] : (e.w !== undefined ? e.w : "");
+  var segs = "";
+  for (var i=0;i<e.n;i++){
+    var cls = "seg" + (i<d ? " on" : (i===d ? " next" : ""));
+    segs += '<button class="' + cls + '" data-seg="' + i + '" aria-label="第' + (i+1) + '组"></button>';
+  }
+  app.innerHTML =
+    '<div class="view ex">' +
+      '<div class="top"><button class="back" id="xBack">‹ 全部动作</button>' +
+      '<span class="timer" id="xTimer">' + (p.start ? fmtClock(Date.now()-p.start) : "00:00") + '</span></div>' +
+      '<div class="pos">第 ' + (idx+1) + ' 个 · 共 ' + day.exercises.length + ' 个</div>' +
+      '<h1>' + esc(e.name) + '</h1>' +
+      '<div class="setsline"><b>' + esc(e.sets) + '</b><span class="tgt">目标 ' + esc(e.target) + '</span></div>' +
+      (e.cue ? '<div class="cue">' + esc(e.cue) + '</div>' : '') +
+      '<div class="segs">' + segs + '</div>' +
+      '<div class="setcount">已完成 ' + d + ' / ' + e.n + ' 组</div>' +
+      '<div class="wrow"><span class="lab">重量</span>' +
+        (e.bw ? '<span class="bw">自重</span>'
+              : '<input id="xW" type="number" inputmode="decimal" min="0" step="0.5" value="' + (wVal===""?"":wVal) + '" placeholder="—"><span class="unit">kg</span>') +
+      '</div>' +
+      '<button class="checkbtn" id="xCheck"' + (d>=e.n ? " disabled" : "") + '>✅ 完成一组</button>' +
+      (d>0 ? '<button class="undobtn" id="xUndo">撤销一组</button>' : '') +
+      '<div class="exnav">' +
+        '<button id="xPrev"' + (idx===0 ? " disabled" : "") + '>‹ 上一个</button>' +
+        '<button id="xNext"' + (idx===day.exercises.length-1 ? " disabled" : "") + '>下一个 ›</button>' +
+      '</div>' +
+    '</div>';
+
+  if (p.start && !p.finished){
+    timerId = setInterval(function(){
+      var t = document.getElementById("xTimer");
+      if (t) t.textContent = fmtClock(Date.now()-p.start);
+    }, 1000);
+  }
+  document.getElementById("xBack").addEventListener("click", function(){ renderGrid(day); });
+  var wIn = document.getElementById("xW");
+  if (wIn){
+    wIn.addEventListener("change", function(){
+      var pp = getProg(day);
+      var v = this.value.trim();
+      if (v==="") delete pp.w[idx]; else pp.w[idx] = parseFloat(v);
+      saveProg(day, pp);
+    });
+  }
+  var segBtns = app.querySelectorAll(".seg");
+  for (var j=0;j<segBtns.length;j++){
+    segBtns[j].addEventListener("click", function(){
+      var si = parseInt(this.getAttribute("data-seg"),10);
+      var pp = getProg(day);
+      pp.done[idx] = (si < pp.done[idx]) ? si : si+1;
+      afterSet(day, idx, pp);
+    });
+  }
+  document.getElementById("xCheck").addEventListener("click", function(){
+    var pp = getProg(day);
+    if (pp.done[idx] < e.n) pp.done[idx]++;
+    afterSet(day, idx, pp);
+  });
+  var undo = document.getElementById("xUndo");
+  if (undo) undo.addEventListener("click", function(){
+    var pp = getProg(day);
+    if (pp.done[idx] > 0) pp.done[idx]--;
+    pp.finished = false; pp.end = 0;
+    saveProg(day, pp);
+    renderEx(day, idx);
+  });
+  var prev = document.getElementById("xPrev"), next = document.getElementById("xNext");
+  if (prev) prev.addEventListener("click", function(){ renderEx(day, idx-1); });
+  if (next) next.addEventListener("click", function(){ renderEx(day, idx+1); });
+}
+
+function afterSet(day, idx, p){
+  if (!p.start) p.start = Date.now();
+  var e = day.exercises[idx];
+  if (p.done[idx] >= e.n){
+    /* 本动作完成：找下一个未完成的动作 */
+    var nxt = -1;
+    for (var k=idx+1;k<day.exercises.length;k++){ if (p.done[k] < day.exercises[k].n){ nxt=k; break; } }
+    if (nxt<0){ for (var k2=0;k2<idx;k2++){ if (p.done[k2] < day.exercises[k2].n){ nxt=k2; break; } } }
+    if (nxt<0){
+      p.end = Date.now(); p.finished = true;
+      saveProg(day, p);
+      renderDone(day);
+      return;
+    }
+    saveProg(day, p);
+    renderEx(day, nxt);
+    return;
+  }
+  saveProg(day, p);
+  renderEx(day, idx);
+}
+
+/* ---------- 结束页 ---------- */
+function renderDone(day){
+  stopTimer();
+  var p = getProg(day);
+  var done = doneSets(p), total = totalSets(day);
+  var mins = (p.start && p.end) ? Math.max(1, Math.round((p.end-p.start)/60000)) : 0;
+  var pct = total ? Math.round(done/total*100) : 0;
+  app.innerHTML =
+    '<div class="view done" id="doneView">' +
+      '<div class="bigcheck">✓</div>' +
+      '<h1>练完了</h1>' +
+      '<div class="dayline">' + esc(day.name) + ' · ' + todayStr().replace(/-/g,"/") + '</div>' +
+      '<div class="stats">' +
+        '<div class="stat"><div class="v">' + done + '</div><div class="k">组数</div></div>' +
+        '<div class="stat"><div class="v">' + mins + '</div><div class="k">分钟</div></div>' +
+        '<div class="stat"><div class="v">' + pct + '%</div><div class="k">完成率</div></div>' +
+      '</div>' +
+      '<div class="tap">点任意处回首页</div>' +
+    '</div>';
+  document.getElementById("doneView").addEventListener("click", function(){ curDay = day; renderHome(); });
+}
+
+renderHome();
+</script>
+</body>
+</html>
