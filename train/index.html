@@ -118,8 +118,8 @@
   .wrow .unit{ font-size:17px; }
   .wrow .bw{ font-size:22px; font-weight:700; }
   .checkbtn{
-    display:block; width:100%; min-height:64px; border-radius:16px; margin-top:34px;
-    background:var(--ink); color:var(--bg); font-size:21px; font-weight:700; letter-spacing:.05em; padding:16px;
+    display:block; width:100%; min-height:64px; border-radius:999px; margin-top:34px;
+    background:var(--green); color:#fff; font-size:21px; font-weight:700; letter-spacing:.05em; padding:16px;
   }
   .checkbtn:active{ opacity:.85; }
   .checkbtn:disabled{ opacity:.35; }
@@ -357,7 +357,7 @@ function renderEx(day, idx){
         (e.bw ? '<span class="bw">自重</span>'
               : '<input id="xW" type="number" inputmode="decimal" min="0" step="0.5" value="' + (wVal===""?"":wVal) + '" placeholder="—"><span class="unit">kg</span>') +
       '</div>' +
-      '<button class="checkbtn" id="xCheck"' + (d>=e.n ? " disabled" : "") + '>✅ 完成一组</button>' +
+      '<button class="checkbtn" id="xCheck"' + (d>=e.n ? " disabled" : "") + '>✓ 完成一组</button>' +
       (d>0 ? '<button class="undobtn" id="xUndo">撤销一组</button>' : '') +
       '<div class="exnav">' +
         '<button id="xPrev"' + (idx===0 ? " disabled" : "") + '>‹ 上一个</button>' +
