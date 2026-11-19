@@ -3,36 +3,41 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>深蹲 · Three.js 动态样本</title>
+<title>杠铃深蹲 · OpenGym3D 样本</title>
 <style>
-  :root{ --ink:#1d1d1f; --sub:#6e6e73; --cream:#f7f3ec; --orange:#F79343; }
+  :root{ --ink:#1d1d1f; --sub:#6e6e73; --cream:#f7f3ec; }
   *{ margin:0; padding:0; box-sizing:border-box; }
   body{ font-family:-apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", sans-serif; background:var(--cream); color:var(--ink); }
   .wrap{ max-width:520px; margin:0 auto; min-height:100dvh; display:flex; flex-direction:column; padding:calc(16px + env(safe-area-inset-top)) 24px calc(20px + env(safe-area-inset-bottom)); }
   .cap{ font-size:13px; letter-spacing:.14em; color:var(--sub); }
   h1{ font-size:44px; font-weight:800; margin-top:8px; }
   .sub{ font-size:15px; color:var(--sub); margin-top:6px; }
-  #stage{ flex:1; position:relative; margin-top:6px; }
+  #stage{ flex:1; position:relative; margin-top:6px; min-height:320px; }
   canvas{ display:block; width:100%; height:100%; touch-action:none; }
   .badge{ position:absolute; left:0; bottom:8px; font-size:12.5px; color:var(--sub); background:rgba(255,255,255,.65); padding:5px 10px; border-radius:999px; }
+  .loading{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--sub); font-size:15px; }
   .foot{ font-size:13.5px; color:var(--sub); line-height:1.7; margin-top:10px; }
   .foot b{ color:var(--ink); }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="cap">THREE.JS 动态样本</div>
+  <div class="cap">OPENGYM3D 样本 · 开源 MIT</div>
   <h1>杠铃深蹲</h1>
-  <div class="sub">3D 小人实时演算 · 无缝循环 · 拖动可以转角度</div>
-  <div id="stage"><div class="badge">股四头肌 / 臀大肌</div></div>
-  <div class="foot">这一页没有视频、没有图片 —— 人物、杠铃、动作全是<b>模型 + 数据</b>，浏览器现算现画。页面本身约 <b>14KB</b>；Three.js 引擎库一次加载约 <b>600KB</b>，之后 40 个动作共用，每个动作只多几 KB 动画数据。</div>
+  <div class="sub">真人比例 3D 模型 + 动捕动画 · 无缝循环 · 拖动可以转角度</div>
+  <div id="stage"><div class="loading" id="loading">加载中…</div><div class="badge">股四头肌 / 臀大肌 / 竖脊肌</div></div>
+  <div class="foot">素材来自开源库 <b>OpenGym3D</b>（MIT 授权，可商用）：模型 + 杠铃 + 整套深蹲动捕都在这一个 GLB 里，<b>6.0MB</b> 是未压缩的原样，正式上架前可以压到几百 KB。动作对不对、人物够不够精致，你说了算。</div>
 </div>
 
 <script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
 </script>
 <script type="module">
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const stage = document.getElementById('stage');
 const renderer = new THREE.WebGLRenderer({ antialias:true });
@@ -44,11 +49,11 @@ stage.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 50);
-camera.position.set(2.5, 1.55, 3.3);
-camera.lookAt(0, 0.82, 0);
+camera.position.set(2.3, 1.5, 3.1);
+camera.lookAt(0, 0.85, 0);
 
-scene.add(new THREE.HemisphereLight(0xffffff, 0xcfc4b2, 0.95));
-const key = new THREE.DirectionalLight(0xffffff, 1.6);
+scene.add(new THREE.HemisphereLight(0xffffff, 0xcfc4b2, 1.0));
+const key = new THREE.DirectionalLight(0xffffff, 1.7);
 key.position.set(3, 6, 2.5);
 key.castShadow = true;
 key.shadow.mapSize.set(1024, 1024);
@@ -59,154 +64,38 @@ const rim = new THREE.DirectionalLight(0xdfe8ff, 0.5);
 rim.position.set(-3, 2, -2.5);
 scene.add(rim);
 
-const ground = new THREE.Mesh(
-  new THREE.CircleGeometry(2.4, 48),
-  new THREE.ShadowMaterial({ opacity: 0.16 })
-);
+const ground = new THREE.Mesh(new THREE.CircleGeometry(2.4, 48), new THREE.ShadowMaterial({ opacity: 0.16 }));
 ground.rotation.x = -Math.PI/2;
 ground.receiveShadow = true;
 scene.add(ground);
 
-/* ---------- materials ---------- */
-const M = {
-  body:  new THREE.MeshStandardMaterial({ color:0x2e3644, roughness:0.65 }),
-  quad:  new THREE.MeshStandardMaterial({ color:0xd9483b, roughness:0.6 }),
-  skin:  new THREE.MeshStandardMaterial({ color:0x3a4356, roughness:0.65 }),
-  shoe:  new THREE.MeshStandardMaterial({ color:0x5a6472, roughness:0.8 }),
-  steel: new THREE.MeshStandardMaterial({ color:0x3c4148, roughness:0.4, metalness:0.6 }),
-  plate: new THREE.MeshStandardMaterial({ color:0x22262c, roughness:0.5, metalness:0.3 }),
-};
+const holder = new THREE.Group();
+scene.add(holder);
 
-function capsule(mat, r, len){
-  const m = new THREE.Mesh(new THREE.CapsuleGeometry(r, len, 6, 14), mat);
-  m.castShadow = true;
-  return m;
-}
-function limb(mat, r, total){
-  const g = new THREE.Group();
-  const c = capsule(mat, r, Math.max(0.01, total - 2*r));
-  c.position.y = -total/2;
-  g.add(c);
-  const j = new THREE.Mesh(new THREE.SphereGeometry(r*1.02, 14, 12), mat);
-  j.castShadow = true;
-  g.add(j);
-  return g;
-}
+let mixer = null;
+const clock = new THREE.Clock();
 
-/* ---------- figure ---------- */
-const fig = new THREE.Group();
-scene.add(fig);
-
-const HIP_Y = 0.98, L1 = 0.42, L2 = 0.42;
-const pelvis = new THREE.Group();
-pelvis.position.set(0, HIP_Y, 0);
-fig.add(pelvis);
-
-const hipsMesh = capsule(M.body, 0.145, 0.10);
-hipsMesh.rotation.z = Math.PI/2;
-hipsMesh.scale.set(1, 1, 0.82);
-pelvis.add(hipsMesh);
-
-const torso = new THREE.Group();
-torso.position.set(0, 0.05, 0);
-pelvis.add(torso);
-const chest = capsule(M.body, 0.155, 0.30);
-chest.position.y = 0.28;
-chest.scale.set(1.18, 1, 0.78);
-torso.add(chest);
-
-const headG = new THREE.Group();
-headG.position.y = 0.60;
-torso.add(headG);
-const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.05, 0.08, 12), M.skin);
-neck.castShadow = true;
-headG.add(neck);
-const head = new THREE.Mesh(new THREE.SphereGeometry(0.105, 20, 16), M.skin);
-head.position.y = 0.13;
-head.castShadow = true;
-headG.add(head);
-
-/* barbell, parented to torso so it rides the lean */
-const bar = new THREE.Group();
-bar.position.set(0, 0.52, -0.17);
-torso.add(bar);
-const barMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.016, 0.016, 2.0, 10), M.steel);
-barMesh.rotation.z = Math.PI/2;
-barMesh.castShadow = true;
-bar.add(barMesh);
-[-0.80, -0.88, 0.80, 0.88].forEach((x, i) => {
-  const p = new THREE.Mesh(new THREE.CylinderGeometry(i%2 ? 0.15 : 0.185, i%2 ? 0.15 : 0.185, 0.045, 24), M.plate);
-  p.rotation.z = Math.PI/2;
-  p.position.x = x;
-  p.castShadow = true;
-  bar.add(p);
+new GLTFLoader().load('assets/back_squat.glb', (gltf) => {
+  const model = gltf.scene;
+  model.traverse(o => { if (o.isMesh) { o.castShadow = true; } });
+  const box = new THREE.Box3().setFromObject(model);
+  const c = box.getCenter(new THREE.Vector3());
+  model.position.x -= c.x;
+  model.position.z -= c.z;
+  model.position.y -= box.min.y;
+  holder.add(model);
+  mixer = new THREE.AnimationMixer(model);
+  for (const clip of gltf.animations) {
+    const a = mixer.clipAction(clip);
+    a.setLoop(THREE.LoopRepeat);
+    a.play();
+  }
+  document.getElementById('loading').style.display = 'none';
+}, undefined, (err) => {
+  document.getElementById('loading').textContent = '加载失败，刷新试试';
+  console.error(err);
 });
 
-/* arms: static grip pose folded up to the bar */
-function makeArm(side){
-  const sh = new THREE.Group();
-  sh.position.set(0.225*side, 0.50, 0);
-  torso.add(sh);
-  const up = limb(M.body, 0.052, 0.30);
-  sh.add(up);
-  sh.rotation.x = 0.55;
-  sh.rotation.z = -0.14*side;
-  const el = new THREE.Group();
-  el.position.y = -0.30;
-  up.add(el);
-  const fo = limb(M.body, 0.045, 0.27);
-  el.add(fo);
-  el.rotation.x = 2.0;
-  const hand = new THREE.Mesh(new THREE.SphereGeometry(0.05, 12, 10), M.skin);
-  hand.position.y = -0.28;
-  hand.castShadow = true;
-  fo.add(hand);
-  return sh;
-}
-makeArm(1); makeArm(-1);
-
-/* legs with two-bone IK in the sagittal plane */
-function makeLeg(side){
-  const hip = new THREE.Group();
-  hip.position.set(0.10*side, -0.02, 0);
-  pelvis.add(hip);
-  const thigh = limb(M.quad, 0.078, L1);
-  hip.add(thigh);
-  const knee = new THREE.Group();
-  knee.position.y = -L1;
-  thigh.add(knee);
-  const shin = limb(M.body, 0.058, L2);
-  knee.add(shin);
-  const foot = new THREE.Mesh(new THREE.BoxGeometry(0.085, 0.05, 0.25), M.shoe);
-  foot.castShadow = true;
-  fig.add(foot);
-  return { hip, thigh, knee, foot, side };
-}
-const legs = [makeLeg(1), makeLeg(-1)];
-const ANKLE = { y: 0.045, z: 0.03 };
-
-function solveLeg(leg, hipY, hipZ){
-  const H = { y: hipY - 0.02, z: hipZ };
-  const A = { y: ANKLE.y, z: ANKLE.z };
-  let dy = A.y - H.y, dz = A.z - H.z;
-  let d = Math.min(Math.hypot(dy, dz), L1 + L2 - 0.001);
-  const a = (L1*L1 - L2*L2 + d*d) / (2*d);
-  const h = Math.sqrt(Math.max(0, L1*L1 - a*a));
-  const uy = dy / Math.hypot(dy, dz), uz = dz / Math.hypot(dy, dz);
-  // knee pushed forward (+z): perpendicular with positive z
-  let py = -uz, pz = uy;
-  if (pz < 0){ py = -py; pz = -pz; }
-  const K = { y: H.y + a*uy + h*py, z: H.z + a*uz + h*pz };
-  const d1y = (K.y - H.y)/L1, d1z = (K.z - H.z)/L1;
-  const thT = Math.atan2(-d1z, -d1y);
-  const d2y = (A.y - K.y)/L2, d2z = (A.z - K.z)/L2;
-  const thS = Math.atan2(-d2z, -d2y);
-  leg.hip.rotation.x = thT;
-  leg.knee.rotation.x = thS - thT;
-  leg.foot.position.set(0.10*leg.side, 0.025, ANKLE.z + 0.055);
-}
-
-/* ---------- animation ---------- */
 let dragOff = 0, dragging = false, lastX = 0;
 const el = renderer.domElement;
 el.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; });
@@ -226,25 +115,14 @@ function resize(){
   camera.aspect = w/h;
   camera.updateProjectionMatrix();
 }
-window.addEventListener('resize', resize);
 
-const clock = new THREE.Clock();
 function tick(){
   requestAnimationFrame(tick);
-  const t = clock.getElapsedTime();
-  const p = (t % 2.6) / 2.6;
-  let s = 0.5 - 0.5*Math.cos(2*Math.PI*p);
-  s = s*s*(3 - 2*s);
-  const hipY = THREE.MathUtils.lerp(HIP_Y, 0.60, s);
-  const hipZ = THREE.MathUtils.lerp(0, -0.12, s);
-  pelvis.position.y = hipY;
-  pelvis.position.z = hipZ;
-  const lean = THREE.MathUtils.lerp(0.06, 0.52, s);
-  torso.rotation.x = lean;
-  pelvis.rotation.x = lean * 0.30;
-  legs.forEach(leg => solveLeg(leg, hipY, hipZ));
+  const dt = clock.getDelta();
+  const t = clock.elapsedTime;
+  if (mixer) mixer.update(dt);
   if (!dragging) dragOff += 0.0016;
-  fig.rotation.y = -0.5 + Math.sin(t*0.22)*0.35 + dragOff;
+  holder.rotation.y = -0.5 + Math.sin(t*0.22)*0.35 + dragOff;
   resize();
   renderer.render(scene, camera);
 }
