@@ -244,11 +244,24 @@
 
 
 
+    <!-- 橘子电台 EP006（最新） -->
+    <article class="card">
+      <img class="cover" src="assets/cover-voicechat.webp" loading="eager" fetchpriority="high" decoding="async" alt="橘子电台封面：橘子哥拿着手机跟 AI 通话，两个小机器人和趴在键盘上的猫">
+      <div class="cbody">
+        <div class="meta"><span class="badge">最新</span>橘子电台 · 2026 年 11 月 20 日</div>
+        <h2>我跟 Muse 打了个电话，全程没听出一点机器人味</h2>
+        <p class="sum">第一次跟 Muse 打语音电话：本来是谈正事的，它先让我挑声音、给我讲段子，还记得我家的猫；笑着聊着，正事一件没落，全办完了。全程没听出一点机器人味——这是我今年用 AI 最惊讶的一次。</p>
+        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 3:14</button>
+        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <div class="cfoot"><span class="who">看橘子哥 · 3 分 14 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep6" href="radio/muse-voice-call.html">打开全文 →</a></div>
+      </div>
+    </article>
+
     <!-- 视频教程（成片可直接在卡上播：视频外置＋点播懒加载） -->
     <article class="card">
       <img class="cover" src="assets/cover-flower.webp" loading="eager" fetchpriority="high" decoding="async" alt="花店三镜：黄昏的花店里，姑娘低头包花">
       <div class="cbody">
-        <div class="meta"><span class="badge">最新</span>视频教程 · 2026 年 11 月 16 日</div>
+        <div class="meta">视频教程 · 2026 年 11 月 16 日</div>
         <h2>《花店三镜》手动复刻手册</h2>
         <p class="sum">用 Muse 免费额度做一部 24 秒三镜短片：定妆照、参考图改场景、图生视频、拼接成片、声音处理——每一步都附实测提示词（可直接抄）和验收清单。</p>
         <button class="playbtn" id="flower-play" type="button">▶ 看成片 · 0:24</button>
@@ -264,8 +277,8 @@
         <div class="meta">橘子电台 · 2026 年 11 月 18 日</div>
         <h2>Agent 能走的走完，剩下的人来定——王大可的 AI 入企五十天</h2>
         <p class="sum">十九岁的王大可，账号被封的五十天里给一家年营收千万的教育公司做 AI 化转型：一个人补六个岗位，把学情报告从五道人工转手做到表单一提交自动开跑。他留下的分工原则只有一句——Agent 能走的流程走完，剩下的人来定。</p>
-        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 5:44</button>
-        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <button class="playbtn" id="ep4-play" type="button">▶ 播放本集 · 5:44</button>
+        <audio id="ep4-audio" controls preload="none" style="display:none"></audio>
         <div class="cfoot"><span class="who">王大可 · 5 分 44 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep4" href="radio/wangdake-ai-edu.html">打开全文 →</a></div>
       </div>
     </article>
@@ -398,7 +411,8 @@
       document.body.appendChild(sc);
     });
   }
-  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep4');
+  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep6');
+  wirePlayer('ep4-play', 'ep4-audio', 'assets/ep4-audio.js', 'EP4_B64', 'home-ep4');
   wirePlayer('ep3-play', 'ep3-audio', 'assets/ep3-audio.js', 'EP3_B64', 'home-ep3');
   wirePlayer('ep2-play', 'ep2-audio', 'assets/ep2-audio.js', 'EP2_B64', 'home-ep2');
   wirePlayer('ep1-play', 'ep1-audio', 'assets/ep1-audio.js', 'EP1_B64', 'home-ep1');
