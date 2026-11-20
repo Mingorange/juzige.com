@@ -1,55 +1,55 @@
 {
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "items": [
     {
-      "cat": "生活效率 · OPENCLAW",
-      "chip": "13 周 / 每天在用",
-      "intro": "一台树莓派跑 OpenClaw，通过 Telegram 当个人助理：常驻记忆、定时任务、子代理分析与写代码、研究摘要、接外部 API。跑了约 13 周，成了每天的基础设施；作者建议从一个频道、一个模型、一个定时任务、一个真实工作流起步。",
-      "name": "树莓派上养一个 13 周不断线的每日个人助理",
+      "cat": "生活效率 · Alexa+",
+      "chip": "135 项任务 / 约一半成功",
+      "intro": "名嘴 David Pogue 拿借来的 Echo Show 11 实测 Alexa+：接上温控、门铃、音箱、电视和叫车、外卖、音乐账号，按官方清单逐项过 135 个日常任务，约一半成功。日历、叫车和通用问答表现不错，门铃、温控、播放列表和购物等功能反而翻车，出错时它还会一本正经地编答案。",
+      "name": "135 项智能家居任务，Alexa+ 只做对一半",
       "no": 1,
-      "promptEn": "Set up yourself as my daily assistant on my [Raspberry Pi or other always-on machine], reachable through [Telegram]. Keep persistent memory of my preferences, and schedule a daily morning message with [news topics, calendar, and tasks I care about]. Add one research workflow I can trigger by messaging you a topic, and confirm each scheduled task works by running it once. Before sending messages to anyone but me or spending money through any API, show me what you're about to do and wait for my approval.",
-      "promptZh": "把你自己设为我在[树莓派或其他常开机器]上的每日助理，通过 [Telegram] 联系。记住我的偏好，每天早上发一条消息，包含[我关心的新闻主题、日历和任务]。再加一个研究工作流：我发你一个主题就能触发。每个定时任务先跑一次确认能用。给除我之外的人发消息、或通过任何 API 花钱之前，先把你要做的给我看，等我批准。",
-      "url": "https://agentusecases.ai/use-case/run-a-daily-personal-agent-on-a-raspberry-pi"
+      "promptEn": "Alexa, I want to test you on everyday tasks. Let's go through these one at a time: [list of smart home commands, e.g. dim the living room lights to 30 percent], [errand request, e.g. check my Grubhub order status], and [question needing current info]. After each, tell me what you did and how sure you are. Before any purchase or order, pause and confirm the details with me.",
+      "promptZh": "Alexa，我想测试你在日常任务上的表现。我们逐项来：[智能家居指令列表，例如把客厅灯调暗到 30%]、[跑腿请求，例如查我的 Grubhub 订单状态]，以及[需要实时信息的问题]。每做完一项，告诉我你做了什么、把握有多大。在任何购买或下单之前，先停下来跟我确认细节。",
+      "url": "https://agentusecases.ai/use-case/run-135-smart-home-and-errand-tasks-through-alexa"
     },
     {
-      "cat": "投资 · CLAUDE COWORK",
-      "chip": "1 小时 → 几分钟",
-      "intro": "在 Claude Cowork 里接 FMP 行情连接器，用一份刻意做小的数据集（只放自己持有的股票）生成每周投资组合简报：现价、估值、分析师共识、均线、目标价一次给齐。跑了两周多，作者说以前一小时翻来源，现在几分钟读完。",
-      "name": "每周投资组合简报：1 小时翻来源，变成几分钟读完",
+      "cat": "做产品 · Replit Agent",
+      "chip": "全栈 App + 营销站",
+      "intro": "一位作者用 Replit Agent 从零做了 CastBandit：前端、后端、数据库、登录全套，让播客主把节目变成能向节目内容提问的 AI 聊天机器人；又把 Bolt 里的半成品营销站代码导入 Replit 通用 Agent 跑通并发布。代价是真实的：一次幻觉 API 路径，调试烧掉约 100 美元；数据库 ID 后期换型又烧掉一大笔 token。",
+      "name": "播客变聊天机器人：App 加营销站一次做完",
       "no": 2,
-      "promptEn": "Using my holdings in [file or folder with tickers and share counts] and the FMP connector for market data, create a weekly portfolio brief as a [Word doc or PDF]. Include performance versus [benchmark], the biggest movers, notable news or earnings for each holding, and anything that deserves my attention this week. The job is done when the brief is saved in [folder] and you've told me what data you used and anything you couldn't verify.",
-      "promptZh": "用我持仓文件里的[代码与股数]和 FMP 连接器的行情数据，做一份每周投资组合简报，存为[Word 文档或 PDF]。包含相对[基准]的表现、最大波动股、每只持仓值得注意的新闻或财报，以及本周需要我留意的事项。简报存入[文件夹]、并告诉我用了哪些数据、哪些没核实，才算完成。",
-      "url": "https://agentusecases.ai/use-case/build-a-weekly-portfolio-brief-automatically"
+      "promptEn": "Build a full-stack web app that [turns podcasts/other source content] into an AI chatbot people can ask questions. Users should be able to [add a podcast by URL or upload a transcript] and then chat with answers grounded in that content. Also create a simple static marketing site with a headline, three features, and a sign-up link. You're done when both are running and I can try one full example.",
+      "promptZh": "做一个全栈 Web 应用，把[播客或其他来源内容]变成用户可以提问的 AI 聊天机器人。用户要能[通过链接添加播客或上传文字稿]，然后就着内容本身提问并得到有依据的回答。再做一个简单的静态营销站，包含一句标题、三个卖点和一个注册链接。等两者都能跑、我能完整试用一个例子，就算完成。",
+      "url": "https://agentusecases.ai/use-case/build-a-podcast-to-chatbot-app-and-its-marketing-site"
     },
     {
-      "cat": "内容创作 · CLAUDE CODE",
-      "chip": "6:39 → 5:57 · 12 刀",
-      "intro": "脚本先把视频转录成带逐词时间戳的文本，Agent 通读全文写出剪辑清单（每刀都写理由），只出方案等人批准；批准后 ffmpeg 渲染，Agent 再看切点截图复查、错了重渲。实测一段 6 分 39 秒 NASA 访谈剪成 5 分 57 秒、共 12 刀。",
-      "name": "访谈视频首剪交给 Agent：6 分 39 秒变 5 分 57 秒，12 刀",
+      "cat": "搞钱 · n8n",
+      "chip": "每月省 30–40 小时",
+      "intro": "一位自由职业网页设计师用 n8n、ChatGPT、Notion 和邮箱搭了一套接单流水线：新线索由 AI 按预算、工期、匹配度打分，高分线索自动起草跟进邮件，未付发票自动提醒，CRM 同步更新，每周出一份项目报告。每月省 30–40 小时，全程可视化搭建，基本是改免费 n8n 模板、跟着 YouTube 教程学出来的。",
+      "name": "自由职业接单流水线：每月省下 30–40 小时",
       "no": 3,
-      "promptEn": "Make a first-pass edit of my talking-head video at [file path]. Transcribe it, write an edit plan that removes filler words, dead air, and flubbed takes, render it with ffmpeg, then build a contact sheet of the cut points and check it. Re-render if any cuts look wrong, and stop when you have a clean [format] file plus a short list of the changes you made.",
-      "promptZh": "给我的访谈视频[文件路径]做第一遍粗剪。先转录，写一份剪辑方案：去掉口头禅、空白段和说错重录的部分；用 ffmpeg 渲染，再做一张切点截图拼图检查。切点有问题就重渲，停下来时交出一个干净的[格式]文件和一份改动清单。",
-      "url": "https://agentusecases.ai/use-case/make-a-first-edit-of-talking-head-video"
+      "promptEn": "Build an n8n workflow for my freelance business that scores new leads from [source, e.g. contact form] using an AI step based on [criteria, e.g. budget, timeline, fit], sends a follow-up email draft for [score threshold] leads, reminds clients about unpaid invoices from [invoicing tool], and updates my CRM [CRM name]. Save emails as drafts for my approval instead of sending them. You're done when I can run a test lead through the whole flow.",
+      "promptZh": "为我的自由职业业务搭一个 n8n 工作流：从[来源，例如联系表单]接入新线索，用 AI 按[标准，例如预算、工期、匹配度]打分；对达到[分数门槛]的线索起草跟进邮件；从[开票工具]提醒客户未付发票；并更新我的 CRM[CRM 名称]。邮件只存草稿等我批准，不要直接发送。等我能拿一条测试线索跑通整个流程，就算完成。",
+      "url": "https://agentusecases.ai/use-case/automate-freelance-lead-scoring-follow-ups-and-invoicing"
     },
     {
-      "cat": "出行省钱 · 自定义 AGENT",
-      "chip": "已省 $250",
-      "intro": "一家人买了出发前 30 天内可免费退改的机票，降价就能打电话要回差价。Agent 每天查一次同日期、同选项的现价，一直查到截止日，目前已经省下 $250。降价后仍需本人打电话办理，Agent 只负责发现。",
-      "name": "可退机票每天盯价：截止日前，已省下 $250",
+      "cat": "家庭出行 · Perplexity Comet",
+      "chip": "9 名旅客 / 一次填完",
+      "intro": "一位每天用 Comet 的用户要给 9 个人订机票：每人姓名、出生日期、护照号都要在订票网站上逐项录入。他把 Excel 表直接传给 Perplexity 的 agentic 浏览器 Comet，让它照着表格逐人填表，自己去处理订票的其他环节。填得不错，只是过程偏慢。",
+      "name": "9 个人的机票表，交给浏览器 Agent 一次填完",
       "no": 4,
-      "promptEn": "I have a refundable booking for [trip: flights/hotel/rental car] at [booking site] that I can cancel for free until [deadline date]. Check the current price for the same dates and options each day, and tell me the price I paid versus today's price. If it drops by more than [amount], stop and show me the details of rebooking and canceling before you click anything, so I can approve each step.",
-      "promptZh": "我有一张可退的[行程：机票/酒店/租车]预订，在[预订网站]订的，[截止日期]前可免费取消。每天查一次相同日期和选项的现价，告诉我实付价和今天的价格。如果降了超过[金额]，停下来，把重订和取消的细节给我看，任何点击操作之前都等我逐项批准。",
-      "url": "https://agentusecases.ai/use-case/watch-refundable-ticket-prices-and-claim-the-drop"
+      "promptEn": "I'm attaching a spreadsheet with details for [number, e.g. 9] travelers: [columns, e.g. full name, date of birth, passport number, contact email]. Go to [airline or booking site] and fill in the booking form for the [route and dates] flight for each person using the sheet. Do not submit or pay for anything; pause before each submission and show me the filled-in details so I can confirm. You're done when every traveler's form is filled out and I've reviewed them.",
+      "promptZh": "我附上一张表格，里面是[人数，例如 9]位旅客的资料：[列，例如姓名全名、出生日期、护照号、联系邮箱]。去[航空公司或订票网站]，为[航线和日期]的航班逐人填写订票表，数据以表格为准。不要提交、不要付款；每次提交前先停下来，把填好的内容展示给我确认。等每位旅客的表都填好、我都看过，就算完成。",
+      "url": "https://agentusecases.ai/use-case/fill-flight-booking-forms-from-an-excel-sheet"
     },
     {
-      "cat": "搞钱省钱 · CLAUDE CODE",
-      "chip": "120 张收据 / 省约 90% 时间",
-      "intro": "作者拿 Claude Code 试非代码活：约 120 张扫描收据逐张读 PDF，把商家、日期、金额、类别抽进一张 CSV，估计省了约 90% 时间；订阅审计把两年银行流水按商家分组，揪出一个没在用的健身房会员。褪色的热敏票不猜，留空等人手核。",
-      "name": "120 张收据扫进一张表，还揪出一个闲置健身房会员",
+      "cat": "知识管理 · Manus",
+      "chip": "追踪一个月 / 失控烧掉 2,000+ 积分",
+      "intro": "评论者 Chintan Zalani 用 Manus 追踪 AI 创业公司整整一个月：先在 Manus 的「知识」功能里写好长期指令，包括省积分的规则，再让它按指令建计划、持续追踪。他说追踪做得又快又省，比 Operator 强；但订阅快结束时，一条错误指令让某个任务停不下来，喊停几次都没用，最后烧掉 2,000 多积分，联系客服才退回一部分。",
+      "name": "让 Manus 盯 AI 创业公司：省心，但别让它失控",
       "no": 5,
-      "promptEn": "Look at the folder [path to scanned receipts] and read each receipt to extract vendor, date, amount, currency and a spending category into a single CSV called receipts.csv. Flag any receipt you could not read confidently in a separate list rather than guessing. When done, give me the row count and total, and don't move, rename or delete any of my original files.",
-      "promptZh": "看[扫描收据所在文件夹]，逐张读收据，把商家、日期、金额、币种和支出类别抽进一张名为 receipts.csv 的表。读不准的收据不要猜，单独列个清单。完成后告诉我行数和总额，不要移动、重命名或删除我的任何原始文件。",
-      "url": "https://agentusecases.ai/use-case/extract-receipts-into-a-csv-and-audit-subscriptions-with-cla"
+      "promptEn": "Research [topic, e.g. AI startups in healthcare] and build a tracker spreadsheet with company name, what it does, funding raised, latest news, and a source link for each. Look for entries from [time period, e.g. the last 30 days] and keep the scope to about [number] companies so the task stays bounded. Stop once the sheet is complete and give me a short summary of the notable changes.",
+      "promptZh": "研究[主题，例如医疗领域的 AI 创业公司]，做一张追踪表，每家包含公司名、做什么、融了多少钱、最新动态和来源链接。只看[时间范围，例如最近 30 天]内的内容，数量控制在[数量]家左右，让任务保持有边界。表格完成后就停下来，给我一份 notable 变化的简短总结。",
+      "url": "https://agentusecases.ai/use-case/track-ai-startups-with-an-agent"
     }
   ]
 }
