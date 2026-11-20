@@ -139,6 +139,7 @@
   .done .tap{ font-size:13px; color:var(--faint); margin-top:52px; }
 .cell .im{ width:100%; height:58px; object-fit:contain; margin:1px 0; }
   .ex .eximg{ display:block; width:min(76vw,330px); height:228px; object-fit:contain; margin:4px auto 0; }
+  .ex .exvid{ display:block; width:min(76vw,330px); max-height:52dvh; object-fit:contain; margin:4px auto 0; background:#F5F3EF; }
   .home .hero{ display:block; width:min(70vw,310px); height:250px; object-fit:contain; margin:12px auto 0; }
 </style>
 </head>
@@ -190,14 +191,14 @@ var DAYS = [
     { name:"过顶臂屈伸", sets:"2–3 × 10–12", n:3, target:"12 次" }
   ]},
   { id:"abs", name:"腹肌日", exercises:[
-    { name:"卷腹", img:"assets/n1.webp", sets:"3 × 12–15", n:3, target:"15 次", bw:true },
-    { name:"仰卧举腿", img:"assets/n3.webp", sets:"3 × 10–15", n:3, target:"15 次", bw:true },
-    { name:"反向卷腹", img:"assets/n30.webp", sets:"3 × 10–12", n:3, target:"12 次", bw:true },
-    { name:"俄罗斯转体", img:"assets/n4.webp", sets:"3 × 12–20（左右合计）", n:3, target:"20 次（左右合计）", bw:true },
-    { name:"死虫式", img:"assets/n26.webp", sets:"3 × 8–10 / 侧", n:3, target:"10 次 / 侧", bw:true },
-    { name:"登山者", img:"assets/n5.webp", sets:"3 × 30–40 秒", n:3, target:"40 秒", bw:true },
-    { name:"健腹轮", img:"assets/n56.webp", sets:"3 × 6–10", n:3, target:"10 次", bw:true },
-    { name:"平板支撑", img:"assets/n2.webp", sets:"3 × 40–60 秒", n:3, target:"60 秒", bw:true }
+    { name:"卷腹", img:"assets/n1.webp", aid:"001", video:"actions/web/001.mp4", poster:"actions/poster/001.webp", still:"actions/static/001.webp", sets:"3 × 12–15", n:3, target:"15 次", bw:true },
+    { name:"仰卧举腿", img:"assets/n3.webp", aid:"003", video:"actions/web/003.mp4", poster:"actions/poster/003.webp", still:"actions/static/003.webp", sets:"3 × 10–15", n:3, target:"15 次", bw:true },
+    { name:"反向卷腹", img:"assets/n30.webp", aid:"030", video:"actions/web/030.mp4", poster:"actions/poster/030.webp", still:"actions/static/030.webp", sets:"3 × 10–12", n:3, target:"12 次", bw:true },
+    { name:"俄罗斯转体", img:"assets/n4.webp", aid:"004", video:"actions/web/004.mp4", poster:"actions/poster/004.webp", still:"actions/static/004.webp", sets:"3 × 12–20（左右合计）", n:3, target:"20 次（左右合计）", bw:true },
+    { name:"死虫式", img:"assets/n26.webp", aid:"026", novideo:true, sets:"3 × 8–10 / 侧", n:3, target:"10 次 / 侧", bw:true },
+    { name:"登山者", img:"assets/n5.webp", aid:"005", video:"actions/web/005.mp4", poster:"actions/poster/005.webp", still:"actions/static/005.webp", sets:"3 × 30–40 秒", n:3, target:"40 秒", bw:true },
+    { name:"健腹轮", img:"assets/n56.webp", aid:"056", video:"actions/web/056.mp4", poster:"actions/poster/056.webp", still:"actions/static/056.webp", sets:"3 × 6–10", n:3, target:"10 次", bw:true },
+    { name:"平板支撑", img:"assets/n2.webp", aid:"002", video:"actions/web/002.mp4", poster:"actions/poster/002.webp", still:"actions/static/002.webp", sets:"3 × 40–60 秒", n:3, target:"60 秒", bw:true }
   ]}
 ];
 var WEEKDAY_DAY = { 0:"abs", 1:"chest", 2:"back", 3:"legs", 4:"shoulder", 5:"abs", 6:"chest" }; /* 周一胸/周二背/周三腿/周四肩臂/周五腹肌 */
@@ -249,7 +250,7 @@ function renderHome(){
       '<div class="spacer"></div>' +
       '<button class="dayname" id="hDay" style="font-size:' + Math.min(168, Math.floor((Math.min(window.innerWidth,520)-56)/day.name.length*0.97)) + 'px;white-space:nowrap">' + esc(day.name) + '</button>' +
       '<div class="fact">' + factLine(day) + '</div>' +
-      (day.exercises[0].img ? '<img class="hero" src="' + day.exercises[0].img + '" alt="">' : '') +
+      (day.exercises[0].still || day.exercises[0].img ? '<img class="hero" src="' + (day.exercises[0].still || day.exercises[0].img) + '" alt="">' : '') +
       (p.finished ? '<div class="doneflag">✓ 今天练完了</div>' : '<div class="progline">' + prog + '</div>') +
       '<div class="hint">点上面的日子，可以换练其他天</div>' +
       '<div class="spacer"></div>' +
@@ -300,7 +301,7 @@ function renderGrid(day){
     else if (p.done[i] > 0) cls += " doing";
     html += '<button class="' + cls + '" data-i="' + i + '">' +
       '<span class="num">' + (i+1) + '</span><span class="ck">✓</span>' +
-      (e.img ? '<img class="im" loading="lazy" src="' + e.img + '" alt="">' : '') +
+      (e.still || e.img ? '<img class="im" loading="lazy" src="' + (e.still || e.img) + '" alt="">' : '') +
       '<span class="nm">' + esc(e.name) + '</span>' +
       '<span class="st">' + esc(e.sets) + (p.done[i]>0 && p.done[i]<e.n ? ' · 已做 ' + p.done[i] + ' 组' : '') + '</span>' +
     '</button>';
@@ -349,7 +350,7 @@ function renderEx(day, idx){
       '<div class="pos">第 ' + (idx+1) + ' 个 · 共 ' + day.exercises.length + ' 个</div>' +
       '<h1>' + esc(e.name) + '</h1>' +
       '<div class="setsline"><b>' + esc(e.sets) + '</b><span class="tgt">目标 ' + esc(e.target) + '</span></div>' +
-      (e.img ? '<img class="eximg" src="' + e.img + '" alt="">' : '') +
+      (e.video ? '<video class="exvid" src="' + e.video + '" poster="' + (e.poster||'') + '" autoplay muted loop playsinline preload="metadata"></video>' : (e.img ? '<img class="eximg" src="' + e.img + '" alt="">' : '')) +
       (e.cue ? '<div class="cue">' + esc(e.cue) + '</div>' : '') +
       '<div class="segs">' + segs + '</div>' +
       '<div class="setcount">已完成 ' + d + ' / ' + e.n + ' 组</div>' +
