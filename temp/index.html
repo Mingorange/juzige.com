@@ -18,10 +18,18 @@
   .item .t{ font-size:18px; font-weight:700; }
   .item .d{ font-size:14px; color:var(--sub); margin-top:5px; line-height:1.55; }
   .item .when{ font-size:12.5px; color:var(--sub); margin-top:8px; }
-  .pending{ background:var(--card); border:1px dashed var(--line); border-radius:16px; padding:16px 18px; }
-  .pending .t{ font-size:18px; font-weight:700; }
-  .pending .d{ font-size:14px; color:var(--sub); margin-top:5px; line-height:1.55; }
-  .dot{ display:inline-block; width:8px; height:8px; border-radius:99px; background:var(--orange); margin-right:7px; vertical-align:2px; }
+  .ep{ background:var(--card); border:1px solid var(--line); border-radius:18px; overflow:hidden; }
+  .ep img{ display:block; width:100%; }
+  .ep .body{ padding:18px; }
+  .ep .tag{ font-size:12.5px; letter-spacing:.12em; color:var(--orange); font-weight:700; }
+  .ep .t{ font-size:21px; font-weight:800; margin-top:6px; line-height:1.35; }
+  .ep .d{ font-size:14.5px; color:var(--sub); margin-top:7px; line-height:1.6; }
+  .ep audio{ width:100%; margin-top:14px; }
+  .ep .src{ font-size:13px; color:var(--sub); margin-top:12px; line-height:1.6; }
+  .ep .src a{ color:var(--orange); text-decoration:none; font-weight:600; }
+  .ep details{ margin-top:14px; border-top:1px solid var(--line); padding-top:12px; }
+  .ep summary{ font-size:14.5px; font-weight:700; cursor:pointer; }
+  .ep .script{ font-size:14.5px; line-height:1.85; margin-top:10px; white-space:pre-wrap; }
   .foot{ font-size:12.5px; color:var(--sub); margin-top:26px; line-height:1.6; }
 </style>
 </head>
@@ -32,9 +40,50 @@
   <div class="sub">你在外面的时候，小橘子做好的样本、试听、待审稿都放这一页，打开就能看、能听、能批。</div>
 
   <div class="list">
-    <div class="pending">
-      <div class="t"><span class="dot"></span>橘子电台新一期 · 制作中</div>
-      <div class="d">素材是 picklecat 在 X 发的那条。抓到原文就写稿合成，做好直接放这一页试听，你点头才发布。</div>
+    <div class="ep">
+      <img src="ep008-cover.webp" alt="EP008 封面" />
+      <div class="body">
+        <div class="tag">橘子电台 EP008 · 待审</div>
+        <div class="t">纪律不是练出来的，是熬出来的</div>
+        <div class="d">爆仓三次的交易员 Pickle Cat 说：散户最信的那句「练出纪律就能赚钱」，恰恰是最误导人的一句。真正的纪律来自毁灭，不来自决心。</div>
+        <audio controls preload="metadata" src="ep008.mp3"></audio>
+        <div class="src">时长 3 分 11 秒 · 出处：<a href="https://x.com/picklecat/status/1998688722859016309">Pickle Cat 在 X 发表的长文</a>（她曾在币安交易排行榜第一名的位置上坐了 18 个月）</div>
+        <details>
+          <summary>展开看全文稿</summary>
+          <div class="script">每个做交易的人，都听过同一句劝告：找到一套策略，然后练出纪律，你就能赚钱。
+这一期要介绍的作者说，这是散户听过的、最误导人的一句话。
+因为纪律这个东西，根本练不出来。
+
+这一期，选自交易员 Pickle Cat 在 X 上发表的长文。她曾在币安的交易排行榜上，把第一名的位置坐了十八个月。但她说，自己爆仓三次之后，才开始真正赚到钱。
+
+她的意思是这样的。
+靠反复练习装出来的纪律，平时看着像模像样，真正的压力一来，立刻原形毕露。你的策略再好，如果你的心是整套系统里最弱的一环，它就一定会在最要命的时候掉链子。
+
+那些赚钱的交易员，看起来冷静得不像话。作者说，那种冷静不是练出来的，是熬出来的。是生活把他们反复击碎过之后，旧的那套本能彻底死掉了，剩下的东西。
+她有一句话特别狠：真正的纪律，来自毁灭，不来自决心。
+靠运气和假纪律，你能赚到钱，但你守不住，很快就会还回去。
+
+那真纪律到底怎么来？
+她的答案是：它不会慢慢长出来。它往往来得又突然又猛烈，就在你跌到人生最低点的那一刻，旧的自己被彻底撕开，新的才长出来。
+
+就像两个人吵架，有人能冷静到字字诛心，有人当场崩溃大哭。差别不在自制力。
+冷静的那个，只是早就经历过比这大得多的风浪，眼前这点事，对他来说不算什么。不是他练过忍耐，是他见过地狱。
+
+所以她对正在低谷里的人说了一句：别浪费你的低谷。
+人这一生，能脱胎换骨的机会不多。如果你把低谷里的能量，全拿去攻击世界、推开爱你的人，那是把最宝贵的燃料白白烧掉。
+
+她给了一个具体的做法：坐下来，写下你最害怕、最羞耻的三十件事。
+听起来是件小事，其实很难。因为顺风顺水的那个你，永远没有勇气面对这张清单。
+
+最后一条，是她整篇文章的落点：不要再研究别人的成功了，去研究他们是怎么熬过低谷的。
+成功复制不了，一半是运气、时机，和你没有的优势。但一个人怎么在输光之后爬起来、怎么在所有人都劝他放弃的时候继续、怎么把痛苦变成力量而不是自我仇恨，这些是真的，这些可以学。
+
+成功是私人的，但从谷底死一次、再重建、再站起来这条路，是所有人共通的。她说，这是整篇文章里，唯一值得抄走的东西。
+听到这里，送给正在硬扛的朋友一句话：低谷不可怕，浪费低谷才可怕。
+
+这里是橘子电台，感谢你的收听，我们下期继续。</div>
+        </details>
+      </div>
     </div>
 
     <a class="item" href="https://juzige.com/train-video/">
