@@ -1,55 +1,55 @@
 {
-  "date": "2026-11-20",
+  "date": "2026-11-21",
   "items": [
     {
-      "cat": "生活效率 · Alexa+",
-      "chip": "135 项任务 / 约一半成功",
-      "intro": "名嘴 David Pogue 拿借来的 Echo Show 11 实测 Alexa+：接上温控、门铃、音箱、电视和叫车、外卖、音乐账号，按官方清单逐项过 135 个日常任务，约一半成功。日历、叫车和通用问答表现不错，门铃、温控、播放列表和购物等功能反而翻车，出错时它还会一本正经地编答案。",
-      "name": "135 项智能家居任务，Alexa+ 只做对一半",
+      "cat": "家庭出行 · CLAUDE CODE",
+      "chip": "一次成型 / 提前发现罢工风险",
+      "intro": "把跟当地人通话的录音、旅行视频文字稿和自己的偏好一起交给 Claude Code，它排好行程、带人订好机票和游览项目，最后生成一个可分享的逐日行程网站和一份带凭证、收据与航班号的可打印手册，还提前发现了目的地罢工并改了受影响的行程。",
+      "name": "把旅行攻略、通话录音和 YouTube 视频喂给 Agent，出行网站加打印手册一次成型",
       "no": 1,
-      "promptEn": "Alexa, I want to test you on everyday tasks. Let's go through these one at a time: [list of smart home commands, e.g. dim the living room lights to 30 percent], [errand request, e.g. check my Grubhub order status], and [question needing current info]. After each, tell me what you did and how sure you are. Before any purchase or order, pause and confirm the details with me.",
-      "promptZh": "Alexa，我想测试你在日常任务上的表现。我们逐项来：[智能家居指令列表，例如把客厅灯调暗到 30%]、[跑腿请求，例如查我的 Grubhub 订单状态]，以及[需要实时信息的问题]。每做完一项，告诉我你做了什么、把握有多大。在任何购买或下单之前，先停下来跟我确认细节。",
-      "url": "https://agentusecases.ai/use-case/run-135-smart-home-and-errand-tasks-through-alexa"
+      "promptEn": "Help me plan a trip to [destination] from [start date] to [end date] with a budget of [amount]. Build a simple day-by-day itinerary website and a printable guide that collects flight numbers, hotel and tour confirmations, vouchers, and receipts from the files in [folder path]. Before booking or paying for anything, stop and show me the exact details and price for approval; you're done when I have both the site and a printable PDF.",
+      "promptZh": "帮我规划一次去 [目的地] 的旅行，从 [出发日期] 到 [返回日期]，预算 [金额]。做一个简单的逐日行程网站和一份可打印指南，把航班号、酒店和游览项目的确认信息、凭证和收据都从 [文件夹路径] 里的文件收集起来。在预订或付款之前，停下来把确切细节和价格给我确认；拿到网站和可打印 PDF 才算完成。",
+      "url": "https://agentusecases.ai/use-case/plan-and-book-a-vacation-with-a-travel-website-and-guide"
     },
     {
-      "cat": "做产品 · Replit Agent",
-      "chip": "全栈 App + 营销站",
-      "intro": "一位作者用 Replit Agent 从零做了 CastBandit：前端、后端、数据库、登录全套，让播客主把节目变成能向节目内容提问的 AI 聊天机器人；又把 Bolt 里的半成品营销站代码导入 Replit 通用 Agent 跑通并发布。代价是真实的：一次幻觉 API 路径，调试烧掉约 100 美元；数据库 ID 后期换型又烧掉一大笔 token。",
-      "name": "播客变聊天机器人：App 加营销站一次做完",
+      "cat": "生活效率 · MICROSOFT SCOUT",
+      "chip": "7×24 常驻 / 守晚饭时间",
+      "intro": "微软副总裁 Omar Shahine 给 Teams 里的常驻 Agent Scout（绰号 Sebastian）立了两条规矩：守住家庭晚饭时间，绝不让会议挤进来；同时把别人向他许的诺、他向别人许的诺，全部记进一张持续更新的承诺清单。",
+      "name": "让常驻 Agent 守住晚饭时间，顺手记下每一句承诺",
       "no": 2,
-      "promptEn": "Build a full-stack web app that [turns podcasts/other source content] into an AI chatbot people can ask questions. Users should be able to [add a podcast by URL or upload a transcript] and then chat with answers grounded in that content. Also create a simple static marketing site with a headline, three features, and a sign-up link. You're done when both are running and I can try one full example.",
-      "promptZh": "做一个全栈 Web 应用，把[播客或其他来源内容]变成用户可以提问的 AI 聊天机器人。用户要能[通过链接添加播客或上传文字稿]，然后就着内容本身提问并得到有依据的回答。再做一个简单的静态营销站，包含一句标题、三个卖点和一个注册链接。等两者都能跑、我能完整试用一个例子，就算完成。",
-      "url": "https://agentusecases.ai/use-case/build-a-podcast-to-chatbot-app-and-its-marketing-site"
+      "promptEn": "Act as my always-on assistant. Protect [time block, e.g. 6-8pm weekday dinner] by declining or flagging any meeting invites that overlap it, and log every commitment I make or that others make to me from my email and calendar into a running list with [who, what, due date]. Before sending any email or declining any invite on my behalf, show me the draft and wait for my approval, and keep the formatting short and clean.",
+      "promptZh": "做我的常驻助理。守住 [时间段，例如工作日晚饭 18–20 点]，凡是与之重叠的会议邀请，一律拒绝或标记出来；同时把我做出的承诺、别人向我做出的承诺，从邮件和日历里汇总成一张持续更新的清单，注明 [谁、什么事、截止日期]。在替我发任何邮件或拒绝任何邀请之前，先给我看草稿、等我批准，格式保持简短干净。",
+      "url": "https://agentusecases.ai/use-case/protect-family-time-and-log-commitments-with-an-always-on-ag"
     },
     {
-      "cat": "搞钱 · n8n",
-      "chip": "每月省 30–40 小时",
-      "intro": "一位自由职业网页设计师用 n8n、ChatGPT、Notion 和邮箱搭了一套接单流水线：新线索由 AI 按预算、工期、匹配度打分，高分线索自动起草跟进邮件，未付发票自动提醒，CRM 同步更新，每周出一份项目报告。每月省 30–40 小时，全程可视化搭建，基本是改免费 n8n 模板、跟着 YouTube 教程学出来的。",
-      "name": "自由职业接单流水线：每月省下 30–40 小时",
+      "cat": "搞钱省钱 · CHATGPT",
+      "chip": "电话 / 宽带 / 保险都适用",
+      "intro": "把逐项账单或续费通知原文贴进 ChatGPT，让它标出每一行里不是固定费用的部分，再写一份打电话要留客优惠的话术，适用电话、宽带、保险续费这类首年价到期就涨的账单。",
+      "name": "把账单贴给 ChatGPT，挑出可砍的费用，再要一份砍价话术",
       "no": 3,
-      "promptEn": "Build an n8n workflow for my freelance business that scores new leads from [source, e.g. contact form] using an AI step based on [criteria, e.g. budget, timeline, fit], sends a follow-up email draft for [score threshold] leads, reminds clients about unpaid invoices from [invoicing tool], and updates my CRM [CRM name]. Save emails as drafts for my approval instead of sending them. You're done when I can run a test lead through the whole flow.",
-      "promptZh": "为我的自由职业业务搭一个 n8n 工作流：从[来源，例如联系表单]接入新线索，用 AI 按[标准，例如预算、工期、匹配度]打分；对达到[分数门槛]的线索起草跟进邮件；从[开票工具]提醒客户未付发票；并更新我的 CRM[CRM 名称]。邮件只存草稿等我批准，不要直接发送。等我能拿一条测试线索跑通整个流程，就算完成。",
-      "url": "https://agentusecases.ai/use-case/automate-freelance-lead-scoring-follow-ups-and-invoicing"
+      "promptEn": "Here is my itemized [phone/internet/insurance] bill or renewal notice: [paste text]. Flag any fixed fees, add-ons, or charges that look negotiable or avoidable, and note which ones likely can't be changed. Then write a short phone script for asking for a retention offer or lower rate, including what to say if they refuse and which specific line items to bring up. Finish with the top three asks ranked by likely savings.",
+      "promptZh": "这是我的逐项 [电话/宽带/保险] 账单或续费通知：[粘贴文本]。标出所有固定费用、附加费或看起来可以协商、可以省掉的收费，并注明哪些大概率动不了。然后写一份简短的电话话术，用来向服务商要留客优惠或更低费率，包括对方拒绝时该说什么、要提哪些具体收费项目。最后按可能省下的金额排序，列出最值得谈的三项。",
+      "url": "https://agentusecases.ai/use-case/flag-fees-and-script-calls-to-negotiate-lower-bills"
     },
     {
-      "cat": "家庭出行 · Perplexity Comet",
-      "chip": "9 名旅客 / 一次填完",
-      "intro": "一位每天用 Comet 的用户要给 9 个人订机票：每人姓名、出生日期、护照号都要在订票网站上逐项录入。他把 Excel 表直接传给 Perplexity 的 agentic 浏览器 Comet，让它照着表格逐人填表，自己去处理订票的其他环节。填得不错，只是过程偏慢。",
-      "name": "9 个人的机票表，交给浏览器 Agent 一次填完",
+      "cat": "内容创作 · HERMES AGENT",
+      "chip": "写稿从几小时变几分钟",
+      "intro": "作者的 Hermes Agent 常驻在一台 Ubuntu 小主机上：写博客时起草、翻成德语和波斯语、加 SEO 信息、在 Git 工作区里开 PR；做视频时每小时扫博客 RSS，有新文章就剪 Shorts 和每周合集，先私密上传，再发一个 Telegram 批准按钮，人点了才公开。",
+      "name": "博客写稿翻译发布一条龙，RSS 一动就自动剪 Shorts 和周报视频",
       "no": 4,
-      "promptEn": "I'm attaching a spreadsheet with details for [number, e.g. 9] travelers: [columns, e.g. full name, date of birth, passport number, contact email]. Go to [airline or booking site] and fill in the booking form for the [route and dates] flight for each person using the sheet. Do not submit or pay for anything; pause before each submission and show me the filled-in details so I can confirm. You're done when every traveler's form is filled out and I've reviewed them.",
-      "promptZh": "我附上一张表格，里面是[人数，例如 9]位旅客的资料：[列，例如姓名全名、出生日期、护照号、联系邮箱]。去[航空公司或订票网站]，为[航线和日期]的航班逐人填写订票表，数据以表格为准。不要提交、不要付款；每次提交前先停下来，把填好的内容展示给我确认。等每位旅客的表都填好、我都看过，就算完成。",
-      "url": "https://agentusecases.ai/use-case/fill-flight-booking-forms-from-an-excel-sheet"
+      "promptEn": "Each week, draft a blog post on [topic or source material] in [language], translate it into [second language], and prepare it for publishing on [site or host]. Send me the drafts on [Telegram or other chat app] and wait for my explicit approval before publishing anything. Once I approve, publish and send me the live links.",
+      "promptZh": "每周就 [主题或素材] 用 [语言] 写一篇博客，翻译成 [第二语言]，准备好发布到 [网站或托管平台]。把草稿发到 [Telegram 或其他聊天应用] 给我，在我明确批准之前不要发布任何内容。我批准后，发布并把上线链接发给我。",
+      "url": "https://agentusecases.ai/use-case/automate-blog-writing-translation-publishing-and-video-diges"
     },
     {
-      "cat": "知识管理 · Manus",
-      "chip": "追踪一个月 / 失控烧掉 2,000+ 积分",
-      "intro": "评论者 Chintan Zalani 用 Manus 追踪 AI 创业公司整整一个月：先在 Manus 的「知识」功能里写好长期指令，包括省积分的规则，再让它按指令建计划、持续追踪。他说追踪做得又快又省，比 Operator 强；但订阅快结束时，一条错误指令让某个任务停不下来，喊停几次都没用，最后烧掉 2,000 多积分，联系客服才退回一部分。",
-      "name": "让 Manus 盯 AI 创业公司：省心，但别让它失控",
+      "cat": "知识管理 · DOTS",
+      "chip": "每天 8 点一张单",
+      "intro": "把 Dots Agent 接到 Gmail、Google Calendar 和 Drive，任务只有一个：为明天做好准备。它扫日历、扫答应过要办或一直没回的邮件、扫 Drive 里被 @ 的文件，合成一张行动单，每天早上 8 点定时发同一份汇总，用的还是它自己写的一份只读简报。",
+      "name": "邮箱 + 日历 + Drive 每天早上 8 点合成一张今日行动单",
       "no": 5,
-      "promptEn": "Research [topic, e.g. AI startups in healthcare] and build a tracker spreadsheet with company name, what it does, funding raised, latest news, and a source link for each. Look for entries from [time period, e.g. the last 30 days] and keep the scope to about [number] companies so the task stays bounded. Stop once the sheet is complete and give me a short summary of the notable changes.",
-      "promptZh": "研究[主题，例如医疗领域的 AI 创业公司]，做一张追踪表，每家包含公司名、做什么、融了多少钱、最新动态和来源链接。只看[时间范围，例如最近 30 天]内的内容，数量控制在[数量]家左右，让任务保持有边界。表格完成后就停下来，给我一份 notable 变化的简短总结。",
-      "url": "https://agentusecases.ai/use-case/track-ai-startups-with-an-agent"
+      "promptEn": "Connect to my Gmail, Google Calendar and Google Drive with read-only access, and write down the rules you will follow so you never send, delete, or edit anything. Then go through my unread email, this week's calendar, and recently changed files in [Drive folder or project names] and give me one prioritized action list for today with the source of each item. Set it up to send me the same summary every [weekday morning at 8am], and stop once I've approved the first list.",
+      "promptZh": "以只读权限接入我的 Gmail、Google Calendar 和 Google Drive，先写下你会遵守的规则，确保你绝不发送、删除或修改任何内容。然后查看我的未读邮件、本周日历和 [Drive 文件夹或项目名] 里最近变动的文件，给我一份今天的优先行动清单，注明每项的来源。设成每个 [工作日早上 8 点] 给我发同样的汇总，等我批准第一份清单后再开始。",
+      "url": "https://agentusecases.ai/use-case/turn-inbox-calendar-and-drive-into-a-daily-action-list"
     }
   ]
 }
