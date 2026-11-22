@@ -1,55 +1,55 @@
 {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "items": [
     {
-      "cat": "家庭出行 · CLAUDE CODE",
-      "chip": "一次成型 / 提前发现罢工风险",
-      "intro": "把跟当地人通话的录音、旅行视频文字稿和自己的偏好一起交给 Claude Code，它排好行程、带人订好机票和游览项目，最后生成一个可分享的逐日行程网站和一份带凭证、收据与航班号的可打印手册，还提前发现了目的地罢工并改了受影响的行程。",
-      "name": "把旅行攻略、通话录音和 YouTube 视频喂给 Agent，出行网站加打印手册一次成型",
+      "cat": "获客 · LINDY / CLAUDE",
+      "chip": "40+ 场会 / 月",
+      "intro": "一家 SaaS 创业团队跑了一个 Claude 驱动的 Lindy Agent：Agent 负责找线索、按每家公司的情况写个性化首封，销售团队只跟进高价值对话和战略客户。据称每月约到 40+ 场会，合格线索耗时缩短 72%——这是厂商案例宣称的数字，未独立核实，来源也未给出搭建细节与人工审核比例。",
+      "name": "找线索、写首封全包，每月约到 40+ 场会",
       "no": 1,
-      "promptEn": "Help me plan a trip to [destination] from [start date] to [end date] with a budget of [amount]. Build a simple day-by-day itinerary website and a printable guide that collects flight numbers, hotel and tour confirmations, vouchers, and receipts from the files in [folder path]. Before booking or paying for anything, stop and show me the exact details and price for approval; you're done when I have both the site and a printable PDF.",
-      "promptZh": "帮我规划一次去 [目的地] 的旅行，从 [出发日期] 到 [返回日期]，预算 [金额]。做一个简单的逐日行程网站和一份可打印指南，把航班号、酒店和游览项目的确认信息、凭证和收据都从 [文件夹路径] 里的文件收集起来。在预订或付款之前，停下来把确切细节和价格给我确认；拿到网站和可打印 PDF 才算完成。",
-      "url": "https://agentusecases.ai/use-case/plan-and-book-a-vacation-with-a-travel-website-and-guide"
+      "promptEn": "Build an agent that finds leads matching [ideal customer profile: role, company size, industry] from [source such as a LinkedIn export or a lead sheet]. For each lead, research their company and write a short personalized first email that mentions [product value in one line]. Save the drafts in [Google Sheet or email drafts] for my approval and do not send anything until I approve it.",
+      "promptZh": "建一个 Agent，从 [来源，如 LinkedIn 导出表或线索清单] 里找出符合 [理想客户画像：职位、公司规模、行业] 的线索。针对每条线索，研究对方公司，写一封简短的个性化首封邮件，提一句 [产品价值]。把草稿存到 [Google 表格或邮件草稿] 里等我批准，在我批准之前不要发送任何内容。",
+      "url": "https://agentusecases.ai/use-case/find-leads-and-personalize-first-outreach"
     },
     {
-      "cat": "生活效率 · MICROSOFT SCOUT",
-      "chip": "7×24 常驻 / 守晚饭时间",
-      "intro": "微软副总裁 Omar Shahine 给 Teams 里的常驻 Agent Scout（绰号 Sebastian）立了两条规矩：守住家庭晚饭时间，绝不让会议挤进来；同时把别人向他许的诺、他向别人许的诺，全部记进一张持续更新的承诺清单。",
-      "name": "让常驻 Agent 守住晚饭时间，顺手记下每一句承诺",
+      "cat": "内容创作 · LINDY",
+      "chip": "评论变线索 / 免费档 400 积分",
+      "intro": "用 Lindy 的无代码搭建器做了一个 Agent：监听 YouTube 视频的新评论，挑出像潜在客户的留言，补齐评论者的公开信息，推到 Slack 或 CRM。搭好后全自动跑，但来源没给线索识别的准确率数字；免费档每月 400 积分，常驻抓取可能需要 Pro（约 $49.99/月）。",
+      "name": "YouTube 评论里捞线索，自动推进 CRM",
       "no": 2,
-      "promptEn": "Act as my always-on assistant. Protect [time block, e.g. 6-8pm weekday dinner] by declining or flagging any meeting invites that overlap it, and log every commitment I make or that others make to me from my email and calendar into a running list with [who, what, due date]. Before sending any email or declining any invite on my behalf, show me the draft and wait for my approval, and keep the formatting short and clean.",
-      "promptZh": "做我的常驻助理。守住 [时间段，例如工作日晚饭 18–20 点]，凡是与之重叠的会议邀请，一律拒绝或标记出来；同时把我做出的承诺、别人向我做出的承诺，从邮件和日历里汇总成一张持续更新的清单，注明 [谁、什么事、截止日期]。在替我发任何邮件或拒绝任何邀请之前，先给我看草稿、等我批准，格式保持简短干净。",
-      "url": "https://agentusecases.ai/use-case/protect-family-time-and-log-commitments-with-an-always-on-ag"
+      "promptEn": "Create an agent that checks new comments on my YouTube channel [channel name] every [interval]. Flag comments that look like potential leads for [my product or service], look up public details about each commenter, and post a summary to [Slack channel or CRM]. It's done when a test run shows correctly flagged leads landing in [destination]; ask me before creating any CRM records.",
+      "promptZh": "建一个 Agent，每 [间隔] 检查一次我的 YouTube 频道 [频道名] 的新评论。把看起来像 [我的产品或服务] 潜在客户的评论标记出来，查每位评论者的公开信息，把汇总发到 [Slack 频道或 CRM]。测试跑通、正确标记的线索确实落到 [目的地] 才算完成；在创建任何 CRM 记录之前先问我。",
+      "url": "https://agentusecases.ai/use-case/spot-youtube-comment-leads-and-send-to-crm"
     },
     {
-      "cat": "搞钱省钱 · CHATGPT",
-      "chip": "电话 / 宽带 / 保险都适用",
-      "intro": "把逐项账单或续费通知原文贴进 ChatGPT，让它标出每一行里不是固定费用的部分，再写一份打电话要留客优惠的话术，适用电话、宽带、保险续费这类首年价到期就涨的账单。",
-      "name": "把账单贴给 ChatGPT，挑出可砍的费用，再要一份砍价话术",
+      "cat": "生活效率 · CLAUDE IN CHROME",
+      "chip": "每天 7:30 自动跑",
+      "intro": "一位用户让 Claude 用 Chrome 打开 Outlook 邮箱和日历（因为 IT 封了直接同步），每天 7:30 自动扫两边邮箱和日历：把 Outlook 的新事件抄进 Gmail 日历，邮件汇总后按优先级排好；之后人做一次 brain dump，Claude 跟踪任务、把未完成项带到第二天，还会提醒人别逃避某项任务。发帖人称「改变生活」，无硬性数字。",
+      "name": "每天 7:30，邮件和日历自己扫一遍再汇报",
       "no": 3,
-      "promptEn": "Here is my itemized [phone/internet/insurance] bill or renewal notice: [paste text]. Flag any fixed fees, add-ons, or charges that look negotiable or avoidable, and note which ones likely can't be changed. Then write a short phone script for asking for a retention offer or lower rate, including what to say if they refuse and which specific line items to bring up. Finish with the top three asks ranked by likely savings.",
-      "promptZh": "这是我的逐项 [电话/宽带/保险] 账单或续费通知：[粘贴文本]。标出所有固定费用、附加费或看起来可以协商、可以省掉的收费，并注明哪些大概率动不了。然后写一份简短的电话话术，用来向服务商要留客优惠或更低费率，包括对方拒绝时该说什么、要提哪些具体收费项目。最后按可能省下的金额排序，列出最值得谈的三项。",
-      "url": "https://agentusecases.ai/use-case/flag-fees-and-script-calls-to-negotiate-lower-bills"
+      "promptEn": "Every weekday at [7:30 a.m.], open my Outlook email and calendar in the browser. Copy any new events into my Gmail calendar without creating duplicates, then summarize my unread email and rank it by priority, and add any action items to a task list. Do not reply, delete, or send anything; show me the summary and the list of calendar changes before you make them, and stop once I've approved.",
+      "promptZh": "每个工作日 [早上 7:30]，在浏览器里打开我的 Outlook 邮箱和日历。把新事件抄进 Gmail 日历，不要产生重复；然后汇总未读邮件、按优先级排序，把待办事项加进任务清单。不要回复、删除或发送任何内容；先把汇总和日历改动清单给我看，等我批准后再执行。",
+      "url": "https://agentusecases.ai/use-case/sweep-email-and-sync-calendars-each-morning"
     },
     {
-      "cat": "内容创作 · HERMES AGENT",
-      "chip": "写稿从几小时变几分钟",
-      "intro": "作者的 Hermes Agent 常驻在一台 Ubuntu 小主机上：写博客时起草、翻成德语和波斯语、加 SEO 信息、在 Git 工作区里开 PR；做视频时每小时扫博客 RSS，有新文章就剪 Shorts 和每周合集，先私密上传，再发一个 Telegram 批准按钮，人点了才公开。",
-      "name": "博客写稿翻译发布一条龙，RSS 一动就自动剪 Shorts 和周报视频",
+      "cat": "健康生活 · CLAUDE",
+      "chip": "一周食谱 + 采购单",
+      "intro": "一位用户用 Claude Agent 管宏量营养素、每周采购与备餐、编训练计划；另搭了一个带语音唤醒的个人助理 App，能买东西、订餐厅、管邮箱日历，还给他买过一套他自认「史上最好」的万圣节服装；手机语音流程目前还有点延迟。买东西走预付卡，卡里只留几百美元控风险。",
+      "name": "健身、食谱、每周采购，一台 Agent 全包",
       "no": 4,
-      "promptEn": "Each week, draft a blog post on [topic or source material] in [language], translate it into [second language], and prepare it for publishing on [site or host]. Send me the drafts on [Telegram or other chat app] and wait for my explicit approval before publishing anything. Once I approve, publish and send me the live links.",
-      "promptZh": "每周就 [主题或素材] 用 [语言] 写一篇博客，翻译成 [第二语言]，准备好发布到 [网站或托管平台]。把草稿发到 [Telegram 或其他聊天应用] 给我，在我明确批准之前不要发布任何内容。我批准后，发布并把上线链接发给我。",
-      "url": "https://agentusecases.ai/use-case/automate-blog-writing-translation-publishing-and-video-diges"
+      "promptEn": "Act as my fitness and meal planning assistant. My goal is [goal], my stats are [height, weight, activity level], and I eat [diet or restrictions] with a weekly food budget of [amount]. Give me daily macro targets, a 7-day meal plan, a grocery list grouped by store section, and a [number]-day-a-week workout program using [equipment available].",
+      "promptZh": "做我的健身与饮食规划助理。我的目标是 [目标]，身体数据是 [身高、体重、活动量]，饮食是 [饮食方式或忌口]，每周食材预算 [金额]。给我每日宏量营养素目标、一份 7 天食谱、一张按超市分区归类的采购清单，和一份每周 [天数] 练、用 [现有器械] 的训练计划。",
+      "url": "https://agentusecases.ai/use-case/run-fitness-meal-planning-and-weekly-shops"
     },
     {
-      "cat": "知识管理 · DOTS",
-      "chip": "每天 8 点一张单",
-      "intro": "把 Dots Agent 接到 Gmail、Google Calendar 和 Drive，任务只有一个：为明天做好准备。它扫日历、扫答应过要办或一直没回的邮件、扫 Drive 里被 @ 的文件，合成一张行动单，每天早上 8 点定时发同一份汇总，用的还是它自己写的一份只读简报。",
-      "name": "邮箱 + 日历 + Drive 每天早上 8 点合成一张今日行动单",
+      "cat": "家庭出行 · META MUSE",
+      "chip": "95% 走完 / 只差付款",
+      "intro": "作者让 Meta 的 Muse 帮全家找柏林周末活动：它找到了马戏、定位了票，还会用德语操作；买篮球票时卡在人机验证，Agent 主动停下请人接手。另据报道，Instinct 这类服务能重订行程并用掉积分。",
+      "name": "AI 帮全家订票：95% 的路走完了，付款还得人来",
       "no": 5,
-      "promptEn": "Connect to my Gmail, Google Calendar and Google Drive with read-only access, and write down the rules you will follow so you never send, delete, or edit anything. Then go through my unread email, this week's calendar, and recently changed files in [Drive folder or project names] and give me one prioritized action list for today with the source of each item. Set it up to send me the same summary every [weekday morning at 8am], and stop once I've approved the first list.",
-      "promptZh": "以只读权限接入我的 Gmail、Google Calendar 和 Google Drive，先写下你会遵守的规则，确保你绝不发送、删除或修改任何内容。然后查看我的未读邮件、本周日历和 [Drive 文件夹或项目名] 里最近变动的文件，给我一份今天的优先行动清单，注明每项的来源。设成每个 [工作日早上 8 点] 给我发同样的汇总，等我批准第一份清单后再开始。",
-      "url": "https://agentusecases.ai/use-case/turn-inbox-calendar-and-drive-into-a-daily-action-list"
+      "promptEn": "Help me book [flight/train/hotel] from [origin] to [destination] on [dates] for [number] travelers, with a budget of [amount] and preferences of [seat, airline, times, etc.]. Search a few sites, then show me the best 2-3 options with prices and conditions. Pause and show me the full details before entering any payment info or confirming a booking, and if you hit a human check or login, stop and ask me to take over.",
+      "promptZh": "帮我订 [机票/火车票/酒店]，从 [出发地] 到 [目的地]，[日期]，[人数] 人出行，预算 [金额]，偏好 [座位、航司、时间等]。搜几个网站，给我看最好的 2–3 个选项及价格和条件。在输入任何付款信息或确认预订之前，停下来把完整细节给我看；如果遇到人机验证或登录，停下让我接手。",
+      "url": "https://agentusecases.ai/use-case/book-travel-with-an-ai-agent"
     }
   ]
 }
