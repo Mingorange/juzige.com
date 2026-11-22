@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教程预览 · 让 Muse 指挥外部 AI 干活：以 Amazon Quick 为例</title>
+<style>
+body{margin:0;background:#f5f5f7;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:#1d1d1f}
+.note{max-width:680px;margin:0 auto;background:#fff;min-height:100vh;padding-bottom:48px}
+.content{padding:22px 20px 0}
+h1{font-size:23px;line-height:1.45;margin:0 0 6px}
+.meta{color:#999;font-size:13px;margin-bottom:16px}
+h2{font-size:17px;margin:26px 0 8px}
+h3{font-size:15px;margin:18px 0 6px}
+p{font-size:15px;line-height:1.8;margin:0 0 10px}
+ul,ol{font-size:15px;line-height:1.8;margin:0 0 10px;padding-left:22px}
+li{margin-bottom:4px}
+.badge{display:inline-block;background:#F79343;color:#fff;font-size:12px;border-radius:999px;padding:3px 10px;margin:16px 20px 0}
+.card{background:#f7f7f9;border-radius:12px;padding:14px 16px;margin:0 0 12px}
+.card p{margin:0 0 6px}
+.warn{background:#fff4e8;border-radius:12px;padding:14px 16px;margin:0 0 12px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 14px}
+th,td{border:1px solid #e5e5ea;padding:8px 10px;text-align:left;line-height:1.6;vertical-align:top}
+th{background:#f7f7f9}
+.small{color:#666;font-size:13px}
+</style></head><body>
+<div class="note">
+<span class="badge">教程 · 预览（未发布）</span>
+<div class="content">
+<h1>让 Muse 指挥外部 AI 干活：以 Amazon Quick 为例</h1>
+<p class="meta">看橘子哥 · 2026-11-22 · 实测记录</p>
+
+<p>每个模型都有自己的能力边界。一个 AI 再强，也不知道你的项目、你的规矩、你的账号盘子。真正有价值的，不是再多装一个 AI，而是让一个懂你的 AI 去<strong>指挥</strong>其他 AI：它负责定任务、派活、验收，你只对它说话、拿最终结果。</p>
+<p>这篇记录的就是一次真实落地：让 Muse（小橘子）连接亚马逊的办公 AI「Amazon Quick」，把 Quick 变成它手下的一个工人。方法、稳定性与安全的注意事项、以及分工方式，都写在下面，换成其他外部 AI 也同样适用。</p>
+
+<h2>一、连接方法：四步打通</h2>
+<ol>
+<li><strong>先注册外部 AI 的账号。</strong>Quick 在 aws.amazon.com/cn/quick 点「免费试用」注册，免费版无需 AWS 账户。本次用常用邮箱注册，账号归用户本人所有——外部 AI 的账号永远注册在自己名下，不用助理的邮箱代注册，免得日后找回、续费都受制于人。</li>
+<li><strong>确认它能在助理的环境里跑。</strong>Quick 桌面版只有 Mac（Apple 芯片）和 Windows 版，没有 Linux 版；助理的云端机器装不了桌面客户端，所以走<strong>网页版</strong>（quick.aws.com）。功能基本一致，少的只是本地文件解析这类桌面专属能力。先确认运行形态，再谈连接，别先入为主。</li>
+<li><strong>由用户本人完成登录，助理不碰密码。</strong>在助理的浏览器里打开 Quick，用户亲自完成登录（或通过安全录入卡填写），密码不经过聊天、不落任何记录。登录态保存在助理的浏览器里，后续调用不用反复登录。</li>
+<li><strong>登录后先验收，再使用。</strong>确认三件事：主界面能正常打开、账号信息对得上（本次界面显示账号邮箱为 700.eth@gmail.com）、套餐与用量看得见（Free plan，30 天到期，用量以 Monthly usage 百分比显示）。</li>
+</ol>
+
+<h2>二、先摸底，再派活：给外部 AI 建一张能力卡</h2>
+<p>连接成功不等于可用。正式派活前，先用一组标准测试摸清它的边界（本次实测结果）：</p>
+<table>
+<tr><th>测试项</th><th>结果</th></tr>
+<tr><td>中文问答（限 3 句讲清一个概念）</td><td>5–10 秒完成，正好 3 句，定义准确，中文自然</td></tr>
+<tr><td>多步推理（水池进排水经典题）</td><td>答案 24 小时，正确，过程清晰带验算</td></tr>
+<tr><td>生成交付物（5 行 × 4 列表格）</td><td>10–20 秒生成规范表格，可导出 Word / PDF / Excel / PPT；效果数字注明为行业参考、非实测</td></tr>
+<tr><td>用量消耗</td><td>3 项轻量测试后，月用量仍为 1%，轻任务基本不耗量</td></tr>
+</table>
+<p>重活抽测（每项只测一次，用时与用量都是实测）：</p>
+<table>
+<tr><th>测试项</th><th>结果</th></tr>
+<tr><td>深度研究（深模式）</td><td>约 15 分钟产出结构化研究报告：目录、逐句引文编号、24 条来源列表，关键数据均有出处。研究在后台跑，可离开页面</td></tr>
+<tr><td>文档生成</td><td>约 2 分钟生成一页会议纪要模板 .docx，可下载或导出 PDF；流程多一步「批准大纲」</td></tr>
+<tr><td>小应用生成</td><td>约 1 分钟生成真可交互的待办应用（添加、勾选、删除、本地保存均实测生效）</td></tr>
+<tr><td>生成图片</td><td>不到 1 分钟生成 1536×864 PNG，脚本要素几乎全中；翻车点：要求写在右上角的文字被画到了别处——图内文字的位置和准确率仍不可靠</td></tr>
+<tr><td>生成视频</td><td><strong>不能。</strong>它明确回复只能生成静态图片，没有文生视频能力（网传的「视频」其实是它的音频/视频转录功能）。它给的替代方案是静态图拼动效或转投其他视频工具</td></tr>
+</table>
+<p>模型与额度也摸清了：它有三档模式——快（Haiku 级）、均衡（Sonnet 级）、智能（Opus 级），默认在智能档，所以「背后是满血 Opus」只对默认档成立。额度方面，网传的「每月 10 小时」在设置页得到了证实（每月限额 10 小时，按时间计，月初重置），界面同时以百分比显示用量；本次全部摸底测试共消耗 3%（从 1% 到 4%）。</p>
+<p>还有一条边界：<strong>邮箱连接器只有 Gmail 和 Outlook 两种官方授权方式</strong>，没有通用邮箱接入。助理自己的邮箱（juzi@muse.ai）不是这两家的账号，所以连不上——不是权限没给，是机制上没有入口。而且 Gmail 授权一要就是读取、修改、发送的整套权限，这种范围的授权更要先看清再点。</p>
+
+<h2>三、稳定使用：四条规矩</h2>
+<ul>
+<li><strong>一次只派一件、说清完成判据。</strong>给外部 AI 的任务要自带目标、限制和「做到什么算完成」，含糊的任务最容易来回返工、烧掉双方的上下文和额度。</li>
+<li><strong>留断点，能续跑。</strong>长任务分段做，每段结果先落盘记录；中断后从断点继续，不重头再来。</li>
+<li><strong>盯用量和有效期。</strong>每次派重活前后看一眼用量百分比；免费版 30 天到期，重要活不要压在到期边缘。</li>
+<li><strong>卡住就停，不硬耗。</strong>登录墙、验证码、连续失败两次，立即停下来汇报，换路或等用户处理，不在失败里空转。</li>
+</ul>
+
+<h2>四、安全使用：五条红线</h2>
+<div class="warn">
+<p><strong>1. 密码永不经过聊天。</strong>登录由用户本人完成或走安全录入，助理不索要、不保存明文密码。</p>
+<p><strong>2. 连接器授权先看范围再点。</strong>外部 AI 要连邮箱、日历、网盘时，先看清它索取的权限范围，给用户过目后再授权——连接等于把数据开放给第三方读，范围不清不点确认。</p>
+<p><strong>3. 敏感信息不进外部 AI。</strong>密码、证件、银行卡、私人聊天记录不发给外部 AI；任务只给它完成这件活必需的最少信息。</p>
+<p><strong>4. 对外动作仍归用户拍板。</strong>外部 AI 产出的内容，发邮件、发帖、付款这类对外动作，仍按老规矩经用户确认，外部 AI 没有直接对外行动的权限。</p>
+<p><strong>5. 结果必须验收，不盲信。</strong>外部 AI 给的数字、来源、结论，助理要回一手来源核对后再用；它出错，算验收方的责任，不算「AI 说的」。</p>
+</div>
+
+<h2>五、分工合作：谁干什么</h2>
+<table>
+<tr><th>角色</th><th>职责</th></tr>
+<tr><td><strong>用户</strong></td><td>定方向、做决定、完成登录与授权这类只有本人能做的动作、最后拍板</td></tr>
+<tr><td><strong>Muse（总指挥）</strong></td><td>理解需求、拆任务、选工人、写派单、盯进度、验收结果、向用户汇报；掌握全部上下文和规矩</td></tr>
+<tr><td><strong>Amazon Quick（外部工人）</strong></td><td>承接重型、一次性的生成活：深度研究、文档 / 表格 / 演示生成、小应用生成；按派单产出，不接触任务之外的信息</td></tr>
+<tr><td><strong>本地执行（如 ZCode）</strong></td><td>需要用户电脑本地工具、音色、登录态、算力的活，在本地执行</td></tr>
+</table>
+<p>分工的原则就一句：<strong>按边界派活。</strong>日常小问答不用绕道外部 AI；重型生成派给 Quick；本地专属的活留给本地。每个工人只干它最擅长的那一段，总指挥负责把它们拼成一个完整结果。</p>
+
+<h2>六、下一步</h2>
+<ul>
+<li>把常用的纯文字 skill 装进 Quick：它的「技能」支持从 .md 文件直接导入，公众号文章教练、选题分析师、题目哥、涨粉大师、孙哥打分、解梦六个正在装入并逐个验收中。装好后派活时它直接按规矩干，不用每次重贴标准。</li>
+<li>重活的真实耗时与用量成本已摸清（见上表），后续派活按这张成本表选档位：轻活用快档省额度，重研究才上深模式。</li>
+<li>30 天免费期结束前，根据实际派活量再决定是否续费——先验证价值，再花钱。</li>
+</ul>
+
+<p class="small">本文为实测教程，数据为 2026-11-22 当日记录；Quick 的套餐与功能以官网最新说明为准。</p>
+
+</div>
+</div>
+</body></html>
