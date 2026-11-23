@@ -151,42 +151,42 @@
 /* 组数×次数取自 upload.html 动作库 sets 字段（区间取上限）；腿日取自已上线 App 同一套数据（build_final.py）。 */
 var DAYS = [
   { id:"chest", name:"胸日", exercises:[
-    { name:"上斜杠铃卧推", img:"assets/n61.webp", sets:"3 × 8–10", n:3, target:"10 次" },
-    { name:"上斜哑铃卧推", img:"assets/n31.webp", sets:"2 × 10", n:2, target:"10 次" },
-    { name:"下斜哑铃卧推", img:"assets/n51.webp", sets:"3 × 8–12", n:3, target:"12 次" },
-    { name:"哑铃飞鸟", img:"assets/n8.webp", sets:"2–3 × 10–15", n:3, target:"15 次" },
-    { name:"双杠臂屈伸", img:"assets/n9.webp", sets:"3 × 8–12", n:3, target:"12 次", bw:true },
-    { name:"俯卧撑", img:"assets/n6.webp", sets:"3 × 10–20", n:3, target:"20 次", bw:true }
+    { name:"上斜杠铃卧推", img:"assets/n61.webp", aid:"061", video:"actions/web/061.mp4", sets:"3 × 8–10", n:3, target:"10 次" },
+    { name:"上斜哑铃卧推", img:"assets/n31.webp", aid:"031", video:"actions/web/031.mp4", sets:"2 × 10", n:2, target:"10 次" },
+    { name:"下斜哑铃卧推", img:"assets/n51.webp", aid:"051", video:"actions/web/051.mp4", sets:"3 × 8–12", n:3, target:"12 次" },
+    { name:"哑铃飞鸟", img:"assets/n8.webp", aid:"008", video:"actions/web/008.mp4", sets:"2–3 × 10–15", n:3, target:"15 次" },
+    { name:"双杠臂屈伸", img:"assets/n9.webp", aid:"009", video:"actions/web/009.mp4", sets:"3 × 8–12", n:3, target:"12 次", bw:true },
+    { name:"俯卧撑", img:"assets/n6.webp", aid:"006", video:"actions/web/006.mp4", sets:"3 × 10–20", n:3, target:"20 次", bw:true }
   ]},
   { id:"back", name:"背日", exercises:[
-    { name:"传统硬拉", img:"assets/n15.webp", sets:"3–4 × 5–8", n:4, target:"8 次" },
-    { name:"引体向上", img:"assets/n11.webp", sets:"3–4 × 3–8", n:4, target:"8 次", bw:true },
-    { name:"T杠划船", img:"assets/n46.webp", sets:"3 × 8–12", n:3, target:"12 次" },
-    { name:"单臂哑铃划船", img:"assets/n12.webp", sets:"3 × 10 / 侧", n:3, target:"10 次 / 侧" },
-    { name:"高位下拉", img:"assets/n14.webp", sets:"3–4 × 10", n:4, target:"10 次", w:33 },
-    { name:"坐姿划船", img:"assets/n13.webp", sets:"3 × 10–12", n:3, target:"12 次", w:35 },
-    { name:"直臂下压", img:"assets/n47.webp", sets:"2–3 × 12–15", n:3, target:"15 次" },
-    { name:"山羊挺身（背屈伸）", img:"assets/n65.webp", sets:"3 × 10–15", n:3, target:"15 次", bw:true }
+    { name:"传统硬拉", img:"assets/n15.webp", aid:"015", video:"actions/web/015.mp4", sets:"3–4 × 5–8", n:4, target:"8 次" },
+    { name:"引体向上", img:"assets/n11.webp", aid:"011", video:"actions/web/011.mp4", sets:"3–4 × 3–8", n:4, target:"8 次", bw:true },
+    { name:"T杠划船", img:"assets/n46.webp", aid:"046", video:"actions/web/046.mp4", sets:"3 × 8–12", n:3, target:"12 次" },
+    { name:"单臂哑铃划船", img:"assets/n12.webp", aid:"012", video:"actions/web/012.mp4", sets:"3 × 10 / 侧", n:3, target:"10 次 / 侧" },
+    { name:"高位下拉", img:"assets/n14.webp", aid:"014", video:"actions/web/014.mp4", sets:"3–4 × 10", n:4, target:"10 次", w:33 },
+    { name:"坐姿划船", img:"assets/n13.webp", aid:"013", video:"actions/web/013.mp4", sets:"3 × 10–12", n:3, target:"12 次", w:35 },
+    { name:"直臂下压", img:"assets/n47.webp", aid:"047", video:"actions/web/047.mp4", sets:"2–3 × 12–15", n:3, target:"15 次" },
+    { name:"山羊挺身（背屈伸）", img:"assets/n65.webp", aid:"065", video:"actions/web/065.mp4", sets:"3 × 10–15", n:3, target:"15 次", bw:true }
   ]},
   { id:"legs", name:"腿日", exercises:[
-    { name:"杠铃深蹲", img:"assets/squat.webp", sets:"4 组 · 8–10 次", n:4, target:"10 次" },
-    { name:"45度腿举", img:"assets/legpress.webp", sets:"4 组 · 8–10 次", n:4, target:"10 次" },
-    { name:"罗马尼亚硬拉", img:"assets/rdl.webp", sets:"3 组 · 10 次", n:3, target:"10 次" },
-    { name:"保加利亚剪蹲", img:"assets/split.webp", sets:"3 组 · 8–10 次/侧", n:3, target:"10 次 / 侧" },
-    { name:"哑铃箭步蹲", img:"assets/lunge.webp", sets:"3 组 · 8–10 次/侧", n:3, target:"10 次 / 侧" },
+    { name:"杠铃深蹲", img:"assets/squat.webp", aid:"016", video:"actions/web/016.mp4", sets:"4 组 · 8–10 次", n:4, target:"10 次" },
+    { name:"45度腿举", img:"assets/legpress.webp", aid:"018", video:"actions/web/018.mp4", sets:"4 组 · 8–10 次", n:4, target:"10 次" },
+    { name:"罗马尼亚硬拉", img:"assets/rdl.webp", aid:"037", video:"actions/web/037.mp4", sets:"3 组 · 10 次", n:3, target:"10 次" },
+    { name:"保加利亚剪蹲", img:"assets/split.webp", aid:"036", video:"actions/web/036.mp4", sets:"3 组 · 8–10 次/侧", n:3, target:"10 次 / 侧" },
+    { name:"哑铃箭步蹲", img:"assets/lunge.webp", aid:"017", video:"actions/web/017.mp4", sets:"3 组 · 8–10 次/侧", n:3, target:"10 次 / 侧" },
     { name:"俯卧腿弯举", img:"assets/legcurl.webp", sets:"3 组 · 10–12 次", n:3, target:"12 次" },
-    { name:"坐姿腿伸展", img:"assets/legext.webp", sets:"3 组 · 12 次", n:3, target:"12 次" },
-    { name:"站姿提踵", img:"assets/calf.webp", sets:"3 组 · 12–15 次", n:3, target:"15 次" },
-    { name:"坐姿提踵", sets:"3 组 · 12–15 次", n:3, target:"15 次" }
+    { name:"坐姿腿伸展", img:"assets/legext.webp", aid:"042", video:"actions/web/042.mp4", sets:"3 组 · 12 次", n:3, target:"12 次" },
+    { name:"站姿提踵", img:"assets/calf.webp", aid:"020", video:"actions/web/020.mp4", sets:"3 组 · 12–15 次", n:3, target:"15 次" },
+    { name:"坐姿提踵", aid:"073", video:"actions/web/073.mp4", sets:"3 组 · 12–15 次", n:3, target:"15 次" }
   ]},
   { id:"shoulder", name:"肩臂日", exercises:[
-    { name:"阿诺德推举", img:"assets/n32.webp", sets:"3 × 8–12", n:3, target:"12 次" },
+    { name:"阿诺德推举", img:"assets/n32.webp", aid:"032", video:"actions/web/032.mp4", sets:"3 × 8–12", n:3, target:"12 次" },
     { name:"器械推举", img:"assets/n50.webp", sets:"3 × 10–12", n:3, target:"12 次" },
-    { name:"侧平举", img:"assets/n22.webp", sets:"3 × 12–15", n:3, target:"15 次", w:5, cue:"5kg 严格版：肘带手起，到肩高停半秒，慢放，别耸肩甩腰。" },
-    { name:"俯身飞鸟", img:"assets/n25.webp", sets:"3 × 12–15", n:3, target:"15 次", w:5, cue:"5kg 干净版：不借力弹跳，顶峰停一下。" },
-    { name:"面拉", img:"assets/n33.webp", sets:"3 × 12–15", n:3, target:"15 次" },
-    { name:"杠铃弯举", img:"assets/n23.webp", sets:"3 × 8–12", n:3, target:"12 次" },
-    { name:"锤式弯举", img:"assets/n38.webp", sets:"2–3 × 10–12", n:3, target:"12 次" },
+    { name:"侧平举", img:"assets/n22.webp", aid:"022", video:"actions/web/022.mp4", sets:"3 × 12–15", n:3, target:"15 次", w:5, cue:"5kg 严格版：肘带手起，到肩高停半秒，慢放，别耸肩甩腰。" },
+    { name:"俯身飞鸟", img:"assets/n25.webp", aid:"025", video:"actions/web/025.mp4", sets:"3 × 12–15", n:3, target:"15 次", w:5, cue:"5kg 干净版：不借力弹跳，顶峰停一下。" },
+    { name:"面拉", img:"assets/n33.webp", aid:"033", video:"actions/web/033.mp4", sets:"3 × 12–15", n:3, target:"15 次" },
+    { name:"杠铃弯举", img:"assets/n23.webp", aid:"023", video:"actions/web/023.mp4", sets:"3 × 8–12", n:3, target:"12 次" },
+    { name:"锤式弯举", img:"assets/n38.webp", aid:"038", video:"actions/web/038.mp4", sets:"2–3 × 10–12", n:3, target:"12 次" },
     { name:"绳索三头下压", img:"assets/n24.webp", sets:"3 × 10–12", n:3, target:"12 次" },
     { name:"过顶臂屈伸", sets:"2–3 × 10–12", n:3, target:"12 次" }
   ]},
