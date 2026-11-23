@@ -244,15 +244,28 @@
 
 
 
-    <!-- 橘子电台 EP006（最新） -->
+        <!-- 橘子电台 EP007（最新） -->
+    <article class="card">
+      <img class="cover" src="assets/cover-foreman.webp" loading="eager" fetchpriority="high" decoding="async" alt="橘子电台封面：橘子哥坐导演椅拿喇叭当包工头，三个橙色小机器人分工画画、拍摄、配音">
+      <div class="cbody">
+        <div class="meta"><span class="badge">最新</span>橘子电台 · 2026 年 11 月 23 日</div>
+        <h2>把 Muse 当包工头</h2>
+        <p class="sum">把 Muse 当云端包工头，串起 Gemini 写脚本、Google Flow 生视频、豆包语音配音——每天只花 3 分钟扫码确认，视频自动发。成本账、三条红线和踩过的坑，全拆给你看。</p>
+        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 4:55</button>
+        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <div class="cfoot"><span class="who">看橘子哥 · 4 分 55 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep7" href="radio/muse-foreman.html">打开全文 →</a></div>
+      </div>
+    </article>
+
+<!-- 橘子电台 EP006 -->
     <article class="card">
       <img class="cover" src="assets/cover-voicechat.webp" loading="eager" fetchpriority="high" decoding="async" alt="橘子电台封面：橘子哥拿着手机跟 AI 通话，两个小机器人和趴在键盘上的猫">
       <div class="cbody">
-        <div class="meta"><span class="badge">最新</span>橘子电台 · 2026 年 11 月 20 日</div>
+        <div class="meta">橘子电台 · 2026 年 11 月 20 日</div>
         <h2>我跟 Muse 打了个电话，全程没听出一点机器人味</h2>
         <p class="sum">第一次跟 Muse 打语音电话：本来是谈正事的，它先让我挑声音、给我讲段子，还记得我家的猫；笑着聊着，正事一件没落，全办完了。全程没听出一点机器人味——这是我今年用 AI 最惊讶的一次。</p>
-        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 3:14</button>
-        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <button class="playbtn" id="ep6-play" type="button">▶ 播放本集 · 3:14</button>
+        <audio id="ep6-audio" controls preload="none" style="display:none"></audio>
         <div class="cfoot"><span class="who">看橘子哥 · 3 分 14 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep6" href="radio/muse-voice-call.html">打开全文 →</a></div>
       </div>
     </article>
@@ -411,7 +424,8 @@
       document.body.appendChild(sc);
     });
   }
-  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep6');
+  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep7');
+  wirePlayer('ep6-play', 'ep6-audio', 'assets/ep6-audio.js', 'EP6_B64', 'home-ep6');
   wirePlayer('ep4-play', 'ep4-audio', 'assets/ep4-audio.js', 'EP4_B64', 'home-ep4');
   wirePlayer('ep3-play', 'ep3-audio', 'assets/ep3-audio.js', 'EP3_B64', 'home-ep3');
   wirePlayer('ep2-play', 'ep2-audio', 'assets/ep2-audio.js', 'EP2_B64', 'home-ep2');
