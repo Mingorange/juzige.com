@@ -124,28 +124,28 @@
   <!-- 橘子精选 · 每日 Agent 案例 -->
   <section class="picks" aria-label="橘子精选" data-src="assets/picks.json">
     <div class="picks-head">
-      <div class="picks-titlerow"><span class="badge">每日更新</span><h2>橘子精选</h2><span class="picks-date">2026 年 11 月 22 日</span></div>
+      <div class="picks-titlerow"><span class="badge">每日更新</span><h2>橘子精选</h2><span class="picks-date">2026 年 11 月 23 日</span></div>
       <p class="picks-sub">真实 Agent 案例 · 提示词拿走就能用</p>
     </div>
 
     <div class="pick" data-i="0">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">01</span>
-        <span class="pick-main"><span class="pick-name">找线索、写首封全包，每月约到 40+ 场会</span></span>
+        <span class="pick-main"><span class="pick-name">547 条散户荐股盲测：只看推理质量，照样跑赢大盘</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">获客 · LINDY / CLAUDE</span> · 40+ 场会 / 月</p>
-        <p class="pick-intro">一家 SaaS 创业团队跑了一个 Claude 驱动的 Lindy Agent：Agent 负责找线索、按每家公司的情况写个性化首封，销售团队只跟进高价值对话和战略客户。据称每月约到 40+ 场会，合格线索耗时缩短 72%——这是厂商案例宣称的数字，未独立核实，来源也未给出搭建细节与人工审核比例。</p>
+        <p class="pick-bmeta"><span class="pick-cat">搞钱 · CLAUDE CODE</span> · 547 条 / 盲测跑赢 16 点</p>
+        <p class="pick-intro">多 Agent 流水线抓取 547 条 r/ValueInvesting 荐股，剥离点赞等热度信号后按推理质量盲评打分；9 月盲测中 Claude 选股组合 +5.2%，散户组合 -10.8%，标普同期 +2.4%。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">建一个 Agent，从 [来源，如 LinkedIn 导出表或线索清单] 里找出符合 [理想客户画像：职位、公司规模、行业] 的线索。针对每条线索，研究对方公司，写一封简短的个性化首封邮件，提一句 [产品价值]。把草稿存到 [Google 表格或邮件草稿] 里等我批准，在我批准之前不要发送任何内容。</pre>
+        <pre class="pick-prompt">建一条流水线，收集 [subreddit] 最近 [500] 条荐股帖，剥离点赞数、评论数、用户名等一切热度信号。再让不同的 Agent 按这套评分标准对每只推荐股做推理质量盲评：[例如论点清晰度、证据、风险意识、估值逻辑]。完成后保存一份排名 CSV 和一份简短报告，总结高分推荐的共同点；跑完整批之前，先给我看评分标准和一份评分样本。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/find-leads-and-personalize-first-outreach" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/score-reddit-investing-picks-blind-on-reasoning-quality" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">Build an agent that finds leads matching [ideal customer profile: role, company size, industry] from [source such as a LinkedIn export or a lead sheet]. For each lead, research their company and write a short personalized first email that mentions [product value in one line]. Save the drafts in [Google Sheet or email drafts] for my approval and do not send anything until I approve it.</pre>
+          <pre class="pick-prompt pick-prompt-en">Build a pipeline that collects the last [500] stock recommendation posts from [subreddit] and strips out upvotes, comment counts, usernames, and any other popularity signals. Then have separate agents score each pick blind on reasoning quality using this rubric: [e.g., thesis clarity, evidence, risk acknowledgment, valuation logic]. When done, save a ranked CSV and a short report on what the top-scored picks had in common, and show me the rubric and a sample of scores before running the full batch.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -153,21 +153,21 @@
     <div class="pick" data-i="1">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">02</span>
-        <span class="pick-main"><span class="pick-name">YouTube 评论里捞线索，自动推进 CRM</span></span>
+        <span class="pick-main"><span class="pick-name">4 年币安交易记录喂给 Grok，几小时出亏损复盘仪表盘</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">内容创作 · LINDY</span> · 评论变线索 / 免费档 400 积分</p>
-        <p class="pick-intro">用 Lindy 的无代码搭建器做了一个 Agent：监听 YouTube 视频的新评论，挑出像潜在客户的留言，补齐评论者的公开信息，推到 Slack 或 CRM。搭好后全自动跑，但来源没给线索识别的准确率数字；免费档每月 400 积分，常驻抓取可能需要 Pro（约 $49.99/月）。</p>
+        <p class="pick-bmeta"><span class="pick-cat">搞钱 · GROK BOT</span> · 4 年记录 / 几小时复盘</p>
+        <p class="pick-intro">发帖人把 Grok Bot 当了两周「第二大脑」，管任务、生意调研、频道增长和 YouTube 剪辑；给它 4 年币安导出记录后，几小时内做出交互式仪表盘，重建账户历史、定位亏损来源。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">建一个 Agent，每 [间隔] 检查一次我的 YouTube 频道 [频道名] 的新评论。把看起来像 [我的产品或服务] 潜在客户的评论标记出来，查每位评论者的公开信息，把汇总发到 [Slack 频道或 CRM]。测试跑通、正确标记的线索确实落到 [目的地] 才算完成；在创建任何 CRM 记录之前先问我。</pre>
+        <pre class="pick-prompt">帮我整理生活和项目。把这份任务清单按优先级排好，再搭一个我每天能查看的简单跟踪表：[粘贴任务]。然后调研 [商业想法]，给一页纸的市场、竞品和第一步总结；再通读我导出的 [交易所名称] 交易记录 [文件]，按年份汇总我的交易、盈亏。不要在我的账户上做任何操作，只汇报。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/spot-youtube-comment-leads-and-send-to-crm" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/track-tasks-research-ideas-and-review-crypto-history-with-gr" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">Create an agent that checks new comments on my YouTube channel [channel name] every [interval]. Flag comments that look like potential leads for [my product or service], look up public details about each commenter, and post a summary to [Slack channel or CRM]. It&#x27;s done when a test run shows correctly flagged leads landing in [destination]; ask me before creating any CRM records.</pre>
+          <pre class="pick-prompt pick-prompt-en">Help me organize my life and projects. Sort this list of tasks into priorities and set up a simple tracker I can check each day: [paste tasks]. Then research [business idea] and give me a one-page summary of the market, competitors, and a first step, and go through my exported [exchange name] transaction history in [file] to summarize my trades, gains and losses by year. Don&#x27;t take any actions on my accounts, just report.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -175,21 +175,21 @@
     <div class="pick" data-i="2">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">03</span>
-        <span class="pick-main"><span class="pick-name">每天 7:30，邮件和日历自己扫一遍再汇报</span></span>
+        <span class="pick-main"><span class="pick-name">课堂笔记过一夜，变成每人一份专属反馈单</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">生活效率 · CLAUDE IN CHROME</span> · 每天 7:30 自动跑</p>
-        <p class="pick-intro">一位用户让 Claude 用 Chrome 打开 Outlook 邮箱和日历（因为 IT 封了直接同步），每天 7:30 自动扫两边邮箱和日历：把 Outlook 的新事件抄进 Gmail 日历，邮件汇总后按优先级排好；之后人做一次 brain dump，Claude 跟踪任务、把未完成项带到第二天，还会提醒人别逃避某项任务。发帖人称「改变生活」，无硬性数字。</p>
+        <p class="pick-bmeta"><span class="pick-cat">知识管理 · CUSTOM AGENT</span> · 30 分钟 → 2–5 分钟</p>
+        <p class="pick-intro">一位语言老师课上在 Notion 记粗糙笔记，Agent 过夜转成格式化反馈文档：纠错、讲解、错误模式总结和针对性作业；反馈时间从每名学生约 30 分钟降到 2–5 分钟，内容反而更深。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">每个工作日 [早上 7:30]，在浏览器里打开我的 Outlook 邮箱和日历。把新事件抄进 Gmail 日历，不要产生重复；然后汇总未读邮件、按优先级排序，把待办事项加进任务清单。不要回复、删除或发送任何内容；先把汇总和日历改动清单给我看，等我批准后再执行。</pre>
+        <pre class="pick-prompt">我教 [语言]，学生是 [水平]。这是我给 [学生姓名] 的课堂笔记：[粘贴含错误和讲过内容的笔记]。写一份格式化的反馈文档，包含纠错、每个错误的简短清晰讲解，以及 5 到 8 道针对这些具体错误的家庭作业。语气保持 [鼓励/直接]，最后把文档做成可直接复制进 [Google Docs/Word] 的样子。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/sweep-email-and-sync-calendars-each-morning" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/turn-lesson-notes-into-tailored-student-feedback-documents" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">Every weekday at [7:30 a.m.], open my Outlook email and calendar in the browser. Copy any new events into my Gmail calendar without creating duplicates, then summarize my unread email and rank it by priority, and add any action items to a task list. Do not reply, delete, or send anything; show me the summary and the list of calendar changes before you make them, and stop once I&#x27;ve approved.</pre>
+          <pre class="pick-prompt pick-prompt-en">I teach [language] to [level] students. Here are my lesson notes for [student name]: [paste notes with their errors and topics covered]. Write a formatted feedback document with their corrections, a short clear explanation of each mistake, and 5 to 8 homework exercises targeting those specific errors. Keep the tone [encouraging/direct], and finish with the document ready to copy into [Google Docs/Word].</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -197,21 +197,21 @@
     <div class="pick" data-i="3">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">04</span>
-        <span class="pick-main"><span class="pick-name">健身、食谱、每周采购，一台 Agent 全包</span></span>
+        <span class="pick-main"><span class="pick-name">零手写代码，2 小时搭一个自己的翻译 Agent</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">健康生活 · CLAUDE</span> · 一周食谱 + 采购单</p>
-        <p class="pick-intro">一位用户用 Claude Agent 管宏量营养素、每周采购与备餐、编训练计划；另搭了一个带语音唤醒的个人助理 App，能买东西、订餐厅、管邮箱日历，还给他买过一套他自认「史上最好」的万圣节服装；手机语音流程目前还有点延迟。买东西走预付卡，卡里只留几百美元控风险。</p>
+        <p class="pick-bmeta"><span class="pick-cat">内容创作 · CLAUDE CODE</span> · 2 小时 / 零手写代码</p>
+        <p class="pick-intro">作者用 Claude Code 小步迭代搭了一个翻译工具：粘贴文本、网址或本地文件路径都能翻；接过一个博客链接后，抓取首页、找到头两篇文章翻成中文，全程零手写代码。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">做我的健身与饮食规划助理。我的目标是 [目标]，身体数据是 [身高、体重、活动量]，饮食是 [饮食方式或忌口]，每周食材预算 [金额]。给我每日宏量营养素目标、一份 7 天食谱、一张按超市分区归类的采购清单，和一份每周 [天数] 练、用 [现有器械] 的训练计划。</pre>
+        <pre class="pick-prompt">给我做一个小型翻译工具，接受粘贴文本、网址或本地文件路径，翻译成 [目标语言]。抓取页面或读取文件，保持原文格式和标题，保存结果为 [输出文件名]。用 [一个示例网址或文件] 翻译测试给我看结果，再告诉我自己怎么运行它。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/run-fitness-meal-planning-and-weekly-shops" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/build-a-translation-agent-for-text-urls-and-files" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">Act as my fitness and meal planning assistant. My goal is [goal], my stats are [height, weight, activity level], and I eat [diet or restrictions] with a weekly food budget of [amount]. Give me daily macro targets, a 7-day meal plan, a grocery list grouped by store section, and a [number]-day-a-week workout program using [equipment available].</pre>
+          <pre class="pick-prompt pick-prompt-en">Build me a small translation tool that takes either pasted text, a URL, or a local file path and translates it into [target language]. Fetch the page or read the file, keep the original formatting and headings, and save the result as [output file name]. Test it by translating [a sample URL or file] and show me the result, then tell me how to run it myself.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -219,21 +219,21 @@
     <div class="pick" data-i="4">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">05</span>
-        <span class="pick-main"><span class="pick-name">AI 帮全家订票：95% 的路走完了，付款还得人来</span></span>
+        <span class="pick-main"><span class="pick-name">一周当私人助理：2.6 万封邮件清到 1,712 封，还约了保龄球局</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">家庭出行 · META MUSE</span> · 95% 走完 / 只差付款</p>
-        <p class="pick-intro">作者让 Meta 的 Muse 帮全家找柏林周末活动：它找到了马戏、定位了票，还会用德语操作；买篮球票时卡在人机验证，Agent 主动停下请人接手。另据报道，Instinct 这类服务能重订行程并用掉积分。</p>
+        <p class="pick-bmeta"><span class="pick-cat">生活效率 · META MUSE</span> · 26,092 → 1,712 封</p>
+        <p class="pick-intro">发帖人用 Muse 当了一周私人助理：自主清掉 24,383 封推广与更新类邮件，给 4 个朋友订了多伦多保龄球之夜、协调全组、拆分账单并跟踪还款，直到所有人结清。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">帮我订 [机票/火车票/酒店]，从 [出发地] 到 [目的地]，[日期]，[人数] 人出行，预算 [金额]，偏好 [座位、航司、时间等]。搜几个网站，给我看最好的 2–3 个选项及价格和条件。在输入任何付款信息或确认预订之前，停下来把完整细节给我看；如果遇到人机验证或登录，停下让我接手。</pre>
+        <pre class="pick-prompt">这周当我的私人助理。检查我的收件箱，给需要回复的邮件起草回复，但先给我看草稿再发。然后为 [人数] 人在 [城市] [日期范围] 策划一场 [活动，例如保龄球] 之夜，找有空位的场馆，并记录分摊费用里谁欠谁多少。预订或发消息之前先停下来给我看细节，最后汇总已完成和仍待办的事项。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/book-travel-with-an-ai-agent" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/run-a-personal-assistant-that-handles-email-and-books-group-" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">Help me book [flight/train/hotel] from [origin] to [destination] on [dates] for [number] travelers, with a budget of [amount] and preferences of [seat, airline, times, etc.]. Search a few sites, then show me the best 2-3 options with prices and conditions. Pause and show me the full details before entering any payment info or confirming a booking, and if you hit a human check or login, stop and ask me to take over.</pre>
+          <pre class="pick-prompt pick-prompt-en">Act as my personal assistant this week. Check my inbox and draft replies to anything that needs one, but show me the drafts before sending. Then plan a [activity, e.g. bowling] night for [number] people in [city] on [date range], find a venue with availability, and track who owes what for the split. Pause and show me the details before booking anything or sending any messages, and finish with a summary of what is done and what is still open.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -459,7 +459,7 @@
 </script>
 <script>
 (function(){
-  var PICKS = [{"name": "找线索、写首封全包，每月约到 40+ 场会", "intro": "一家 SaaS 创业团队跑了一个 Claude 驱动的 Lindy Agent：Agent 负责找线索、按每家公司的情况写个性化首封，销售团队只跟进高价值对话和战略客户。据称每月约到 40+ 场会，合格线索耗时缩短 72%——这是厂商案例宣称的数字，未独立核实，来源也未给出搭建细节与人工审核比例。", "prompt": "建一个 Agent，从 [来源，如 LinkedIn 导出表或线索清单] 里找出符合 [理想客户画像：职位、公司规模、行业] 的线索。针对每条线索，研究对方公司，写一封简短的个性化首封邮件，提一句 [产品价值]。把草稿存到 [Google 表格或邮件草稿] 里等我批准，在我批准之前不要发送任何内容。", "promptEn": "Build an agent that finds leads matching [ideal customer profile: role, company size, industry] from [source such as a LinkedIn export or a lead sheet]. For each lead, research their company and write a short personalized first email that mentions [product value in one line]. Save the drafts in [Google Sheet or email drafts] for my approval and do not send anything until I approve it.", "url": "https://agentusecases.ai/use-case/find-leads-and-personalize-first-outreach"}, {"name": "YouTube 评论里捞线索，自动推进 CRM", "intro": "用 Lindy 的无代码搭建器做了一个 Agent：监听 YouTube 视频的新评论，挑出像潜在客户的留言，补齐评论者的公开信息，推到 Slack 或 CRM。搭好后全自动跑，但来源没给线索识别的准确率数字；免费档每月 400 积分，常驻抓取可能需要 Pro（约 $49.99/月）。", "prompt": "建一个 Agent，每 [间隔] 检查一次我的 YouTube 频道 [频道名] 的新评论。把看起来像 [我的产品或服务] 潜在客户的评论标记出来，查每位评论者的公开信息，把汇总发到 [Slack 频道或 CRM]。测试跑通、正确标记的线索确实落到 [目的地] 才算完成；在创建任何 CRM 记录之前先问我。", "promptEn": "Create an agent that checks new comments on my YouTube channel [channel name] every [interval]. Flag comments that look like potential leads for [my product or service], look up public details about each commenter, and post a summary to [Slack channel or CRM]. It's done when a test run shows correctly flagged leads landing in [destination]; ask me before creating any CRM records.", "url": "https://agentusecases.ai/use-case/spot-youtube-comment-leads-and-send-to-crm"}, {"name": "每天 7:30，邮件和日历自己扫一遍再汇报", "intro": "一位用户让 Claude 用 Chrome 打开 Outlook 邮箱和日历（因为 IT 封了直接同步），每天 7:30 自动扫两边邮箱和日历：把 Outlook 的新事件抄进 Gmail 日历，邮件汇总后按优先级排好；之后人做一次 brain dump，Claude 跟踪任务、把未完成项带到第二天，还会提醒人别逃避某项任务。发帖人称「改变生活」，无硬性数字。", "prompt": "每个工作日 [早上 7:30]，在浏览器里打开我的 Outlook 邮箱和日历。把新事件抄进 Gmail 日历，不要产生重复；然后汇总未读邮件、按优先级排序，把待办事项加进任务清单。不要回复、删除或发送任何内容；先把汇总和日历改动清单给我看，等我批准后再执行。", "promptEn": "Every weekday at [7:30 a.m.], open my Outlook email and calendar in the browser. Copy any new events into my Gmail calendar without creating duplicates, then summarize my unread email and rank it by priority, and add any action items to a task list. Do not reply, delete, or send anything; show me the summary and the list of calendar changes before you make them, and stop once I've approved.", "url": "https://agentusecases.ai/use-case/sweep-email-and-sync-calendars-each-morning"}, {"name": "健身、食谱、每周采购，一台 Agent 全包", "intro": "一位用户用 Claude Agent 管宏量营养素、每周采购与备餐、编训练计划；另搭了一个带语音唤醒的个人助理 App，能买东西、订餐厅、管邮箱日历，还给他买过一套他自认「史上最好」的万圣节服装；手机语音流程目前还有点延迟。买东西走预付卡，卡里只留几百美元控风险。", "prompt": "做我的健身与饮食规划助理。我的目标是 [目标]，身体数据是 [身高、体重、活动量]，饮食是 [饮食方式或忌口]，每周食材预算 [金额]。给我每日宏量营养素目标、一份 7 天食谱、一张按超市分区归类的采购清单，和一份每周 [天数] 练、用 [现有器械] 的训练计划。", "promptEn": "Act as my fitness and meal planning assistant. My goal is [goal], my stats are [height, weight, activity level], and I eat [diet or restrictions] with a weekly food budget of [amount]. Give me daily macro targets, a 7-day meal plan, a grocery list grouped by store section, and a [number]-day-a-week workout program using [equipment available].", "url": "https://agentusecases.ai/use-case/run-fitness-meal-planning-and-weekly-shops"}, {"name": "AI 帮全家订票：95% 的路走完了，付款还得人来", "intro": "作者让 Meta 的 Muse 帮全家找柏林周末活动：它找到了马戏、定位了票，还会用德语操作；买篮球票时卡在人机验证，Agent 主动停下请人接手。另据报道，Instinct 这类服务能重订行程并用掉积分。", "prompt": "帮我订 [机票/火车票/酒店]，从 [出发地] 到 [目的地]，[日期]，[人数] 人出行，预算 [金额]，偏好 [座位、航司、时间等]。搜几个网站，给我看最好的 2–3 个选项及价格和条件。在输入任何付款信息或确认预订之前，停下来把完整细节给我看；如果遇到人机验证或登录，停下让我接手。", "promptEn": "Help me book [flight/train/hotel] from [origin] to [destination] on [dates] for [number] travelers, with a budget of [amount] and preferences of [seat, airline, times, etc.]. Search a few sites, then show me the best 2-3 options with prices and conditions. Pause and show me the full details before entering any payment info or confirming a booking, and if you hit a human check or login, stop and ask me to take over.", "url": "https://agentusecases.ai/use-case/book-travel-with-an-ai-agent"}];
+  var PICKS = [{"name": "547 条散户荐股盲测：只看推理质量，照样跑赢大盘", "intro": "多 Agent 流水线抓取 547 条 r/ValueInvesting 荐股，剥离点赞等热度信号后按推理质量盲评打分；9 月盲测中 Claude 选股组合 +5.2%，散户组合 -10.8%，标普同期 +2.4%。", "prompt": "建一条流水线，收集 [subreddit] 最近 [500] 条荐股帖，剥离点赞数、评论数、用户名等一切热度信号。再让不同的 Agent 按这套评分标准对每只推荐股做推理质量盲评：[例如论点清晰度、证据、风险意识、估值逻辑]。完成后保存一份排名 CSV 和一份简短报告，总结高分推荐的共同点；跑完整批之前，先给我看评分标准和一份评分样本。", "promptEn": "Build a pipeline that collects the last [500] stock recommendation posts from [subreddit] and strips out upvotes, comment counts, usernames, and any other popularity signals. Then have separate agents score each pick blind on reasoning quality using this rubric: [e.g., thesis clarity, evidence, risk acknowledgment, valuation logic]. When done, save a ranked CSV and a short report on what the top-scored picks had in common, and show me the rubric and a sample of scores before running the full batch.", "url": "https://agentusecases.ai/use-case/score-reddit-investing-picks-blind-on-reasoning-quality"}, {"name": "4 年币安交易记录喂给 Grok，几小时出亏损复盘仪表盘", "intro": "发帖人把 Grok Bot 当了两周「第二大脑」，管任务、生意调研、频道增长和 YouTube 剪辑；给它 4 年币安导出记录后，几小时内做出交互式仪表盘，重建账户历史、定位亏损来源。", "prompt": "帮我整理生活和项目。把这份任务清单按优先级排好，再搭一个我每天能查看的简单跟踪表：[粘贴任务]。然后调研 [商业想法]，给一页纸的市场、竞品和第一步总结；再通读我导出的 [交易所名称] 交易记录 [文件]，按年份汇总我的交易、盈亏。不要在我的账户上做任何操作，只汇报。", "promptEn": "Help me organize my life and projects. Sort this list of tasks into priorities and set up a simple tracker I can check each day: [paste tasks]. Then research [business idea] and give me a one-page summary of the market, competitors, and a first step, and go through my exported [exchange name] transaction history in [file] to summarize my trades, gains and losses by year. Don't take any actions on my accounts, just report.", "url": "https://agentusecases.ai/use-case/track-tasks-research-ideas-and-review-crypto-history-with-gr"}, {"name": "课堂笔记过一夜，变成每人一份专属反馈单", "intro": "一位语言老师课上在 Notion 记粗糙笔记，Agent 过夜转成格式化反馈文档：纠错、讲解、错误模式总结和针对性作业；反馈时间从每名学生约 30 分钟降到 2–5 分钟，内容反而更深。", "prompt": "我教 [语言]，学生是 [水平]。这是我给 [学生姓名] 的课堂笔记：[粘贴含错误和讲过内容的笔记]。写一份格式化的反馈文档，包含纠错、每个错误的简短清晰讲解，以及 5 到 8 道针对这些具体错误的家庭作业。语气保持 [鼓励/直接]，最后把文档做成可直接复制进 [Google Docs/Word] 的样子。", "promptEn": "I teach [language] to [level] students. Here are my lesson notes for [student name]: [paste notes with their errors and topics covered]. Write a formatted feedback document with their corrections, a short clear explanation of each mistake, and 5 to 8 homework exercises targeting those specific errors. Keep the tone [encouraging/direct], and finish with the document ready to copy into [Google Docs/Word].", "url": "https://agentusecases.ai/use-case/turn-lesson-notes-into-tailored-student-feedback-documents"}, {"name": "零手写代码，2 小时搭一个自己的翻译 Agent", "intro": "作者用 Claude Code 小步迭代搭了一个翻译工具：粘贴文本、网址或本地文件路径都能翻；接过一个博客链接后，抓取首页、找到头两篇文章翻成中文，全程零手写代码。", "prompt": "给我做一个小型翻译工具，接受粘贴文本、网址或本地文件路径，翻译成 [目标语言]。抓取页面或读取文件，保持原文格式和标题，保存结果为 [输出文件名]。用 [一个示例网址或文件] 翻译测试给我看结果，再告诉我自己怎么运行它。", "promptEn": "Build me a small translation tool that takes either pasted text, a URL, or a local file path and translates it into [target language]. Fetch the page or read the file, keep the original formatting and headings, and save the result as [output file name]. Test it by translating [a sample URL or file] and show me the result, then tell me how to run it myself.", "url": "https://agentusecases.ai/use-case/build-a-translation-agent-for-text-urls-and-files"}, {"name": "一周当私人助理：2.6 万封邮件清到 1,712 封，还约了保龄球局", "intro": "发帖人用 Muse 当了一周私人助理：自主清掉 24,383 封推广与更新类邮件，给 4 个朋友订了多伦多保龄球之夜、协调全组、拆分账单并跟踪还款，直到所有人结清。", "prompt": "这周当我的私人助理。检查我的收件箱，给需要回复的邮件起草回复，但先给我看草稿再发。然后为 [人数] 人在 [城市] [日期范围] 策划一场 [活动，例如保龄球] 之夜，找有空位的场馆，并记录分摊费用里谁欠谁多少。预订或发消息之前先停下来给我看细节，最后汇总已完成和仍待办的事项。", "promptEn": "Act as my personal assistant this week. Check my inbox and draft replies to anything that needs one, but show me the drafts before sending. Then plan a [activity, e.g. bowling] night for [number] people in [city] on [date range], find a venue with availability, and track who owes what for the split. Pause and show me the details before booking anything or sending any messages, and finish with a summary of what is done and what is still open.", "url": "https://agentusecases.ai/use-case/run-a-personal-assistant-that-handles-email-and-books-group-"}]; ask me before creating any CRM records.", "url": "https://agentusecases.ai/use-case/spot-youtube-comment-leads-and-send-to-crm"}, {"name": "每天 7:30，邮件和日历自己扫一遍再汇报", "intro": "一位用户让 Claude 用 Chrome 打开 Outlook 邮箱和日历（因为 IT 封了直接同步），每天 7:30 自动扫两边邮箱和日历：把 Outlook 的新事件抄进 Gmail 日历，邮件汇总后按优先级排好；之后人做一次 brain dump，Claude 跟踪任务、把未完成项带到第二天，还会提醒人别逃避某项任务。发帖人称「改变生活」，无硬性数字。", "prompt": "每个工作日 [早上 7:30]，在浏览器里打开我的 Outlook 邮箱和日历。把新事件抄进 Gmail 日历，不要产生重复；然后汇总未读邮件、按优先级排序，把待办事项加进任务清单。不要回复、删除或发送任何内容；先把汇总和日历改动清单给我看，等我批准后再执行。", "promptEn": "Every weekday at [7:30 a.m.], open my Outlook email and calendar in the browser. Copy any new events into my Gmail calendar without creating duplicates, then summarize my unread email and rank it by priority, and add any action items to a task list. Do not reply, delete, or send anything; show me the summary and the list of calendar changes before you make them, and stop once I've approved.", "url": "https://agentusecases.ai/use-case/sweep-email-and-sync-calendars-each-morning"}, {"name": "健身、食谱、每周采购，一台 Agent 全包", "intro": "一位用户用 Claude Agent 管宏量营养素、每周采购与备餐、编训练计划；另搭了一个带语音唤醒的个人助理 App，能买东西、订餐厅、管邮箱日历，还给他买过一套他自认「史上最好」的万圣节服装；手机语音流程目前还有点延迟。买东西走预付卡，卡里只留几百美元控风险。", "prompt": "做我的健身与饮食规划助理。我的目标是 [目标]，身体数据是 [身高、体重、活动量]，饮食是 [饮食方式或忌口]，每周食材预算 [金额]。给我每日宏量营养素目标、一份 7 天食谱、一张按超市分区归类的采购清单，和一份每周 [天数] 练、用 [现有器械] 的训练计划。", "promptEn": "Act as my fitness and meal planning assistant. My goal is [goal], my stats are [height, weight, activity level], and I eat [diet or restrictions] with a weekly food budget of [amount]. Give me daily macro targets, a 7-day meal plan, a grocery list grouped by store section, and a [number]-day-a-week workout program using [equipment available].", "url": "https://agentusecases.ai/use-case/run-fitness-meal-planning-and-weekly-shops"}, {"name": "AI 帮全家订票：95% 的路走完了，付款还得人来", "intro": "作者让 Meta 的 Muse 帮全家找柏林周末活动：它找到了马戏、定位了票，还会用德语操作；买篮球票时卡在人机验证，Agent 主动停下请人接手。另据报道，Instinct 这类服务能重订行程并用掉积分。", "prompt": "帮我订 [机票/火车票/酒店]，从 [出发地] 到 [目的地]，[日期]，[人数] 人出行，预算 [金额]，偏好 [座位、航司、时间等]。搜几个网站，给我看最好的 2–3 个选项及价格和条件。在输入任何付款信息或确认预订之前，停下来把完整细节给我看；如果遇到人机验证或登录，停下让我接手。", "promptEn": "Help me book [flight/train/hotel] from [origin] to [destination] on [dates] for [number] travelers, with a budget of [amount] and preferences of [seat, airline, times, etc.]. Search a few sites, then show me the best 2-3 options with prices and conditions. Pause and show me the full details before entering any payment info or confirming a booking, and if you hit a human check or login, stop and ask me to take over.", "url": "https://agentusecases.ai/use-case/book-travel-with-an-ai-agent"}];
   (function(){
     var secEl = document.querySelector('.picks');
     if (!secEl || !secEl.getAttribute('data-src') || !window.fetch) return;
