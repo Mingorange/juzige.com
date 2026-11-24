@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今天我让 Muse 薅到了 25 美金，全程不到 10 分钟（结尾有惊喜）｜看橘子哥</title>
+<meta name="description" content="在 linux.do 看到 fal 第三批兑换码，注册完找不到入口，我直接把浏览器交给 Muse：找入口、填码、确认到账，不到 10 分钟 25 美金到账。这笔额度是做开发的多媒体素材钱，还能 API 本地化使用。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="59feebcb-7ddd-48f8-94a1-3457c8f643f0"></script>
+<style>
+  :root{ --bg:#f5f5f7; --ink:#1d1d1f; --grey:#6e6e73; --line:#d2d2d7; --orange:#F79343; --sage:#7A8B6F; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  .site-nav{ position:fixed;top:22px;left:26px;z-index:10; display:flex;align-items:center;gap:9px; font-weight:600;color:var(--ink);text-decoration:none;cursor:pointer; transition:opacity .25s ease; }
+  .site-nav:hover{opacity:.65;}
+  .site-nav svg{width:22px;height:22px;display:block;flex:none;}
+  .site-nav .name{font-size:14px;letter-spacing:.3em;}
+  .article{max-width:720px;margin:0 auto;padding:120px 6vw 40px;}
+  .kicker{font-size:12px;letter-spacing:.28em;color:var(--grey);font-weight:600;}
+  h1{font-size:clamp(26px,5vw,40px);font-weight:700;line-height:1.35;letter-spacing:-.01em;margin-top:18px;}
+  .meta{margin-top:18px;font-size:14px;color:var(--grey);line-height:1.9;}
+  .meta a{color:var(--sage);text-decoration:none;}
+  .hero{width:100%;height:auto;display:block;border-radius:14px;margin-top:28px;}
+  .lead{margin-top:32px;font-size:17px;line-height:1.95;}
+  .chap{margin-top:46px;}
+  .chap h2{font-size:22px;font-weight:700;display:flex;align-items:baseline;gap:12px;margin-bottom:14px;}
+  .chap h2 .num{font-size:26px;font-weight:800;color:var(--orange);}
+  .chap h2 .en{font-size:11px;letter-spacing:.18em;color:#aeaeb2;font-weight:600;}
+  .chap p{font-size:17px;line-height:1.95;margin-bottom:1.1em;}
+  .shot{width:100%;height:auto;display:block;border-radius:12px;margin:16px 0 8px;border:1px solid var(--line);}
+  .cap{font-size:13.5px;color:var(--grey);text-align:center;margin-bottom:14px;line-height:1.7;}
+  .note{border-left:3px solid var(--orange);padding:2px 0 2px 16px;margin:20px 0;}
+  .note p{font-size:17px;margin:0;}
+  .player{ margin-top:18px;padding:20px 22px;background:#fff;border:1px solid var(--line);border-radius:14px; }
+  .player .plabel{font-size:12px;letter-spacing:.22em;color:var(--grey);font-weight:600;margin-bottom:12px;}
+  .player video{width:100%;display:block;border-radius:10px;background:#000;}
+  .revisit{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);margin:16px 0;}
+  .revisit .rt{font-size:12px;letter-spacing:.2em;color:var(--grey);font-weight:600;margin-bottom:6px;}
+  .revisit .rh{font-size:16.5px;font-weight:700;line-height:1.6;}
+  .endbox{margin-top:40px;border-top:1px solid var(--line);padding-top:22px;}
+  .endbox p{font-size:16.5px;line-height:1.95;margin-bottom:1em;}
+  .share{margin:52px auto 0;max-width:560px;text-align:center;padding:26px 20px 4px;border-top:1px solid var(--line);}
+  .share .st{font-size:15px;font-weight:700;letter-spacing:.02em;}
+  .share .btns{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .share button{font:inherit;cursor:pointer;border:none;border-radius:999px;padding:11px 24px;font-size:15px;font-weight:700;background:var(--orange);color:#fff;}
+  .share .hint{margin-top:12px;font-size:13px;color:var(--grey);line-height:1.7;}
+  .share .qr{width:120px;height:120px;margin-top:18px;}
+  .share .qrcap{font-size:12.5px;color:var(--grey);margin-top:6px;}
+  #share-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:#1d1d1f;color:#fff;font-size:14px;padding:10px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:50;}
+  #share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .signoff{margin:56px auto 0;max-width:560px;text-align:center;padding-top:30px;border-top:1px solid var(--line);}
+  .signoff svg{width:52px;height:52px;}
+  .signoff .colname{font-size:16px;font-weight:700;margin-top:10px;letter-spacing:.35em;}
+  .signoff .fm{font-size:11px;letter-spacing:.3em;color:var(--grey);margin-top:5px;}
+  .signoff .tagline{font-size:14px;color:var(--grey);margin-top:12px;line-height:1.8;}
+  .signoff .backhome{display:inline-block;margin-top:16px;font-size:14.5px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--orange);padding-bottom:2px;}
+  .foot{margin:44px auto 10px;text-align:center;font-size:11px;letter-spacing:.4em;color:#c7c7cc;}
+</style>
+</head>
+<body>
+  <a class="site-nav" href="/" aria-label="回主页">
+    <svg viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+    <span class="name">看橘子哥</span>
+  </a>
+  <main class="article">
+    <p class="kicker">AI 实测 · 薅羊毛记</p>
+    <h1>今天我让 Muse 薅到了 25 美金，全程不到 10 分钟（结尾有惊喜）</h1>
+    <p class="meta">看橘子哥 · 2026 年 11 月 24 日<br>首发于微信公众号「看橘子哥」，<a href="https://mp.weixin.qq.com/s/ItCsOGTuNJ4fj_dr1pFmOA" target="_blank" rel="noopener">在微信里看原文</a></p>
+    <img class="hero" src="/assets/cover-fal25.webp" alt="封面：橘子哥和橙色小机器人在电脑前，屏幕上是 $25 徽章">
+    <p class="lead">这篇把三件事讲清楚：羊毛在哪、为什么值得薅、我是怎么一步没动把它领回来的。</p>
+
+    <section class="chap">
+      <h2><span class="num">01</span>事情是这样的<span class="en">THE STORY</span></h2>
+      <p>起因是在 linux.do 上看到一个帖子：OpenGame 的游戏 Jam 里，fal 赞助赛道放出了第三批兑换码，能领 25 美金的额度。前两批——第一批 50 美金、第二批 25 美金——都已经领完了。</p>
+      <img class="shot" src="/assets/fal25-opengame.png" alt="OpenGame 的 fal 赛道页面，第三批 25 美金待领取" loading="lazy">
+      <p class="cap">OpenGame 的 fal 赛道：第三批 $25，前两批都已领完</p>
+      <p>我先注册了 opengame 和 fal.ai 两个网站的账户。结果进入 fal 这个网页后，怎么都找不到兑换码填在哪儿？😂</p>
+      <p>找不到，就不找了。我直接让 Muse 接管 Chrome 浏览器，帮我搞定。剩下的事——找入口、填码、确认到账——全是它一步步做完的，我就在旁边看着。全程不到 10 分钟，25 美金到账。</p>
+      <p>下面是我跟 Muse 的对话：</p>
+      <img class="shot" src="/assets/fal25-chat.png" alt="与 Muse 的对话：让它帮我看 25 美金怎么领" loading="lazy">
+      <p class="cap">我就说了一句话，剩下的全是 Muse 干的</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">02</span>为什么这 25 美金值得薅<span class="en">WHY IT MATTERS</span></h2>
+      <p>先看账户：余额 25 美金，本月已用 0 美金，Pay as you go（按量付费），自动充值是关着的。也就是说，这不是那种先绑卡、到期自动扣费的「试用金」，是实打实躺在账户里、花多少算多少的额度。</p>
+      <img class="shot" src="/assets/fal25-balance.png" alt="fal 账户：余额 25 美金，本月已用 0 美金" loading="lazy">
+      <p class="cap">账户实拍：余额 $25.00，本月用了 $0.00</p>
+      <p>更重要的是，这钱我花得出去。fal 这条赛道做的就是图片、视频、音频和 3D 生成——正是我平时做开发时要用的多媒体素材。以后游戏里缺张图、缺段音效、缺个 3D 模型，直接用它生成，额度当场就能抵掉。</p>
+      <p>而且这个平台可以直接调用 Claude 大模型，还能通过 API 本地化使用——接进我本地的工作流里，不用每次打开网页点来点去。对我这种天天在本机折腾 AI 的人来说，这才是它真正的价值。</p>
+      <img class="shot" src="/assets/fal25-models.png" alt="fal 模型列表，可以直接调用 Claude 的模型" loading="lazy">
+      <p class="cap">fal 上可以直接调用 Claude 的模型</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">03</span>真正的重点，不是 25 美金<span class="en">THE POINT</span></h2>
+      <p>回头想想，这件事有意思的地方，不在金额。</p>
+      <p>以前薅个羊毛，注册、找入口、填表、试错，半小时起步。很多人不是没看到，是懒得弄——我就是。</p>
+      <p>现在流程变了：你只要把帖子丢给 Muse，它自己开浏览器找路，把活干完，你最后验收一下结果就行。羊毛还是那个羊毛，薅的人换成了 AI，成本降到了几乎为零。</p>
+      <p>如果你有 10 套账号，那就是 250 美金，这只是其中一个小羊毛罢了。你懂得！</p>
+      <p>我现在每天一个亿以上开发量，就从来没有担心过 token 的事情。</p>
+      <div class="note"><p>不是羊毛变多了，是以前嫌麻烦放弃的那些，现在都顺手了。</p></div>
+    </section>
+
+    <section class="endbox">
+      <p>关注橘子哥，带你看目前最落地的 AI 运用案例。</p>
+      <p>需要 Muse 号和本地化 AI 环境的，可以私信我。</p>
+      <p>昨天我和 Muse 直接打个电话就把事情办了的案例，也非常有意思，可以回去看看：</p>
+      <a class="revisit" href="/radio/muse-voice-call.html">
+        <div class="rt">往期回顾 · 橘子电台</div>
+        <div class="rh">今天我第一次跟 Muse 打了个电话，发现这才是用 AI 最自然的方式</div>
+      </a>
+      <p>其实 Muse 还有很多更好玩的，比如这个刚开始的 AI 主播，关注橘子哥，我会慢慢分享出来。</p>
+      <div class="player">
+        <div class="plabel">结尾惊喜 · AI 主播</div>
+        <video controls preload="none" poster="/assets/fal25-poster.jpg" src="/assets/fal25-anchor.mp4"></video>
+      </div>
+    </section>
+
+    <div class="share">
+      <div class="st">觉得有用，分享给朋友</div>
+      <div class="btns">
+        <button class="primary" id="share-btn" type="button">分享这篇</button>
+      </div>
+      <p class="hint">在微信里打开的话，点右上角「···」就能分享到朋友圈。</p>
+      <img class="qr" id="qrimg" alt="扫码打开 juzige.com">
+      <div class="qrcap">扫码打开 juzige.com</div>
+    </div>
+    <div id="share-toast"></div>
+
+    <div class="signoff">
+      <svg viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+      <div class="colname">看橘子哥</div>
+      <div class="fm">JUZIGE.COM</div>
+      <p class="tagline">分享经验：AI 实测、走访手记、橘子电台。</p>
+      <a class="backhome" href="/">← 回 juzige.com 首页</a>
+    </div>
+
+    <div class="foot">JUZIGE.COM</div>
+  </main>
+
+<script>
+  (function(){
+    var url = "https://juzige.com/article/fal-25.html";
+    var toast = document.getElementById('share-toast'), timer = null;
+    function showToast(msg){
+      toast.textContent = msg; toast.classList.add('show');
+      clearTimeout(timer); timer = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
+    }
+    function copyLink(){
+      function done(){ if (window.umami && umami.track) umami.track('share', {via: 'copy'}); showToast('链接已复制，去分享给朋友吧'); }
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); }
+        catch(e){ showToast('复制没成功，长按地址栏复制链接'); }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, fallback);
+      else fallback();
+    }
+    document.getElementById('share-btn').addEventListener('click', function(){
+      if (navigator.share) {
+        if (window.umami && umami.track) umami.track('share', {via: 'sheet'});
+        navigator.share({title: document.title, text: '今天我让 Muse 薅到了 25 美金，全程不到 10 分钟（结尾有惊喜）', url: url})
+          .catch(function(err){ if (!err || err.name !== 'AbortError') copyLink(); });
+      } else copyLink();
+    });
+  })();
+</script>
+
+<script>
+  fetch('/assets/juzige-qr.b64').then(function(r){ return r.text(); }).then(function(t){
+    document.getElementById('qrimg').src = 'data:image/png;base64,' + t.trim();
+  }).catch(function(){});
+</script>
+</body>
+</html>
