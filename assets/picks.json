@@ -1,55 +1,55 @@
 {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "items": [
     {
-      "cat": "搞钱 · CLAUDE CODE",
-      "chip": "547 条 / 盲测跑赢 16 点",
-      "intro": "多 Agent 流水线抓取 547 条 r/ValueInvesting 荐股，剥离点赞等热度信号后按推理质量盲评打分；9 月盲测中 Claude 选股组合 +5.2%，散户组合 -10.8%，标普同期 +2.4%。",
-      "name": "547 条散户荐股盲测：只看推理质量，照样跑赢大盘",
+      "cat": "内容创作 · AI 短片",
+      "chip": "全流程无人动手 / Whisper 质检",
+      "intro": "一位发帖者让 Claude Code 独立走完短片全流程：写剧本、本地 TTS 配音、生成音乐、无头 Chrome 渲染画面、ffmpeg 混音，成片后还跑了一遍 Whisper 转写，检查有没有句子被截断。",
+      "name": "Agent 一个人拍完一部短片：写剧本、配音、作曲、剪片全包",
       "no": 1,
-      "promptEn": "Build a pipeline that collects the last [500] stock recommendation posts from [subreddit] and strips out upvotes, comment counts, usernames, and any other popularity signals. Then have separate agents score each pick blind on reasoning quality using this rubric: [e.g., thesis clarity, evidence, risk acknowledgment, valuation logic]. When done, save a ranked CSV and a short report on what the top-scored picks had in common, and show me the rubric and a sample of scores before running the full batch.",
-      "promptZh": "建一条流水线，收集 [subreddit] 最近 [500] 条荐股帖，剥离点赞数、评论数、用户名等一切热度信号。再让不同的 Agent 按这套评分标准对每只推荐股做推理质量盲评：[例如论点清晰度、证据、风险意识、估值逻辑]。完成后保存一份排名 CSV 和一份简短报告，总结高分推荐的共同点；跑完整批之前，先给我看评分标准和一份评分样本。",
-      "url": "https://agentusecases.ai/use-case/score-reddit-investing-picks-blind-on-reasoning-quality"
+      "promptEn": "Help me make a [length, e.g. 60-second] short film about [premise] in the folder [path]. Write the script, generate voiceover with a local text-to-speech tool, create or source background music, render the visuals as frames, and assemble everything with ffmpeg. Finish with one playable file named [filename] and a short note on how to re-render it.",
+      "promptZh": "帮我制作一部[时长，例如 60 秒]的短片，主题是[前提]，放在[文件夹路径]。写剧本，用本地文字转语音工具生成配音，创作或找一段背景音乐，把画面渲染成帧，最后用 ffmpeg 组装成片。完成时交付一个可播放文件[文件名]，并附一段简短说明，讲清楚如何重新渲染。",
+      "url": "https://agentusecases.ai/use-case/produce-a-short-film-end-to-end-with-an-agent"
     },
     {
-      "cat": "搞钱 · GROK BOT",
-      "chip": "4 年记录 / 几小时复盘",
-      "intro": "发帖人把 Grok Bot 当了两周「第二大脑」，管任务、生意调研、频道增长和 YouTube 剪辑；给它 4 年币安导出记录后，几小时内做出交互式仪表盘，重建账户历史、定位亏损来源。",
-      "name": "4 年币安交易记录喂给 Grok，几小时出亏损复盘仪表盘",
+      "cat": "效率工具 · 视频剪辑",
+      "chip": "25 个账号在用 / 手机拍完自动剪",
+      "intro": "一位用户在个人电脑上搭了一条剪辑流水线：手机拍的素材丢进文件夹就自动开工，Whisper 转写、去掉停顿与口头禅，Claude 先审剪辑清单，再由 ffmpeg、OpenCV 与 rembg 渲染成片、短视频与缩略图。",
+      "name": "手机拍完丢进文件夹，剪辑流水线自己跑完",
       "no": 2,
-      "promptEn": "Help me organize my life and projects. Sort this list of tasks into priorities and set up a simple tracker I can check each day: [paste tasks]. Then research [business idea] and give me a one-page summary of the market, competitors, and a first step, and go through my exported [exchange name] transaction history in [file] to summarize my trades, gains and losses by year. Don't take any actions on my accounts, just report.",
-      "promptZh": "帮我整理生活和项目。把这份任务清单按优先级排好，再搭一个我每天能查看的简单跟踪表：[粘贴任务]。然后调研 [商业想法]，给一页纸的市场、竞品和第一步总结；再通读我导出的 [交易所名称] 交易记录 [文件]，按年份汇总我的交易、盈亏。不要在我的账户上做任何操作，只汇报。",
-      "url": "https://agentusecases.ai/use-case/track-tasks-research-ideas-and-review-crypto-history-with-gr"
+      "promptEn": "I film short clips on my phone and move them to [folder path] on my computer. Set up a repeatable pipeline using free command-line tools like ffmpeg that takes the clips in that folder and produces one finished video with [trims, cuts, captions, music, resolution]. A finished job is one script I can run on a new folder of clips, and a sample output from my current files. Never overwrite the original clips.",
+      "promptZh": "我用手机拍短视频，传到电脑上的[文件夹路径]。用 ffmpeg 这类免费命令行工具搭一条可重复使用的流水线：读取该文件夹里的素材，产出一条带[剪辑、裁切、字幕、音乐、分辨率]的成片。完成的标志是：一个能在新文件夹上直接跑的脚本，外加一份用我现有素材做出的样片。绝不要覆盖原始素材。",
+      "url": "https://agentusecases.ai/use-case/automate-video-editing-on-a-personal-pc"
     },
     {
-      "cat": "知识管理 · CUSTOM AGENT",
-      "chip": "30 分钟 → 2–5 分钟",
-      "intro": "一位语言老师课上在 Notion 记粗糙笔记，Agent 过夜转成格式化反馈文档：纠错、讲解、错误模式总结和针对性作业；反馈时间从每名学生约 30 分钟降到 2–5 分钟，内容反而更深。",
-      "name": "课堂笔记过一夜，变成每人一份专属反馈单",
+      "cat": "生活效率 · 一周食谱",
+      "chip": "每周 1–2 小时 → 一次批准",
+      "intro": "一个 Claude Code 技能把 Pinterest 与 Instagram 收藏的菜谱变成一周晚饭计划：查天气与 pantry、按预算在 Whole Foods 与 Instacart 之间比价，生成 HTML 预览，批准后才把购物车装满，不结账。",
+      "name": "收藏夹里的菜谱，变成一周晚饭 + 已装好的购物车",
       "no": 3,
-      "promptEn": "I teach [language] to [level] students. Here are my lesson notes for [student name]: [paste notes with their errors and topics covered]. Write a formatted feedback document with their corrections, a short clear explanation of each mistake, and 5 to 8 homework exercises targeting those specific errors. Keep the tone [encouraging/direct], and finish with the document ready to copy into [Google Docs/Word].",
-      "promptZh": "我教 [语言]，学生是 [水平]。这是我给 [学生姓名] 的课堂笔记：[粘贴含错误和讲过内容的笔记]。写一份格式化的反馈文档，包含纠错、每个错误的简短清晰讲解，以及 5 到 8 道针对这些具体错误的家庭作业。语气保持 [鼓励/直接]，最后把文档做成可直接复制进 [Google Docs/Word] 的样子。",
-      "url": "https://agentusecases.ai/use-case/turn-lesson-notes-into-tailored-student-feedback-documents"
+      "promptEn": "Take the recipes I saved in [Pinterest board or Instagram collection link] and pick [number] for this week's dinners for [number] people. Combine the ingredients into one shopping list, check it against my budget of [$ amount], and show me the plan. After I approve it, fill my [Whole Foods or Instacart] cart in the browser, then stop and don't check out.",
+      "promptZh": "把我收藏在[Pinterest 画板或 Instagram 收藏夹链接]里的菜谱拿出来，挑[数量]道做这周[人数]人的晚饭。把食材合并成一张购物清单，对照我[$金额]的预算核对，方案先给我看。等我批准后，再把购物车在浏览器里装好（[Whole Foods 或 Instacart]），装完就停，不要结账。",
+      "url": "https://agentusecases.ai/use-case/turn-saved-recipes-into-a-weekly-meal-plan-and-carts"
     },
     {
-      "cat": "内容创作 · CLAUDE CODE",
-      "chip": "2 小时 / 零手写代码",
-      "intro": "作者用 Claude Code 小步迭代搭了一个翻译工具：粘贴文本、网址或本地文件路径都能翻；接过一个博客链接后，抓取首页、找到头两篇文章翻成中文，全程零手写代码。",
-      "name": "零手写代码，2 小时搭一个自己的翻译 Agent",
+      "cat": "搞钱省钱 · 保险账单",
+      "chip": "$1,316 → $723.83 / 3 分钟算清",
+      "intro": "作者把 Aetna 的理赔说明与保单丢给 Claude Code，约 3 分钟讲清了拒赔原因，并发现账单上 1,316 美元的“应付额”是原价，按合约价实际只需 723.83 美元，而这笔钱他已经付过了。",
+      "name": "保险拒赔别先认：3 分钟算清你到底该付多少",
       "no": 4,
-      "promptEn": "Build me a small translation tool that takes either pasted text, a URL, or a local file path and translates it into [target language]. Fetch the page or read the file, keep the original formatting and headings, and save the result as [output file name]. Test it by translating [a sample URL or file] and show me the result, then tell me how to run it myself.",
-      "promptZh": "给我做一个小型翻译工具，接受粘贴文本、网址或本地文件路径，翻译成 [目标语言]。抓取页面或读取文件，保持原文格式和标题，保存结果为 [输出文件名]。用 [一个示例网址或文件] 翻译测试给我看结果，再告诉我自己怎么运行它。",
-      "url": "https://agentusecases.ai/use-case/build-a-translation-agent-for-text-urls-and-files"
+      "promptEn": "I'm putting my Explanation of Benefits at [path to EOB file] and my policy documents in [folder path] in the same folder. Read them and explain why this claim was denied or reduced, what I actually owe, and whether the amount matches my plan's deductible, copay and coinsurance. Give me a short plain-English summary plus the exact policy language you relied on, and do not contact anyone or file anything.",
+      "promptZh": "我把理赔说明（EOB）放在[EOB 文件路径]，保单文件放在[文件夹路径]，都在同一个文件夹里。请读完告诉我：这笔理赔为什么被拒或被扣减、我实际应该付多少、金额是否符合保单的免赔额、自付额和共保比例。给一段简短的 plain-English 总结，再附上你依据的保单原文，不要联系任何人、也不要提交任何东西。",
+      "url": "https://agentusecases.ai/use-case/explain-a-denied-insurance-claim-from-eob-and-policy"
     },
     {
-      "cat": "生活效率 · META MUSE",
-      "chip": "26,092 → 1,712 封",
-      "intro": "发帖人用 Muse 当了一周私人助理：自主清掉 24,383 封推广与更新类邮件，给 4 个朋友订了多伦多保龄球之夜、协调全组、拆分账单并跟踪还款，直到所有人结清。",
-      "name": "一周当私人助理：2.6 万封邮件清到 1,712 封，还约了保龄球局",
+      "cat": "做产品 · 单人 SaaS",
+      "chip": "只在决策点打扰 / 出货量大变",
+      "intro": "一位单人 SaaS 创始人让 Claude Code 写大部分代码，并搭了一层无人值守控制层：Agent 通过 Telegram 长轮询接指令，只在需要批准、真报错或要决策时才打断他。",
+      "name": "一个人跑 SaaS：Agent 只在需要你时才发短信",
       "no": 5,
-      "promptEn": "Act as my personal assistant this week. Check my inbox and draft replies to anything that needs one, but show me the drafts before sending. Then plan a [activity, e.g. bowling] night for [number] people in [city] on [date range], find a venue with availability, and track who owes what for the split. Pause and show me the details before booking anything or sending any messages, and finish with a summary of what is done and what is still open.",
-      "promptZh": "这周当我的私人助理。检查我的收件箱，给需要回复的邮件起草回复，但先给我看草稿再发。然后为 [人数] 人在 [城市] [日期范围] 策划一场 [活动，例如保龄球] 之夜，找有空位的场馆，并记录分摊费用里谁欠谁多少。预订或发消息之前先停下来给我看细节，最后汇总已完成和仍待办的事项。",
-      "url": "https://agentusecases.ai/use-case/run-a-personal-assistant-that-handles-email-and-books-group-"
+      "promptEn": "Work on my codebase at [path] to ship [feature or bug list], and run the tests as you go. When you need a decision or hit something you can't resolve, send me a short message at [text or chat channel] with your question and options, then wait for my reply. Finish each task with a summary of changes and a branch or pull request, and don't deploy to production without my approval.",
+      "promptZh": "在[代码路径]上推进[功能或 bug 清单]，边做边跑测试。需要决策或遇到解决不了的问题时，通过[短信或聊天渠道]给我发一条简短消息，附上问题和选项，然后等我回复再继续。每个任务结束时给一份改动总结和分支或 PR，没有我的批准不要部署到生产环境。",
+      "url": "https://agentusecases.ai/use-case/run-a-solo-saas-with-an-agent-that-texts-you"
     }
   ]
 }
