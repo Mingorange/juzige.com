@@ -124,28 +124,28 @@
   <!-- 橘子精选 · 每日 Agent 案例 -->
   <section class="picks" aria-label="橘子精选" data-src="assets/picks.json">
     <div class="picks-head">
-      <div class="picks-titlerow"><span class="badge">每日更新</span><h2>橘子精选</h2><span class="picks-date">2026 年 11 月 24 日</span></div>
+      <div class="picks-titlerow"><span class="badge">每日更新</span><h2>橘子精选</h2><span class="picks-date">2026 年 11 月 25 日</span></div>
       <p class="picks-sub">真实 Agent 案例 · 提示词拿走就能用</p>
     </div>
 
     <div class="pick" data-i="0">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">01</span>
-        <span class="pick-main"><span class="pick-name">Agent 一个人拍完一部短片：写剧本、配音、作曲、剪片全包</span></span>
+        <span class="pick-main"><span class="pick-name">非程序员用周末时间，做出第一单的市场调研 SaaS</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">内容创作 · AI 短片</span> · 全流程无人动手 / Whisper 质检</p>
-        <p class="pick-intro">一位发帖者让 Claude Code 独立走完短片全流程：写剧本、本地 TTS 配音、生成音乐、无头 Chrome 渲染画面、ffmpeg 混音，成片后还跑了一遍 Whisper 转写，检查有没有句子被截断。</p>
+        <p class="pick-bmeta"><span class="pick-cat">做产品 · Replit Agent</span> · 首单 / 8–9 个月</p>
+        <p class="pick-intro">一位非程序员用 Replit Agent 做了个市场调研 SaaS，基本只在周末干活：第一版 2–3 个月上线，随后 5–6 个月按 Reddit 用户反馈打磨到真正好用，还上了 Product Hunt。零付费推广，流量和反馈都来自 Reddit 自然帖；第一单在发帖前一个月到手。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">帮我制作一部[时长，例如 60 秒]的短片，主题是[前提]，放在[文件夹路径]。写剧本，用本地文字转语音工具生成配音，创作或找一段背景音乐，把画面渲染成帧，最后用 ffmpeg 组装成片。完成时交付一个可播放文件[文件名]，并附一段简短说明，讲清楚如何重新渲染。</pre>
+        <pre class="pick-prompt">帮我为[目标客户]做一个[产品类型，例如市场调研工具]网页应用。先提出核心功能和一个能拿给人看的简单第一版，然后一步步搭建，包含注册、[核心功能]和收款方式。在连接任何收款账户或正式发布之前，先停下来问我。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/produce-a-short-film-end-to-end-with-an-agent" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/build-and-launch-a-market-research-saas-with-replit" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">Help me make a [length, e.g. 60-second] short film about [premise] in the folder [path]. Write the script, generate voiceover with a local text-to-speech tool, create or source background music, render the visuals as frames, and assemble everything with ffmpeg. Finish with one playable file named [filename] and a short note on how to re-render it.</pre>
+          <pre class="pick-prompt pick-prompt-en">Help me build a [type of product, e.g. market research tool] web app for [target customer]. Start by proposing the core features and a simple first version I can show people, then build it step by step with sign-up, [key feature] and a way to take payment. Pause and ask me before you connect any payment account or publish it live.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -153,21 +153,21 @@
     <div class="pick" data-i="1">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">02</span>
-        <span class="pick-main"><span class="pick-name">手机拍完丢进文件夹，剪辑流水线自己跑完</span></span>
+        <span class="pick-main"><span class="pick-name">把 Obsidian 笔记库交给 Agent，每天发议程、晚上给复盘</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">效率工具 · 视频剪辑</span> · 25 个账号在用 / 手机拍完自动剪</p>
-        <p class="pick-intro">一位用户在个人电脑上搭了一条剪辑流水线：手机拍的素材丢进文件夹就自动开工，Whisper 转写、去掉停顿与口头禅，Claude 先审剪辑清单，再由 ffmpeg、OpenCV 与 rembg 渲染成片、短视频与缩略图。</p>
+        <p class="pick-bmeta"><span class="pick-cat">知识管理 · OpenClaw</span> · 每日议程 + 晚间复盘</p>
+        <p class="pick-intro">作者用 OpenClaw 跑了一个 Agent，直接连他的 Obsidian 笔记库：任务、日历和每日笔记都在库里，笔记库就是唯一事实来源。每天早上发当日议程，白天跟进进度，晚上发带效率分和反思问题的复盘；手机上用 Discord 对话，随时建任务、改期、打卡习惯。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">我用手机拍短视频，传到电脑上的[文件夹路径]。用 ffmpeg 这类免费命令行工具搭一条可重复使用的流水线：读取该文件夹里的素材，产出一条带[剪辑、裁切、字幕、音乐、分辨率]的成片。完成的标志是：一个能在新文件夹上直接跑的脚本，外加一份用我现有素材做出的样片。绝不要覆盖原始素材。</pre>
+        <pre class="pick-prompt">连接我的 Obsidian 笔记库（位于[笔记库路径]）和我的[Discord/聊天应用]。每天早上[时间]，根据我的任务和笔记发一份议程，晚上跟进进度。当我发消息时，在笔记库里创建或重新安排任务、标记习惯已完成；在删除或覆盖任何笔记之前先问我。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/automate-video-editing-on-a-personal-pc" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/run-a-personal-assistant-over-an-obsidian-vault" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">I film short clips on my phone and move them to [folder path] on my computer. Set up a repeatable pipeline using free command-line tools like ffmpeg that takes the clips in that folder and produces one finished video with [trims, cuts, captions, music, resolution]. A finished job is one script I can run on a new folder of clips, and a sample output from my current files. Never overwrite the original clips.</pre>
+          <pre class="pick-prompt pick-prompt-en">Connect to my Obsidian vault at [vault path] and my [Discord/chat app]. Every morning at [time], send me an agenda built from my tasks and notes, and check in on progress in the evening. When I message you, create or reschedule tasks and mark habits done in the vault; ask me before you delete or overwrite any note.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -175,21 +175,21 @@
     <div class="pick" data-i="2">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">03</span>
-        <span class="pick-main"><span class="pick-name">收藏夹里的菜谱，变成一周晚饭 + 已装好的购物车</span></span>
+        <span class="pick-main"><span class="pick-name">7 天 62 封邮件：Agent 先起草，你只花 12 分钟复核</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">生活效率 · 一周食谱</span> · 每周 1–2 小时 → 一次批准</p>
-        <p class="pick-intro">一个 Claude Code 技能把 Pinterest 与 Instagram 收藏的菜谱变成一周晚饭计划：查天气与 pantry、按预算在 Whole Foods 与 Instacart 之间比价，生成 HTML 预览，批准后才把购物车装满，不结账。</p>
+        <p class="pick-bmeta"><span class="pick-cat">效率 · Claude Cowork</span> · 62 封 / 7 天 · 59 封原样通过</p>
+        <p class="pick-intro">作者让 Agent 在职业邮箱上跑了一周：先喂约 180 封历史邮件和一份业务背景文档学语气，把活拆成先分类再处理，并立规矩——投诉、纠纷、合同问题一律转人工。第 7 天 Agent 处理了 62 封邮件，59 封原样通过，复核只要 12 分钟。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">把我收藏在[Pinterest 画板或 Instagram 收藏夹链接]里的菜谱拿出来，挑[数量]道做这周[人数]人的晚饭。把食材合并成一张购物清单，对照我[$金额]的预算核对，方案先给我看。等我批准后，再把购物车在浏览器里装好（[Whole Foods 或 Instacart]），装完就停，不要结账。</pre>
+        <pre class="pick-prompt">处理我[邮箱账号]过去[天数]天内需要回复的邮件。对每一封，用我过去已发邮件作参考，按我的语气写一封草稿回复，只保存为草稿，不要发送。完成后给我一份草稿清单，并标出哪些地方你不得不猜测事实、日期或承诺。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/turn-saved-recipes-into-a-weekly-meal-plan-and-carts" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/let-an-ai-agent-read-and-draft-replies-in-your-inbox" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">Take the recipes I saved in [Pinterest board or Instagram collection link] and pick [number] for this week&#x27;s dinners for [number] people. Combine the ingredients into one shopping list, check it against my budget of [$ amount], and show me the plan. After I approve it, fill my [Whole Foods or Instacart] cart in the browser, then stop and don&#x27;t check out.</pre>
+          <pre class="pick-prompt pick-prompt-en">Go through my inbox for [email account] over the last [number] days and read every message that needs a reply. For each one, write a draft reply in my voice, using my past sent emails as a guide, and save it as a draft only. Do not send anything; when you are finished, give me a list of the drafts and flag any where you had to guess at facts, dates or commitments.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -197,21 +197,21 @@
     <div class="pick" data-i="3">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">04</span>
-        <span class="pick-main"><span class="pick-name">保险拒赔别先认：3 分钟算清你到底该付多少</span></span>
+        <span class="pick-main"><span class="pick-name">给书店搭 WhatsApp 接单助手：一单 $500 的 n8n 活</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">搞钱省钱 · 保险账单</span> · $1,316 → $723.83 / 3 分钟算清</p>
-        <p class="pick-intro">作者把 Aetna 的理赔说明与保单丢给 Claude Code，约 3 分钟讲清了拒赔原因，并发现账单上 1,316 美元的“应付额”是原价，按合约价实际只需 723.83 美元，而这笔钱他已经付过了。</p>
+        <p class="pick-bmeta"><span class="pick-cat">做产品 · n8n</span> · $500 / 一单</p>
+        <p class="pick-intro">为一家书店老板做的 n8n 接单系统：消息先进 AI 分类器，语音转文字、图片识商品，Supabase 搜索查书；确认购买后由下单 Agent 锁进下单状态，收齐收货信息、走货到付款或银行转账。客户得到 24/7 即时回复，老板省下大量重复问答和查库存的时间。运行成本约 Supabase $25/月加 VPS $100/年。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">我把理赔说明（EOB）放在[EOB 文件路径]，保单文件放在[文件夹路径]，都在同一个文件夹里。请读完告诉我：这笔理赔为什么被拒或被扣减、我实际应该付多少、金额是否符合保单的免赔额、自付额和共保比例。给一段简短的 plain-English 总结，再附上你依据的保单原文，不要联系任何人、也不要提交任何东西。</pre>
+        <pre class="pick-prompt">帮我为[商家名称]搭建一个 n8n 工作流，接收 WhatsApp 消息。它要能转录语音、描述图片，并判断顾客是否想买[商品]。如果是，把订单详情交给第二个 Agent，在[订单系统]里准备订单。在下单或给顾客发回复之前，先停下来等我批准。测试语音和测试照片各出一份正确的订单摘要，就算完成。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/explain-a-denied-insurance-claim-from-eob-and-policy" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/run-a-local-business-s-whatsapp-orders-with-an-ai-assistant" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">I&#x27;m putting my Explanation of Benefits at [path to EOB file] and my policy documents in [folder path] in the same folder. Read them and explain why this claim was denied or reduced, what I actually owe, and whether the amount matches my plan&#x27;s deductible, copay and coinsurance. Give me a short plain-English summary plus the exact policy language you relied on, and do not contact anyone or file anything.</pre>
+          <pre class="pick-prompt pick-prompt-en">Help me build an n8n workflow for [business name] that receives incoming WhatsApp messages. It should transcribe voice notes, describe any images, and work out whether the customer wants to buy [products]. If so, it should pass the order details to a second agent that prepares the order in [order system]. Pause for my approval before placing any order or sending any reply to a customer. You&#x27;re done when a test voice note and a test photo each produce the correct order summary.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -219,21 +219,21 @@
     <div class="pick" data-i="4">
       <button class="pick-head" type="button" aria-expanded="false">
         <span class="pick-no">05</span>
-        <span class="pick-main"><span class="pick-name">一个人跑 SaaS：Agent 只在需要你时才发短信</span></span>
+        <span class="pick-main"><span class="pick-name">给 Agent $25 买礼物：走到结账，卡在验证码</span></span>
         <span class="pick-arrow" aria-hidden="true">⌄</span>
       </button>
       <div class="pick-body" hidden>
-        <p class="pick-bmeta"><span class="pick-cat">做产品 · 单人 SaaS</span> · 只在决策点打扰 / 出货量大变</p>
-        <p class="pick-intro">一位单人 SaaS 创始人让 Claude Code 写大部分代码，并搭了一层无人值守控制层：Agent 通过 Telegram 长轮询接指令，只在需要批准、真报错或要决策时才打断他。</p>
+        <p class="pick-bmeta"><span class="pick-cat">生活效率 · ChatGPT Agent</span> · $25 虚拟卡 / 走到结账</p>
+        <p class="pick-intro">作者给 Agent 一张 $25 的虚拟借记卡买礼物：Agent 自己逛商店、比商品、一路走到结账，全程没人帮忙；但最后一公里没过去——验证码、动态定价和拦截自动化浏览器的商店把它挡住了。教训是：身份验证、反机器人检查和付款确认要留给人处理。</p>
         <div class="pick-plabel">抄作业提示词 · 中文版</div>
-        <pre class="pick-prompt">在[代码路径]上推进[功能或 bug 清单]，边做边跑测试。需要决策或遇到解决不了的问题时，通过[短信或聊天渠道]给我发一条简短消息，附上问题和选项，然后等我回复再继续。每个任务结束时给一份改动总结和分支或 PR，没有我的批准不要部署到生产环境。</pre>
+        <pre class="pick-prompt">为[收礼人及其兴趣]找一份礼物，总价不超过 $[25]（含运费和税）。逛几家店，至少比较 [3] 个选项的价格、评价和送达时间，并推荐一个、说明理由。带到结账页面后停下，不要输入付款信息或下单，把商品、最终价格和收货地址给我确认。如果某家店拦截你或弹出验证码，跳过它并告诉我是哪一家。</pre>
         <div class="pick-actions">
           <button class="pick-copy" type="button">复制提示词</button>
-          <a class="pick-src" href="https://agentusecases.ai/use-case/run-a-solo-saas-with-an-agent-that-texts-you" target="_blank" rel="noopener">原文案例 →</a>
+          <a class="pick-src" href="https://agentusecases.ai/use-case/have-an-ai-agent-shop-for-a-gift-on-a-25-budget" target="_blank" rel="noopener">原文案例 →</a>
         </div>
         <button class="pick-entoggle" type="button" aria-expanded="false">英文原版 ▾</button>
         <div class="pick-en" hidden>
-          <pre class="pick-prompt pick-prompt-en">Work on my codebase at [path] to ship [feature or bug list], and run the tests as you go. When you need a decision or hit something you can&#x27;t resolve, send me a short message at [text or chat channel] with your question and options, then wait for my reply. Finish each task with a summary of changes and a branch or pull request, and don&#x27;t deploy to production without my approval.</pre>
+          <pre class="pick-prompt pick-prompt-en">Find a gift for [recipient, with their interests] under $[25] total including shipping and tax. Browse a few stores, compare at least [3] options on price, reviews and delivery time, and recommend one with reasons. Take it to the checkout page but stop before entering payment details or placing the order, and show me the item, final price and shipping address for approval. If a store blocks you or shows a CAPTCHA, skip it and tell me which one.</pre>
           <button class="pick-copyen" type="button">复制英文版</button>
         </div>
       </div>
@@ -484,7 +484,7 @@
 </script>
 <script>
 (function(){
-  var PICKS = [{"name": "Agent 一个人拍完一部短片：写剧本、配音、作曲、剪片全包", "intro": "一位发帖者让 Claude Code 独立走完短片全流程：写剧本、本地 TTS 配音、生成音乐、无头 Chrome 渲染画面、ffmpeg 混音，成片后还跑了一遍 Whisper 转写，检查有没有句子被截断。", "prompt": "帮我制作一部[时长，例如 60 秒]的短片，主题是[前提]，放在[文件夹路径]。写剧本，用本地文字转语音工具生成配音，创作或找一段背景音乐，把画面渲染成帧，最后用 ffmpeg 组装成片。完成时交付一个可播放文件[文件名]，并附一段简短说明，讲清楚如何重新渲染。", "promptEn": "Help me make a [length, e.g. 60-second] short film about [premise] in the folder [path]. Write the script, generate voiceover with a local text-to-speech tool, create or source background music, render the visuals as frames, and assemble everything with ffmpeg. Finish with one playable file named [filename] and a short note on how to re-render it.", "url": "https://agentusecases.ai/use-case/produce-a-short-film-end-to-end-with-an-agent"}, {"name": "手机拍完丢进文件夹，剪辑流水线自己跑完", "intro": "一位用户在个人电脑上搭了一条剪辑流水线：手机拍的素材丢进文件夹就自动开工，Whisper 转写、去掉停顿与口头禅，Claude 先审剪辑清单，再由 ffmpeg、OpenCV 与 rembg 渲染成片、短视频与缩略图。", "prompt": "我用手机拍短视频，传到电脑上的[文件夹路径]。用 ffmpeg 这类免费命令行工具搭一条可重复使用的流水线：读取该文件夹里的素材，产出一条带[剪辑、裁切、字幕、音乐、分辨率]的成片。完成的标志是：一个能在新文件夹上直接跑的脚本，外加一份用我现有素材做出的样片。绝不要覆盖原始素材。", "promptEn": "I film short clips on my phone and move them to [folder path] on my computer. Set up a repeatable pipeline using free command-line tools like ffmpeg that takes the clips in that folder and produces one finished video with [trims, cuts, captions, music, resolution]. A finished job is one script I can run on a new folder of clips, and a sample output from my current files. Never overwrite the original clips.", "url": "https://agentusecases.ai/use-case/automate-video-editing-on-a-personal-pc"}, {"name": "收藏夹里的菜谱，变成一周晚饭 + 已装好的购物车", "intro": "一个 Claude Code 技能把 Pinterest 与 Instagram 收藏的菜谱变成一周晚饭计划：查天气与 pantry、按预算在 Whole Foods 与 Instacart 之间比价，生成 HTML 预览，批准后才把购物车装满，不结账。", "prompt": "把我收藏在[Pinterest 画板或 Instagram 收藏夹链接]里的菜谱拿出来，挑[数量]道做这周[人数]人的晚饭。把食材合并成一张购物清单，对照我[$金额]的预算核对，方案先给我看。等我批准后，再把购物车在浏览器里装好（[Whole Foods 或 Instacart]），装完就停，不要结账。", "promptEn": "Take the recipes I saved in [Pinterest board or Instagram collection link] and pick [number] for this week's dinners for [number] people. Combine the ingredients into one shopping list, check it against my budget of [$ amount], and show me the plan. After I approve it, fill my [Whole Foods or Instacart] cart in the browser, then stop and don't check out.", "url": "https://agentusecases.ai/use-case/turn-saved-recipes-into-a-weekly-meal-plan-and-carts"}, {"name": "保险拒赔别先认：3 分钟算清你到底该付多少", "intro": "作者把 Aetna 的理赔说明与保单丢给 Claude Code，约 3 分钟讲清了拒赔原因，并发现账单上 1,316 美元的“应付额”是原价，按合约价实际只需 723.83 美元，而这笔钱他已经付过了。", "prompt": "我把理赔说明（EOB）放在[EOB 文件路径]，保单文件放在[文件夹路径]，都在同一个文件夹里。请读完告诉我：这笔理赔为什么被拒或被扣减、我实际应该付多少、金额是否符合保单的免赔额、自付额和共保比例。给一段简短的 plain-English 总结，再附上你依据的保单原文，不要联系任何人、也不要提交任何东西。", "promptEn": "I'm putting my Explanation of Benefits at [path to EOB file] and my policy documents in [folder path] in the same folder. Read them and explain why this claim was denied or reduced, what I actually owe, and whether the amount matches my plan's deductible, copay and coinsurance. Give me a short plain-English summary plus the exact policy language you relied on, and do not contact anyone or file anything.", "url": "https://agentusecases.ai/use-case/explain-a-denied-insurance-claim-from-eob-and-policy"}, {"name": "一个人跑 SaaS：Agent 只在需要你时才发短信", "intro": "一位单人 SaaS 创始人让 Claude Code 写大部分代码，并搭了一层无人值守控制层：Agent 通过 Telegram 长轮询接指令，只在需要批准、真报错或要决策时才打断他。", "prompt": "在[代码路径]上推进[功能或 bug 清单]，边做边跑测试。需要决策或遇到解决不了的问题时，通过[短信或聊天渠道]给我发一条简短消息，附上问题和选项，然后等我回复再继续。每个任务结束时给一份改动总结和分支或 PR，没有我的批准不要部署到生产环境。", "promptEn": "Work on my codebase at [path] to ship [feature or bug list], and run the tests as you go. When you need a decision or hit something you can't resolve, send me a short message at [text or chat channel] with your question and options, then wait for my reply. Finish each task with a summary of changes and a branch or pull request, and don't deploy to production without my approval.", "url": "https://agentusecases.ai/use-case/run-a-solo-saas-with-an-agent-that-texts-you"}]; ask me before creating any CRM records.", "url": "https://agentusecases.ai/use-case/spot-youtube-comment-leads-and-send-to-crm"}, {"name": "每天 7:30，邮件和日历自己扫一遍再汇报", "intro": "一位用户让 Claude 用 Chrome 打开 Outlook 邮箱和日历（因为 IT 封了直接同步），每天 7:30 自动扫两边邮箱和日历：把 Outlook 的新事件抄进 Gmail 日历，邮件汇总后按优先级排好；之后人做一次 brain dump，Claude 跟踪任务、把未完成项带到第二天，还会提醒人别逃避某项任务。发帖人称「改变生活」，无硬性数字。", "prompt": "每个工作日 [早上 7:30]，在浏览器里打开我的 Outlook 邮箱和日历。把新事件抄进 Gmail 日历，不要产生重复；然后汇总未读邮件、按优先级排序，把待办事项加进任务清单。不要回复、删除或发送任何内容；先把汇总和日历改动清单给我看，等我批准后再执行。", "promptEn": "Every weekday at [7:30 a.m.], open my Outlook email and calendar in the browser. Copy any new events into my Gmail calendar without creating duplicates, then summarize my unread email and rank it by priority, and add any action items to a task list. Do not reply, delete, or send anything; show me the summary and the list of calendar changes before you make them, and stop once I've approved.", "url": "https://agentusecases.ai/use-case/sweep-email-and-sync-calendars-each-morning"}, {"name": "健身、食谱、每周采购，一台 Agent 全包", "intro": "一位用户用 Claude Agent 管宏量营养素、每周采购与备餐、编训练计划；另搭了一个带语音唤醒的个人助理 App，能买东西、订餐厅、管邮箱日历，还给他买过一套他自认「史上最好」的万圣节服装；手机语音流程目前还有点延迟。买东西走预付卡，卡里只留几百美元控风险。", "prompt": "做我的健身与饮食规划助理。我的目标是 [目标]，身体数据是 [身高、体重、活动量]，饮食是 [饮食方式或忌口]，每周食材预算 [金额]。给我每日宏量营养素目标、一份 7 天食谱、一张按超市分区归类的采购清单，和一份每周 [天数] 练、用 [现有器械] 的训练计划。", "promptEn": "Act as my fitness and meal planning assistant. My goal is [goal], my stats are [height, weight, activity level], and I eat [diet or restrictions] with a weekly food budget of [amount]. Give me daily macro targets, a 7-day meal plan, a grocery list grouped by store section, and a [number]-day-a-week workout program using [equipment available].", "url": "https://agentusecases.ai/use-case/run-fitness-meal-planning-and-weekly-shops"}, {"name": "AI 帮全家订票：95% 的路走完了，付款还得人来", "intro": "作者让 Meta 的 Muse 帮全家找柏林周末活动：它找到了马戏、定位了票，还会用德语操作；买篮球票时卡在人机验证，Agent 主动停下请人接手。另据报道，Instinct 这类服务能重订行程并用掉积分。", "prompt": "帮我订 [机票/火车票/酒店]，从 [出发地] 到 [目的地]，[日期]，[人数] 人出行，预算 [金额]，偏好 [座位、航司、时间等]。搜几个网站，给我看最好的 2–3 个选项及价格和条件。在输入任何付款信息或确认预订之前，停下来把完整细节给我看；如果遇到人机验证或登录，停下让我接手。", "promptEn": "Help me book [flight/train/hotel] from [origin] to [destination] on [dates] for [number] travelers, with a budget of [amount] and preferences of [seat, airline, times, etc.]. Search a few sites, then show me the best 2-3 options with prices and conditions. Pause and show me the full details before entering any payment info or confirming a booking, and if you hit a human check or login, stop and ask me to take over.", "url": "https://agentusecases.ai/use-case/book-travel-with-an-ai-agent"}];
+  var PICKS = [{"name": "非程序员用周末时间，做出第一单的市场调研 SaaS", "intro": "一位非程序员用 Replit Agent 做了个市场调研 SaaS，基本只在周末干活：第一版 2–3 个月上线，随后 5–6 个月按 Reddit 用户反馈打磨到真正好用，还上了 Product Hunt。零付费推广，流量和反馈都来自 Reddit 自然帖；第一单在发帖前一个月到手。", "prompt": "帮我为[目标客户]做一个[产品类型，例如市场调研工具]网页应用。先提出核心功能和一个能拿给人看的简单第一版，然后一步步搭建，包含注册、[核心功能]和收款方式。在连接任何收款账户或正式发布之前，先停下来问我。", "promptEn": "Help me build a [type of product, e.g. market research tool] web app for [target customer]. Start by proposing the core features and a simple first version I can show people, then build it step by step with sign-up, [key feature] and a way to take payment. Pause and ask me before you connect any payment account or publish it live.", "url": "https://agentusecases.ai/use-case/build-and-launch-a-market-research-saas-with-replit"}, {"name": "把 Obsidian 笔记库交给 Agent，每天发议程、晚上给复盘", "intro": "作者用 OpenClaw 跑了一个 Agent，直接连他的 Obsidian 笔记库：任务、日历和每日笔记都在库里，笔记库就是唯一事实来源。每天早上发当日议程，白天跟进进度，晚上发带效率分和反思问题的复盘；手机上用 Discord 对话，随时建任务、改期、打卡习惯。", "prompt": "连接我的 Obsidian 笔记库（位于[笔记库路径]）和我的[Discord/聊天应用]。每天早上[时间]，根据我的任务和笔记发一份议程，晚上跟进进度。当我发消息时，在笔记库里创建或重新安排任务、标记习惯已完成；在删除或覆盖任何笔记之前先问我。", "promptEn": "Connect to my Obsidian vault at [vault path] and my [Discord/chat app]. Every morning at [time], send me an agenda built from my tasks and notes, and check in on progress in the evening. When I message you, create or reschedule tasks and mark habits done in the vault; ask me before you delete or overwrite any note.", "url": "https://agentusecases.ai/use-case/run-a-personal-assistant-over-an-obsidian-vault"}, {"name": "7 天 62 封邮件：Agent 先起草，你只花 12 分钟复核", "intro": "作者让 Agent 在职业邮箱上跑了一周：先喂约 180 封历史邮件和一份业务背景文档学语气，把活拆成先分类再处理，并立规矩——投诉、纠纷、合同问题一律转人工。第 7 天 Agent 处理了 62 封邮件，59 封原样通过，复核只要 12 分钟。", "prompt": "处理我[邮箱账号]过去[天数]天内需要回复的邮件。对每一封，用我过去已发邮件作参考，按我的语气写一封草稿回复，只保存为草稿，不要发送。完成后给我一份草稿清单，并标出哪些地方你不得不猜测事实、日期或承诺。", "promptEn": "Go through my inbox for [email account] over the last [number] days and read every message that needs a reply. For each one, write a draft reply in my voice, using my past sent emails as a guide, and save it as a draft only. Do not send anything; when you are finished, give me a list of the drafts and flag any where you had to guess at facts, dates or commitments.", "url": "https://agentusecases.ai/use-case/let-an-ai-agent-read-and-draft-replies-in-your-inbox"}, {"name": "给书店搭 WhatsApp 接单助手：一单 $500 的 n8n 活", "intro": "为一家书店老板做的 n8n 接单系统：消息先进 AI 分类器，语音转文字、图片识商品，Supabase 搜索查书；确认购买后由下单 Agent 锁进下单状态，收齐收货信息、走货到付款或银行转账。客户得到 24/7 即时回复，老板省下大量重复问答和查库存的时间。运行成本约 Supabase $25/月加 VPS $100/年。", "prompt": "帮我为[商家名称]搭建一个 n8n 工作流，接收 WhatsApp 消息。它要能转录语音、描述图片，并判断顾客是否想买[商品]。如果是，把订单详情交给第二个 Agent，在[订单系统]里准备订单。在下单或给顾客发回复之前，先停下来等我批准。测试语音和测试照片各出一份正确的订单摘要，就算完成。", "promptEn": "Help me build an n8n workflow for [business name] that receives incoming WhatsApp messages. It should transcribe voice notes, describe any images, and work out whether the customer wants to buy [products]. If so, it should pass the order details to a second agent that prepares the order in [order system]. Pause for my approval before placing any order or sending any reply to a customer. You're done when a test voice note and a test photo each produce the correct order summary.", "url": "https://agentusecases.ai/use-case/run-a-local-business-s-whatsapp-orders-with-an-ai-assistant"}, {"name": "给 Agent $25 买礼物：走到结账，卡在验证码", "intro": "作者给 Agent 一张 $25 的虚拟借记卡买礼物：Agent 自己逛商店、比商品、一路走到结账，全程没人帮忙；但最后一公里没过去——验证码、动态定价和拦截自动化浏览器的商店把它挡住了。教训是：身份验证、反机器人检查和付款确认要留给人处理。", "prompt": "为[收礼人及其兴趣]找一份礼物，总价不超过 $[25]（含运费和税）。逛几家店，至少比较 [3] 个选项的价格、评价和送达时间，并推荐一个、说明理由。带到结账页面后停下，不要输入付款信息或下单，把商品、最终价格和收货地址给我确认。如果某家店拦截你或弹出验证码，跳过它并告诉我是哪一家。", "promptEn": "Find a gift for [recipient, with their interests] under $[25] total including shipping and tax. Browse a few stores, compare at least [3] options on price, reviews and delivery time, and recommend one with reasons. Take it to the checkout page but stop before entering payment details or placing the order, and show me the item, final price and shipping address for approval. If a store blocks you or shows a CAPTCHA, skip it and tell me which one.", "url": "https://agentusecases.ai/use-case/have-an-ai-agent-shop-for-a-gift-on-a-25-budget"}]; ask me before creating any CRM records.", "url": "https://agentusecases.ai/use-case/spot-youtube-comment-leads-and-send-to-crm"}, {"name": "每天 7:30，邮件和日历自己扫一遍再汇报", "intro": "一位用户让 Claude 用 Chrome 打开 Outlook 邮箱和日历（因为 IT 封了直接同步），每天 7:30 自动扫两边邮箱和日历：把 Outlook 的新事件抄进 Gmail 日历，邮件汇总后按优先级排好；之后人做一次 brain dump，Claude 跟踪任务、把未完成项带到第二天，还会提醒人别逃避某项任务。发帖人称「改变生活」，无硬性数字。", "prompt": "每个工作日 [早上 7:30]，在浏览器里打开我的 Outlook 邮箱和日历。把新事件抄进 Gmail 日历，不要产生重复；然后汇总未读邮件、按优先级排序，把待办事项加进任务清单。不要回复、删除或发送任何内容；先把汇总和日历改动清单给我看，等我批准后再执行。", "promptEn": "Every weekday at [7:30 a.m.], open my Outlook email and calendar in the browser. Copy any new events into my Gmail calendar without creating duplicates, then summarize my unread email and rank it by priority, and add any action items to a task list. Do not reply, delete, or send anything; show me the summary and the list of calendar changes before you make them, and stop once I've approved.", "url": "https://agentusecases.ai/use-case/sweep-email-and-sync-calendars-each-morning"}, {"name": "健身、食谱、每周采购，一台 Agent 全包", "intro": "一位用户用 Claude Agent 管宏量营养素、每周采购与备餐、编训练计划；另搭了一个带语音唤醒的个人助理 App，能买东西、订餐厅、管邮箱日历，还给他买过一套他自认「史上最好」的万圣节服装；手机语音流程目前还有点延迟。买东西走预付卡，卡里只留几百美元控风险。", "prompt": "做我的健身与饮食规划助理。我的目标是 [目标]，身体数据是 [身高、体重、活动量]，饮食是 [饮食方式或忌口]，每周食材预算 [金额]。给我每日宏量营养素目标、一份 7 天食谱、一张按超市分区归类的采购清单，和一份每周 [天数] 练、用 [现有器械] 的训练计划。", "promptEn": "Act as my fitness and meal planning assistant. My goal is [goal], my stats are [height, weight, activity level], and I eat [diet or restrictions] with a weekly food budget of [amount]. Give me daily macro targets, a 7-day meal plan, a grocery list grouped by store section, and a [number]-day-a-week workout program using [equipment available].", "url": "https://agentusecases.ai/use-case/run-fitness-meal-planning-and-weekly-shops"}, {"name": "AI 帮全家订票：95% 的路走完了，付款还得人来", "intro": "作者让 Meta 的 Muse 帮全家找柏林周末活动：它找到了马戏、定位了票，还会用德语操作；买篮球票时卡在人机验证，Agent 主动停下请人接手。另据报道，Instinct 这类服务能重订行程并用掉积分。", "prompt": "帮我订 [机票/火车票/酒店]，从 [出发地] 到 [目的地]，[日期]，[人数] 人出行，预算 [金额]，偏好 [座位、航司、时间等]。搜几个网站，给我看最好的 2–3 个选项及价格和条件。在输入任何付款信息或确认预订之前，停下来把完整细节给我看；如果遇到人机验证或登录，停下让我接手。", "promptEn": "Help me book [flight/train/hotel] from [origin] to [destination] on [dates] for [number] travelers, with a budget of [amount] and preferences of [seat, airline, times, etc.]. Search a few sites, then show me the best 2-3 options with prices and conditions. Pause and show me the full details before entering any payment info or confirming a booking, and if you hit a human check or login, stop and ask me to take over.", "url": "https://agentusecases.ai/use-case/book-travel-with-an-ai-agent"}];
   (function(){
     var secEl = document.querySelector('.picks');
     if (!secEl || !secEl.getAttribute('data-src') || !window.fetch) return;
