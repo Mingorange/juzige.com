@@ -177,6 +177,9 @@
   .bar-title { font-size: 14px; line-height: 1.25; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .bar-title.dim { color: var(--dim); font-weight: 400; }
   .bar-main .seek { margin-top: 8px; width: 100%; }
+  .bar-speeds { display: flex; gap: 16px; margin-top: 10px; padding-left: 54px; }
+  .bar-speed { background: none; border: none; padding: 0; font-size: 12px; line-height: 1; color: var(--dim); cursor: pointer; }
+  .bar-speed.on { color: var(--text); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -276,6 +279,9 @@ let search = "";
 let fullOpenFor = null;       // date whose 全文 is expanded
 
 const audio = new Audio();
+const RATES = [1, 1.25, 1.5, 2];
+let playRate = (() => { const r = parseFloat(localStorage.getItem("invest-playrate") || "1"); return RATES.includes(r) ? r : 1; })();
+audio.playbackRate = playRate;
 let playingDate = null;
 let isPlaying = false;
 let currentTime = 0;
@@ -415,12 +421,10 @@ function renderMain() {
 
 function renderBar() {
   const bar = $("#playerbar");
-  const playerMeta = (playingDate ? byDate.get(playingDate) : null) || selectedMeta();
-  const sel = selectedMeta();
-  const barTime = (playingDate === selectedDate || playingDate == null) ? currentTime : 0;
-  const barDur = (playingDate === selectedDate || playingDate == null)
-    ? (playDuration || (sel ? sel.duration || 0 : 0))
-    : playDuration;
+  const playerMeta = selectedMeta() || (playingDate ? byDate.get(playingDate) : null);
+  const onLoaded = !!(playerMeta && playerMeta.date === playingDate);
+  const barTime = onLoaded ? currentTime : 0;
+  const barDur = onLoaded ? (playDuration || playerMeta.duration || 0) : (playerMeta ? playerMeta.duration || 0 : 0);
   const max = barDur > 0 ? barDur : 0;
   const pct = max > 0 ? Math.min(100, (barTime / max) * 100) : 0;
   let h = '<div class="bar-in"><div class="bar-row">';
@@ -433,13 +437,24 @@ function renderBar() {
   }
   h += '<p class="clock" id="bar-clock">' + fmtClock(barTime) + " / " + (max > 0 ? fmtClock(max) : "--:--") + "</p>";
   h += "</div>";
-  h += '<input type="range" class="seek" id="bar-seek" aria-label="播放进度" min="0" max="' + (max || 0) + '" step="0.5" value="' + Math.min(barTime, max || 0) + '"' + (!playerMeta || max === 0 ? " disabled" : "") + ' style="background:' + seekGradient(pct) + '">';
-  h += "</div></div></div>";
+  h += '<input type="range" class="seek" id="bar-seek" aria-label="播放进度" min="0" max="' + (max || 0) + '" step="0.5" value="' + Math.min(barTime, max || 0) + '"' + (!playerMeta || max === 0 || (playingDate != null && !onLoaded) ? " disabled" : "") + ' style="background:' + seekGradient(pct) + '">';
+  h += "</div></div>";
+  h += '<div class="bar-speeds" role="group" aria-label="播放速度">';
+  for (const r of RATES) {
+    h += '<button type="button" class="bar-speed' + (r === playRate ? " on" : "") + '" data-rate="' + r + '">' + (r === 1 ? "1.0" : r === 2 ? "2.0" : String(r)) + "</button>";
+  }
+  h += "</div></div>";
   bar.innerHTML = h;
   const tgl = $("#bar-toggle");
   if (tgl) tgl.addEventListener("click", () => { if (playerMeta) togglePlayFor(playerMeta.date); });
   const sk = $("#bar-seek");
   if (sk) sk.addEventListener("input", (e) => seekTo(Number(e.target.value)));
+  bar.querySelectorAll("[data-rate]").forEach((b) => b.addEventListener("click", () => {
+    playRate = parseFloat(b.getAttribute("data-rate"));
+    try { localStorage.setItem("invest-playrate", String(playRate)); } catch (e) { /* ignore */ }
+    audio.playbackRate = playRate;
+    renderBar();
+  }));
 }
 
 /* ------------------------------- playback -------------------------------- */
@@ -451,6 +466,7 @@ function loadAndPlay(date) {
     loadedDate = date;
   }
   playingDate = date;
+  audio.playbackRate = playRate;
   audio.play().catch(() => undefined);
 }
 function selectAndPlay(date) {
