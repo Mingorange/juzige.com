@@ -1,0 +1,41 @@
+{
+  "updated": "2026-11-25",
+  "items": [
+    {
+      "amt": "$25",
+      "title": "fal 额度 · OpenGame Jam 参赛即领",
+      "cta": "去领取 →",
+      "url": "https://opengame.io",
+      "due": "先到先得 · 12 月 18 日结束",
+      "deadline": "2026-12-18",
+      "desc": "图片 / 视频 / 音频 / 3D 生成都能花，橘子哥 11 月 24 日实测到账。11 月 25 日核验 · OpenGame 官方"
+    },
+    {
+      "amt": "4000",
+      "title": "Kiro 积分 · Kiroween 申请即领",
+      "cta": "去申请 →",
+      "url": "https://kiroween.devpost.com/resources",
+      "due": "申请截止 12 月 2 日 04:00",
+      "deadline": "2026-12-02",
+      "desc": "Devpost 提交申请领 4000 credits（需身份核验，审核约 48 小时）；12 月 4 日前兑换，可用到 12 月 31 日。11 月 25 日核验 · Devpost 官方"
+    },
+    {
+      "amt": "免费",
+      "title": "MLH 全球黑客周 · 开源周",
+      "cta": "去参加 →",
+      "url": "https://ghw.mlh.io/events",
+      "due": "12 月 4 日–10 日",
+      "deadline": "2026-12-10",
+      "desc": "线上开源挑战周，全程免费参加，完成挑战赢数字 / 实体周边。11 月 25 日核验 · MLH 官方"
+    },
+    {
+      "amt": "10亿",
+      "title": "混元 Token · 小程序成长计划（二期）",
+      "cta": "去领取 →",
+      "url": "https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/billing/ai-inspire-plan.html",
+      "due": "报名截止 12 月 31 日",
+      "deadline": "2026-12-31",
+      "desc": "10 亿混元 Token＋10 万张生图＋6 个月云开发环境，小程序开发者免费领（限小程序内用）；已有环境改领 120 元代金券。11 月 25 日核验 · 微信开放文档"
+    }
+  ]
+}

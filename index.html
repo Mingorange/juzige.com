@@ -103,6 +103,22 @@
   .pick-copyen{margin-top:9px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
   .picks-foot{margin-top:2px;padding:8px 0 4px;border-top:1px solid var(--line);font-size:12px;color:var(--grey);line-height:1.55;}
   @media (max-width:760px){.pick-body{padding-left:2px;}}
+
+  /* ---------- 双标签页 ---------- */
+  .tabbar{display:flex;gap:8px;margin:0 0 14px;}
+  .tabbtn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 10px;border-radius:14px;border:1px solid var(--line);background:transparent;color:var(--grey);font-family:inherit;font-size:16.5px;font-weight:800;cursor:pointer;letter-spacing:.01em;}
+  .tabbtn .tbadge{font-size:10.5px;font-weight:700;color:#fff;background:var(--sage);border-radius:999px;padding:2px 8px;letter-spacing:.06em;}
+  .tabbtn.active{background:var(--card);color:var(--ink);border-color:var(--orange);box-shadow:0 1px 4px rgba(29,29,31,.06);}
+  .tabbtn.active .tbadge{background:var(--orange);}
+  .wool-date{margin-left:auto;font-size:12.5px;color:var(--grey);white-space:nowrap;}
+  .wool-item{border-top:1px solid var(--line);padding:9px 2px 10px;}
+  .wool-item:first-of-type{border-top:none;}
+  .wool-top{display:flex;align-items:center;gap:9px;}
+  .wool-amt{font-size:16px;font-weight:800;color:var(--orange);white-space:nowrap;}
+  .wool-name{flex:1;min-width:0;font-size:15px;font-weight:700;line-height:1.35;}
+  .wool-desc{margin-top:4px;font-size:13px;line-height:1.55;color:#55555a;}
+  .wool-due{display:inline-block;font-size:11.5px;font-weight:700;color:#b3402a;background:#fbe9e2;border-radius:999px;padding:2px 9px;margin-right:6px;vertical-align:1px;white-space:nowrap;}
+  .wool-go{font-size:13.5px;color:var(--orange);font-weight:700;text-decoration:none;white-space:nowrap;}
 </style>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="59feebcb-7ddd-48f8-94a1-3457c8f643f0"></script>
 </head>
@@ -121,8 +137,40 @@
 </header>
 
 <main>
+  <div class="tabbar" role="tablist">
+    <button class="tabbtn" id="tab-wool" role="tab" aria-selected="false" onclick="showTab('wool')">今日羊毛<span class="tbadge">已核验</span></button>
+    <button class="tabbtn active" id="tab-picks" role="tab" aria-selected="true" onclick="showTab('picks')">橘子精选<span class="tbadge">每日更新</span></button>
+  </div>
+
+  <!-- 今日羊毛 · 已核验福利（数据 assets/wool.json） -->
+  <section class="picks" id="panel-wool" aria-label="今日羊毛" hidden>
+    <div class="picks-head">
+      <div class="picks-titlerow"><span class="badge">已核验</span><h2>今日羊毛</h2><span class="wool-date">2026 年 11 月 25 日</span></div>
+      <p class="picks-sub">只放核验过、还领得到的 · 每条都标截止时间，过期撤下</p>
+    </div>
+    <div id="wool-list">
+    <div class="wool-item">
+      <div class="wool-top"><span class="wool-amt">$25</span><span class="wool-name">fal 额度 · OpenGame Jam 参赛即领</span><a class="wool-go" href="https://opengame.io" target="_blank" rel="noopener">去领取 →</a></div>
+      <p class="wool-desc"><span class="wool-due">先到先得 · 12 月 18 日结束</span>图片 / 视频 / 音频 / 3D 生成都能花，橘子哥 11 月 24 日实测到账。11 月 25 日核验 · OpenGame 官方</p>
+    </div>
+    <div class="wool-item">
+      <div class="wool-top"><span class="wool-amt">4000</span><span class="wool-name">Kiro 积分 · Kiroween 申请即领</span><a class="wool-go" href="https://kiroween.devpost.com/resources" target="_blank" rel="noopener">去申请 →</a></div>
+      <p class="wool-desc"><span class="wool-due">申请截止 12 月 2 日 04:00</span>Devpost 提交申请领 4000 credits（需身份核验，审核约 48 小时）；12 月 4 日前兑换，可用到 12 月 31 日。11 月 25 日核验 · Devpost 官方</p>
+    </div>
+    <div class="wool-item">
+      <div class="wool-top"><span class="wool-amt">免费</span><span class="wool-name">MLH 全球黑客周 · 开源周</span><a class="wool-go" href="https://ghw.mlh.io/events" target="_blank" rel="noopener">去参加 →</a></div>
+      <p class="wool-desc"><span class="wool-due">12 月 4 日–10 日</span>线上开源挑战周，全程免费参加，完成挑战赢数字 / 实体周边。11 月 25 日核验 · MLH 官方</p>
+    </div>
+    <div class="wool-item">
+      <div class="wool-top"><span class="wool-amt">10亿</span><span class="wool-name">混元 Token · 小程序成长计划（二期）</span><a class="wool-go" href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/billing/ai-inspire-plan.html" target="_blank" rel="noopener">去领取 →</a></div>
+      <p class="wool-desc"><span class="wool-due">报名截止 12 月 31 日</span>10 亿混元 Token＋10 万张生图＋6 个月云开发环境，小程序开发者免费领（限小程序内用）；已有环境改领 120 元代金券。11 月 25 日核验 · 微信开放文档</p>
+    </div>
+    </div>
+    <p class="picks-foot">羊毛只上核验过的：数字、条件、截止时间都对着官方页面确认过；过期或领完的会撤下，不留空架子。</p>
+  </section>
+
   <!-- 橘子精选 · 每日 Agent 案例 -->
-  <section class="picks" aria-label="橘子精选" data-src="assets/picks.json">
+  <section class="picks" id="panel-picks" aria-label="橘子精选" data-src="assets/picks.json">
     <div class="picks-head">
       <div class="picks-titlerow"><span class="badge">每日更新</span><h2>橘子精选</h2><span class="picks-date">2026 年 11 月 26 日</span></div>
       <p class="picks-sub">真实 Agent 案例 · 提示词拿走就能用</p>
@@ -486,7 +534,7 @@
 (function(){
   var PICKS = [{"name": "替全家扫一遍，「政府欠你的钱」10 分钟找回 $1,000", "intro": "一位用户让 Grok Bot 按姓名与曾住州搜索官方无人认领财产库，还翻找旧账单佐证，约 1,000 美元分属 3 个州，本人只花不到 10 分钟。", "prompt": "在官方无人认领财产数据库（如[各州网站]和全国查询）中，按[家人的全名]搜索，含曾用名[姓名]和曾住城市[城市]。逐项报告金额、持有方和官方申领链接。我是经家人许可代为查询。不要提交任何申领、不要输入敏感信息；涉及此类步骤时先停下来给我看。", "promptEn": "Search unclaimed property databases, such as [state sites] and the national lookup, for [family member's full name], with past names [names] and past cities [cities]. Report each match with the amount, holder, and official claim link. I'm checking on behalf of family with their permission. Don't submit any claim or enter sensitive info; pause and show me before taking any such step.", "url": "https://agentusecases.ai/use-case/search-unclaimed-property-for-family-members"}, {"name": "Lighthouse 一键体检：无障碍 89 分修到 100 分", "intro": "作者用 Google 官方 chrome-devtools-mcp 给网站跑 Lighthouse，修完对比度与标签问题再复测，无障碍从 89 分升到 100 分，SEO 保持 100 分。", "prompt": "使用 chrome-devtools-mcp，对[我的网站地址]跑一次 Lighthouse 审计，列出所有无障碍与 SEO 问题。在[项目文件夹]的代码里修复这些问题，然后重新跑审计确认。无障碍和 SEO 都到 100 分或已列出阻碍项时停止，提交前先给我一份改动摘要。", "promptEn": "Using chrome-devtools-mcp, run a Lighthouse audit on [my site URL] and list every Accessibility and SEO issue it finds. Fix the issues in my codebase at [project folder], then re-run the audit to confirm. Stop when Accessibility and SEO both score 100 or you've listed what's blocking it, and show me a summary of the changes before committing anything.", "url": "https://agentusecases.ai/use-case/run-lighthouse-seo-audits-and-fix-a-site-with-an-agent"}, {"name": "74 年前的老论文，比他自己的新解法更好", "intro": "研究员建模型时请 Claude Code 帮忙，Agent 翻出一篇 1952 年的论文，其稳态解法比作者自己的时间依赖方法更好。", "prompt": "我正在搭建一个[描述你的系统及其预测目标]的模型，目前用[你当前的方法，例如时间依赖模拟]求解。搜索更早或奠基性的论文，包括 1980 年以前的，给出针对[具体子问题]的稳态、解析或更简单的解法。最后列出 3 到 5 篇候选论文，每篇附引文、两句话的方法简介，以及它如何替代或改进我当前的方法。", "promptEn": "I'm building a model of [describe your system and what it predicts], and I currently solve it with [your current approach, e.g. a time-dependent simulation]. Search for older or foundational papers, including pre-1980 work, that give a steady-state, analytical, or simpler solution to [the specific sub-problem]. Finish with a list of 3 to 5 candidate papers, each with citation, a two-sentence summary of its method, and how it could replace or improve my current approach.", "url": "https://agentusecases.ai/use-case/find-a-1952-paper-solving-a-modeling-sub-problem"}, {"name": "让 Agent 自己猜、自己测：代码提速 3.9 倍", "intro": "一个 Agent 技能在 Claude Code 里自动循环：提假设、改代码、跑基准，只保留验证过更快且正确的改动，KaHIP 提速 3.9 倍，VieCut 提速 8.9 倍。", "prompt": "在[路径或仓库]里，对[程序或基准命令]做性能分析，找出最大的瓶颈。然后循环：为提速提出一个可证伪假设并实施，跑[测试命令]确认正确性、重跑基准；只提交验证过更快且正确的改动，其余回滚。尝试[数量]个假设或收益见顶后停止，写一份简短 PDF 报告，含基线、每个假设与结果、最终提速。未经我确认，不要推送到远端或删除分支。", "promptEn": "In my repository at [path or repo], profile [program or benchmark command] and find the biggest performance bottlenecks. Then loop: state a falsifiable hypothesis for a speedup, implement it, run [test command] to confirm correctness and re-run the benchmark, and commit only changes that are verified faster, reverting the rest. Stop after [number] hypotheses or when gains flatten, then write a short PDF report with the baseline, each hypothesis and its result, and the final speedup. Do not push to any remote or delete branches without showing me first.", "url": "https://agentusecases.ai/use-case/optimize-code-through-an-automated-falsifiable-hypothesis-loop"}, {"name": "从零开 AWS 账号：Agent 全程带路，还顺手布了个小游戏", "intro": "作者把 AWS 新手指南的一条提示词交给 Claude Code，从零开户、装 Agent Toolkit 与 MCP 服务器，最后在 S3 与 CloudFront 上部署了一个小游戏，全程没有用到访问密钥。", "prompt": "带我从零创建并加固一个新的 AWS 账号，用于[用途，例如副业项目]。能用 AWS CLI 的地方就用 CLI，凡是必须在浏览器里做的事（如身份验证、付款信息）给我精确步骤。完成时我应有一个带 MFA 的非 root 管理员用户、[金额]的预算提醒，以及能跑测试命令的 CLI。凡是会产生计费资源或改动账单设置的命令，执行前先停下来给我看。", "promptEn": "Walk me through creating and securing a new AWS account for [my purpose, e.g. a side project]. Use the AWS CLI where you can, and give me exact steps for anything I must do in the browser, like identity verification or payment details. Finish when I have a non-root admin user with MFA, a budget alert set at [amount], and the CLI working with a test command. Pause and show me before running any command that creates billable resources or changes billing settings.", "url": "https://agentusecases.ai/use-case/create-an-aws-account-with-a-coding-agent"}]; ask me before creating any CRM records.", "url": "https://agentusecases.ai/use-case/spot-youtube-comment-leads-and-send-to-crm"}, {"name": "每天 7:30，邮件和日历自己扫一遍再汇报", "intro": "一位用户让 Claude 用 Chrome 打开 Outlook 邮箱和日历（因为 IT 封了直接同步），每天 7:30 自动扫两边邮箱和日历：把 Outlook 的新事件抄进 Gmail 日历，邮件汇总后按优先级排好；之后人做一次 brain dump，Claude 跟踪任务、把未完成项带到第二天，还会提醒人别逃避某项任务。发帖人称「改变生活」，无硬性数字。", "prompt": "每个工作日 [早上 7:30]，在浏览器里打开我的 Outlook 邮箱和日历。把新事件抄进 Gmail 日历，不要产生重复；然后汇总未读邮件、按优先级排序，把待办事项加进任务清单。不要回复、删除或发送任何内容；先把汇总和日历改动清单给我看，等我批准后再执行。", "promptEn": "Every weekday at [7:30 a.m.], open my Outlook email and calendar in the browser. Copy any new events into my Gmail calendar without creating duplicates, then summarize my unread email and rank it by priority, and add any action items to a task list. Do not reply, delete, or send anything; show me the summary and the list of calendar changes before you make them, and stop once I've approved.", "url": "https://agentusecases.ai/use-case/sweep-email-and-sync-calendars-each-morning"}, {"name": "健身、食谱、每周采购，一台 Agent 全包", "intro": "一位用户用 Claude Agent 管宏量营养素、每周采购与备餐、编训练计划；另搭了一个带语音唤醒的个人助理 App，能买东西、订餐厅、管邮箱日历，还给他买过一套他自认「史上最好」的万圣节服装；手机语音流程目前还有点延迟。买东西走预付卡，卡里只留几百美元控风险。", "prompt": "做我的健身与饮食规划助理。我的目标是 [目标]，身体数据是 [身高、体重、活动量]，饮食是 [饮食方式或忌口]，每周食材预算 [金额]。给我每日宏量营养素目标、一份 7 天食谱、一张按超市分区归类的采购清单，和一份每周 [天数] 练、用 [现有器械] 的训练计划。", "promptEn": "Act as my fitness and meal planning assistant. My goal is [goal], my stats are [height, weight, activity level], and I eat [diet or restrictions] with a weekly food budget of [amount]. Give me daily macro targets, a 7-day meal plan, a grocery list grouped by store section, and a [number]-day-a-week workout program using [equipment available].", "url": "https://agentusecases.ai/use-case/run-fitness-meal-planning-and-weekly-shops"}, {"name": "AI 帮全家订票：95% 的路走完了，付款还得人来", "intro": "作者让 Meta 的 Muse 帮全家找柏林周末活动：它找到了马戏、定位了票，还会用德语操作；买篮球票时卡在人机验证，Agent 主动停下请人接手。另据报道，Instinct 这类服务能重订行程并用掉积分。", "prompt": "帮我订 [机票/火车票/酒店]，从 [出发地] 到 [目的地]，[日期]，[人数] 人出行，预算 [金额]，偏好 [座位、航司、时间等]。搜几个网站，给我看最好的 2–3 个选项及价格和条件。在输入任何付款信息或确认预订之前，停下来把完整细节给我看；如果遇到人机验证或登录，停下让我接手。", "promptEn": "Help me book [flight/train/hotel] from [origin] to [destination] on [dates] for [number] travelers, with a budget of [amount] and preferences of [seat, airline, times, etc.]. Search a few sites, then show me the best 2-3 options with prices and conditions. Pause and show me the full details before entering any payment info or confirming a booking, and if you hit a human check or login, stop and ask me to take over.", "url": "https://agentusecases.ai/use-case/book-travel-with-an-ai-agent"}];
   (function(){
-    var secEl = document.querySelector('.picks');
+    var secEl = document.querySelector('.picks[data-src]');
     if (!secEl || !secEl.getAttribute('data-src') || !window.fetch) return;
     fetch(secEl.getAttribute('data-src')).then(function(r){ return r.json(); }).then(function(d){
       if (d && d.items && d.items.length === PICKS.length) {
@@ -540,6 +588,52 @@
     });
   });
 })();
+</script>
+
+
+<script>
+  function showTab(which){
+    document.getElementById('panel-wool').hidden = which !== 'wool';
+    document.getElementById('panel-picks').hidden = which !== 'picks';
+    document.getElementById('tab-wool').classList.toggle('active', which === 'wool');
+    document.getElementById('tab-picks').classList.toggle('active', which === 'picks');
+    document.getElementById('tab-wool').setAttribute('aria-selected', which === 'wool');
+    document.getElementById('tab-picks').setAttribute('aria-selected', which === 'picks');
+  }
+  (function(){
+    if (!window.fetch) return;
+    var woolDate = '2026-11-25', picksDate = null;
+    function decide(){ if (picksDate && woolDate > picksDate) showTab('wool'); }
+    function renderWool(d){
+      if (!d || !d.items) return;
+      woolDate = d.updated || woolDate;
+      var list = document.getElementById('wool-list');
+      if (list) {
+        list.innerHTML = '';
+        d.items.forEach(function(it){
+          var wrap = document.createElement('div'); wrap.className = 'wool-item';
+          var top = document.createElement('div'); top.className = 'wool-top';
+          var amt = document.createElement('span'); amt.className = 'wool-amt'; amt.textContent = it.amt || '';
+          var name = document.createElement('span'); name.className = 'wool-name'; name.textContent = it.title || '';
+          var go = document.createElement('a'); go.className = 'wool-go'; go.href = it.url || '#';
+          go.target = '_blank'; go.rel = 'noopener'; go.textContent = it.cta || '去领取 →';
+          top.appendChild(amt); top.appendChild(name); top.appendChild(go);
+          var desc = document.createElement('p'); desc.className = 'wool-desc';
+          var due = document.createElement('span'); due.className = 'wool-due'; due.textContent = it.due || '';
+          desc.appendChild(due); desc.appendChild(document.createTextNode(it.desc || ''));
+          wrap.appendChild(top); wrap.appendChild(desc);
+          list.appendChild(wrap);
+        });
+      }
+      var mm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(woolDate);
+      if (mm) { var dl = document.querySelector('.wool-date'); if (dl) dl.textContent = mm[1] + ' 年 ' + (+mm[2]) + ' 月 ' + (+mm[3]) + ' 日'; }
+      decide();
+    }
+    fetch('assets/wool.json').then(function(r){ return r.json(); }).then(renderWool).catch(function(){});
+    fetch('assets/picks.json').then(function(r){ return r.json(); }).then(function(d){
+      if (d && d.date) { picksDate = d.date; decide(); }
+    }).catch(function(){});
+  })();
 </script>
 
 </body>
