@@ -202,7 +202,7 @@ function weekdayLabel(date) {
 function monthTitle(year, month) { return year + " 年 " + (month + 1) + " 月"; }
 function fmtClock(sec) {
   if (!Number.isFinite(sec) || sec < 0) sec = 0;
-  const total = Math.floor(sec);
+  const total = Math.round(sec);
   return Math.floor(total / 60) + ":" + String(total % 60).padStart(2, "0");
 }
 
@@ -511,13 +511,16 @@ function syncProgress() {
     const prog = progressFor(meta);
     el.textContent = fmtClock(prog.currentTime) + " / " + (prog.duration > 0 ? fmtClock(prog.duration) : "--:--");
   });
-  // Bar
-  const sel = selectedMeta();
-  const barTime = (playingDate === selectedDate || playingDate == null) ? currentTime : 0;
-  const barDur = (playingDate === selectedDate || playingDate == null)
-    ? (playDuration || (sel ? sel.duration || 0 : 0))
-    : playDuration;
+  // Bar: always follows the selected episode, same rule as renderBar.
+  // (Previously it fell back to the loaded episode's playDuration whenever a
+  // different episode was selected, so the clock kept showing the old total.)
+  const sel = selectedMeta() || (playingDate ? byDate.get(playingDate) : null);
+  const onLoaded = !!(sel && sel.date === playingDate);
+  const barTime = onLoaded ? currentTime : 0;
+  const barDur = onLoaded ? (playDuration || sel.duration || 0) : (sel ? sel.duration || 0 : 0);
   const max = barDur > 0 ? barDur : 0;
+  const bTitle = $("#bar-title");
+  if (bTitle && sel) bTitle.textContent = sel.date.slice(5) + " 晨报 · " + sel.one_liner;
   const bClock = $("#bar-clock");
   if (bClock) bClock.textContent = fmtClock(barTime) + " / " + (max > 0 ? fmtClock(max) : "--:--");
   const bSeek = $("#bar-seek");
@@ -526,6 +529,7 @@ function syncProgress() {
     bSeek.value = Math.min(barTime, max || 0);
     const pct = max > 0 ? Math.min(100, (barTime / max) * 100) : 0;
     bSeek.style.background = seekGradient(pct);
+    bSeek.disabled = !sel || max === 0 || !onLoaded;
   }
 }
 function syncPlayUI() {
