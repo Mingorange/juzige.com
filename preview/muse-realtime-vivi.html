@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>来，感受一下Muse 实时聊天（附赠：美女主播Vivi首秀）｜看橘子哥</title>
+<meta name="description" content="11月5日，Muse 正式上线实时语音聊天：点一下电话图标就能开口，声音有几百种可选，头像还会跟着对话做表情。附赠美女主播 Vivi 首秀。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="59feebcb-7ddd-48f8-94a1-3457c8f643f0"></script>
+<style>
+  :root{ --bg:#f5f5f7; --ink:#1d1d1f; --grey:#6e6e73; --line:#d2d2d7; --orange:#F79343; --sage:#7A8B6F; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  .site-nav{ position:fixed;top:22px;left:26px;z-index:10; display:flex;align-items:center;gap:9px; font-weight:600;color:var(--ink);text-decoration:none;cursor:pointer; transition:opacity .25s ease; }
+  .site-nav:hover{opacity:.65;}
+  .site-nav svg{width:22px;height:22px;display:block;flex:none;}
+  .site-nav .name{font-size:14px;letter-spacing:.3em;}
+  .article{max-width:720px;margin:0 auto;padding:120px 6vw 40px;}
+  .kicker{font-size:12px;letter-spacing:.28em;color:var(--grey);font-weight:600;}
+  h1{font-size:clamp(26px,5vw,40px);font-weight:700;line-height:1.35;letter-spacing:-.01em;margin-top:18px;}
+  .meta{margin-top:18px;font-size:14px;color:var(--grey);line-height:1.9;}
+  .meta a{color:var(--sage);text-decoration:none;}
+  .hero{width:100%;height:auto;display:block;border-radius:14px;margin-top:28px;}
+  .lead{margin-top:32px;font-size:17px;line-height:1.95;}
+  .chap{margin-top:46px;}
+  .chap h2{font-size:22px;font-weight:700;display:flex;align-items:baseline;gap:12px;margin-bottom:14px;}
+  .chap h2 .num{font-size:26px;font-weight:800;color:var(--orange);}
+  .chap h2 .en{font-size:11px;letter-spacing:.18em;color:#aeaeb2;font-weight:600;}
+  .chap p{font-size:17px;line-height:1.95;margin-bottom:1.1em;}
+  .shot{width:100%;height:auto;display:block;border-radius:12px;margin:16px 0 8px;border:1px solid var(--line);}
+  .cap{font-size:13.5px;color:var(--grey);text-align:center;margin-bottom:14px;line-height:1.7;}
+  .note{border-left:3px solid var(--orange);padding:2px 0 2px 16px;margin:20px 0;}
+  .note p{font-size:17px;margin:0;}
+  .player{ margin-top:18px;padding:20px 22px;background:#fff;border:1px solid var(--line);border-radius:14px; }
+  .player .plabel{font-size:12px;letter-spacing:.22em;color:var(--grey);font-weight:600;margin-bottom:12px;}
+  .player video{width:100%;display:block;border-radius:10px;background:#000;}
+  .revisit{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);margin:16px 0;}
+  .revisit .rt{font-size:12px;letter-spacing:.2em;color:var(--grey);font-weight:600;margin-bottom:6px;}
+  .revisit .rh{font-size:16.5px;font-weight:700;line-height:1.6;}
+  .endbox{margin-top:40px;border-top:1px solid var(--line);padding-top:22px;}
+  .endbox p{font-size:16.5px;line-height:1.95;margin-bottom:1em;}
+  .share{margin:52px auto 0;max-width:560px;text-align:center;padding:26px 20px 4px;border-top:1px solid var(--line);}
+  .share .st{font-size:15px;font-weight:700;letter-spacing:.02em;}
+  .share .btns{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .share button{font:inherit;cursor:pointer;border:none;border-radius:999px;padding:11px 24px;font-size:15px;font-weight:700;background:var(--orange);color:#fff;}
+  .share .hint{margin-top:12px;font-size:13px;color:var(--grey);line-height:1.7;}
+  .share .qr{width:120px;height:120px;margin-top:18px;}
+  .share .qrcap{font-size:12.5px;color:var(--grey);margin-top:6px;}
+  #share-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:#1d1d1f;color:#fff;font-size:14px;padding:10px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:50;}
+  #share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .signoff{margin:56px auto 0;max-width:560px;text-align:center;padding-top:30px;border-top:1px solid var(--line);}
+  .signoff svg{width:52px;height:52px;}
+  .signoff .colname{font-size:16px;font-weight:700;margin-top:10px;letter-spacing:.35em;}
+  .signoff .fm{font-size:11px;letter-spacing:.3em;color:var(--grey);margin-top:5px;}
+  .signoff .tagline{font-size:14px;color:var(--grey);margin-top:12px;line-height:1.8;}
+  .signoff .backhome{display:inline-block;margin-top:16px;font-size:14.5px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--orange);padding-bottom:2px;}
+  .foot{margin:44px auto 10px;text-align:center;font-size:11px;letter-spacing:.4em;color:#c7c7cc;}
+</style>
+</head>
+<body>
+  <a class="site-nav" href="/" aria-label="回主页">
+    <svg viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+    <span class="name">看橘子哥</span>
+  </a>
+  <main class="article">
+    <p class="kicker">橘子哥手记 · 新功能实测</p>
+    <h1>来，感受一下Muse 实时聊天（附赠：美女主播Vivi首秀）</h1>
+    <p class="meta">看橘子哥 · 2026 年 11 月 27 日<br>首发于微信公众号「看橘子哥」，Vivi 首秀视频在公众号原文里</p>
+    <img class="hero" src="/assets/cover-vivi.webp" alt="封面：橘子哥举着手机，屏幕里是美女主播 Vivi，Muse 吉祥物 Jolly 在旁边招手">
+    <p class="lead">9月24号的connect2026大会上，Alexandr Wang 在台上演示了实时聊天这个功能。</p>
+
+    <section class="chap">
+      <p>隔了近一个半月，11 月 5 日，Muse 正式上线了语音聊天，可以与 Muse 实时聊天，它还会带上表情丰富，AI 助手的形象又更鲜明、立体了。</p>
+      <p>我作为先行部队，第一时间体验了一把！</p>
+      <div class="note"><p>Vivi 首秀的视频在公众号原文里，官网版随后补上。</p></div>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">1</span>点击电话图标就能开口</h2>
+      <p>聊天页右上角有个电话图标，点一下就进入语音模式，双方说的话都会实时变成文字气泡。Muse 说话时可以随时打断。</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">2</span>声音有几百种可选</h2>
+      <p>声音有几百种可选，之后也能随时换。</p>
+      <img class="shot" src="/assets/vivi-jolly-phone.webp" alt="Muse 实时聊天界面：戴牛仔帽的 Muse 吉祥物形象">
+      <p class="cap">实时聊天里的 Muse 形象，会跟着对话做表情</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">3</span>头像跟着对话做表情</h2>
+      <p>因为是实时的，所以你感觉像在跟真人聊天。Muse 在听和说的时候，头像会做出和对话内容对得上的表情和手势。用户可以选只听声音、把头像放在旁边，或者让头像占满屏幕。</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">4</span>一边聊一边在后台办事</h2>
+      <p>关于这个，可以看我前面一篇文章：</p>
+      <a class="revisit" href="/radio/muse-voice-call.html">
+        <div class="rt">往期回顾 · 橘子电台</div>
+        <div class="rh">今天我第一次跟 Muse 打了个电话，发现这是用 AI 最自然的方式</div>
+      </a>
+    </section>
+
+    <section class="endbox">
+      <p>而且，你现在有了 muse 这个小助手，还能天天给你薅羊毛。</p>
+      <a class="revisit" href="/article/fal-25.html">
+        <div class="rt">往期回顾</div>
+        <div class="rh">今天我让Muse薅到了 25 美金，全程不到 10 分钟（结尾有惊喜）</div>
+      </a>
+      <p>关注橘子哥，带你看目前最落地的 AI 运用案例。</p>
+      <p>我是橘子哥，一个专研AI落地的创新实践者。</p>
+    </section>
+
+    <div class="share">
+      <div class="st">觉得有用，分享给朋友</div>
+      <div class="btns">
+        <button class="primary" id="share-btn" type="button">分享这篇</button>
+      </div>
+      <p class="hint">在微信里打开的话，点右上角「···」就能分享到朋友圈。</p>
+      <img class="qr" id="qrimg" alt="扫码打开 juzige.com">
+      <div class="qrcap">扫码打开 juzige.com</div>
+    </div>
+    <div id="share-toast"></div>
+
+    <div class="signoff">
+      <svg viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+      <div class="colname">看橘子哥</div>
+      <div class="fm">JUZIGE.COM</div>
+      <p class="tagline">分享经验：AI 实测、走访手记、橘子电台。</p>
+      <a class="backhome" href="/">← 回 juzige.com 首页</a>
+    </div>
+
+    <div class="foot">JUZIGE.COM</div>
+  </main>
+
+<script>
+  (function(){
+    var url = "https://juzige.com/preview/muse-realtime-vivi.html";
+    var toast = document.getElementById('share-toast'), timer = null;
+    function showToast(msg){
+      toast.textContent = msg; toast.classList.add('show');
+      clearTimeout(timer); timer = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
+    }
+    function copyLink(){
+      function done(){ if (window.umami && umami.track) umami.track('share', {via: 'copy'}); showToast('链接已复制，去分享给朋友吧'); }
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); }
+        catch(e){ showToast('复制没成功，长按地址栏复制链接'); }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, fallback);
+      else fallback();
+    }
+    document.getElementById('share-btn').addEventListener('click', function(){
+      if (navigator.share) {
+        if (window.umami && umami.track) umami.track('share', {via: 'sheet'});
+        navigator.share({title: document.title, text: '来，感受一下Muse 实时聊天（附赠：美女主播Vivi首秀）', url: url})
+          .catch(function(err){ if (!err || err.name !== 'AbortError') copyLink(); });
+      } else copyLink();
+    });
+  })();
+</script>
+
+<script>
+  fetch('/assets/juzige-qr.b64').then(function(r){ return r.text(); }).then(function(t){
+    document.getElementById('qrimg').src = 'data:image/png;base64,' + t.trim();
+  }).catch(function(){});
+</script>
+</body>
+</html>
