@@ -289,11 +289,24 @@
     <p class="picks-foot">来源 agentusecases.ai 每日收录 · 按「能省时间、能赚钱、今天就能抄作业」筛过，纯炫技的不要。</p>
   </section>
   <div class="feed">
+        <!-- 橘子电台 EP013 -->
+    <article class="card">
+      <img class="cover" src="assets/cover-xiaomu.webp" loading="eager" fetchpriority="high" decoding="async" alt="橘子电台封面：橘子哥在笔记本前把照片视频按孩子分进文件夹，Muse 吉祥物在旁捧着卡片，桌上放着一台 NAS">
+      <div class="cbody">
+        <div class="meta"><span class="badge">最新</span>橘子电台 · 2026 年 11 月 27 日</div>
+        <h2>他花几十万，给幼儿园装了个本地AI</h2>
+        <p class="sum">幼儿园每天往家长群里发十几个视频，全班混在一起没法看。黄小木花几十万、一个多月，给园里装了套本地 AI：Mac mini 采集、群晖存储、本地模型按孩子人脸分诊，每周给每个娃剪一支专属集锦，数据不出园。最值得带走的，是他拆痛点、定合规、选工具的顺序。</p>
+        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 3:30</button>
+        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <div class="cfoot"><span class="who">看橘子哥 · 3 分 30 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep13" href="radio/kindergarten-local-ai.html">打开全文 →</a></div>
+      </div>
+    </article>
+
         <!-- 健忘症遥控器故事（最新） -->
     <article class="card">
       <img class="cover" src="assets/cover-apology.webp" loading="eager" fetchpriority="high" decoding="async" alt="封面：银发奶奶捧着只剩一个橙色按键的遥控器，橘子哥坐在旁边教她，Muse 吉祥物在沙发另一头陪着">
       <div class="cbody">
-        <div class="meta"><span class="badge">最新</span>橘子哥手记 · 2026 年 11 月 26 日</div>
+        <div class="meta">橘子哥手记 · 2026 年 11 月 26 日</div>
         <h2>这次Claude着实让我感动了一把！</h2>
         <p class="sum">电视亮着，她对着屏幕说话，护工说她以为在跟儿子视频。可儿子其实早就把遥控器说明书做成只剩一个键了，因为教了八百遍她还是记不住…Claude 只回了三个字：「我很抱歉。」</p>
         <div class="cfoot"><span class="who">看橘子哥 · 图文</span><a class="go" data-umami-event="article-click" data-umami-event-card="claude-apology" href="article/claude-apology.html">打开全文 →</a></div>
@@ -321,8 +334,8 @@
         <div class="meta">橘子电台 · 2026 年 11 月 23 日</div>
         <h2>把 Muse 当包工头</h2>
         <p class="sum">把 Muse 当云端包工头，串起 Gemini 写脚本、Google Flow 生视频、豆包语音配音——每天只花 3 分钟扫码确认，视频自动发。成本账、三条红线和踩过的坑，全拆给你看。</p>
-        <button class="playbtn" id="ep-play" type="button">▶ 播放本集 · 4:55</button>
-        <audio id="ep-latest" controls preload="none" style="display:none"></audio>
+        <button class="playbtn" id="ep7-play" type="button">▶ 播放本集 · 4:55</button>
+        <audio id="ep7-audio" controls preload="none" style="display:none"></audio>
         <div class="cfoot"><span class="who">看橘子哥 · 4 分 55 秒</span><a class="go" data-umami-event="article-click" data-umami-event-card="radio-ep7" href="radio/muse-foreman.html">打开全文 →</a></div>
       </div>
     </article>
@@ -494,7 +507,8 @@
       document.body.appendChild(sc);
     });
   }
-  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep7');
+  wirePlayer('ep-play', 'ep-latest', 'assets/ep-latest.js', 'EP_LATEST_B64', 'home-ep13');
+  wirePlayer('ep7-play', 'ep7-audio', 'assets/ep7-audio.js', 'EP7_B64', 'home-ep7');
   wirePlayer('ep6-play', 'ep6-audio', 'assets/ep6-audio.js', 'EP6_B64', 'home-ep6');
   wirePlayer('ep4-play', 'ep4-audio', 'assets/ep4-audio.js', 'EP4_B64', 'home-ep4');
   wirePlayer('ep3-play', 'ep3-audio', 'assets/ep3-audio.js', 'EP3_B64', 'home-ep3');
