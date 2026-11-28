@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>注册就送2.5亿token，价值100块，我先帮你们测了一周｜看橘子哥</title>
+<meta name="description" content="腾讯 WorkBuddy 实测：跟微信完全打通，手机能遥控电脑干活，注册就送 2000 积分，约 2.5 亿 token，价值 100 元，3 分钟上手。">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="59feebcb-7ddd-48f8-94a1-3457c8f643f0"></script>
+<style>
+  :root{ --bg:#f5f5f7; --ink:#1d1d1f; --grey:#6e6e73; --line:#d2d2d7; --orange:#F79343; --sage:#7A8B6F; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{ background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  .site-nav{ position:fixed;top:22px;left:26px;z-index:10; display:flex;align-items:center;gap:9px; font-weight:600;color:var(--ink);text-decoration:none;cursor:pointer; transition:opacity .25s ease; }
+  .site-nav:hover{opacity:.65;}
+  .site-nav svg{width:22px;height:22px;display:block;flex:none;}
+  .site-nav .name{font-size:14px;letter-spacing:.3em;}
+  .article{max-width:720px;margin:0 auto;padding:120px 6vw 40px;}
+  .kicker{font-size:12px;letter-spacing:.28em;color:var(--grey);font-weight:600;}
+  h1{font-size:clamp(26px,5vw,40px);font-weight:700;line-height:1.35;letter-spacing:-.01em;margin-top:18px;}
+  .meta{margin-top:18px;font-size:14px;color:var(--grey);line-height:1.9;}
+  .meta a{color:var(--sage);text-decoration:none;}
+  .hero{width:100%;height:auto;display:block;border-radius:14px;margin-top:28px;}
+  .lead{margin-top:32px;font-size:17px;line-height:1.95;}
+  .chap{margin-top:46px;}
+  .chap h2{font-size:22px;font-weight:700;display:flex;align-items:baseline;gap:12px;margin-bottom:14px;}
+  .chap h2 .num{font-size:26px;font-weight:800;color:var(--orange);}
+  .chap h2 .en{font-size:11px;letter-spacing:.18em;color:#aeaeb2;font-weight:600;}
+  .chap p{font-size:17px;line-height:1.95;margin-bottom:1.1em;}
+  .shot{width:100%;height:auto;display:block;border-radius:12px;margin:16px 0 8px;border:1px solid var(--line);}
+  .cap{font-size:13.5px;color:var(--grey);text-align:center;margin-bottom:14px;line-height:1.7;}
+  .note{border-left:3px solid var(--orange);padding:2px 0 2px 16px;margin:20px 0;}
+  .note p{font-size:17px;margin:0;}
+  .player{ margin-top:18px;padding:20px 22px;background:#fff;border:1px solid var(--line);border-radius:14px; }
+  .player .plabel{font-size:12px;letter-spacing:.22em;color:var(--grey);font-weight:600;margin-bottom:12px;}
+  .player video{width:100%;display:block;border-radius:10px;background:#000;}
+  .revisit{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--ink);margin:16px 0;}
+  .revisit .rt{font-size:12px;letter-spacing:.2em;color:var(--grey);font-weight:600;margin-bottom:6px;}
+  .revisit .rh{font-size:16.5px;font-weight:700;line-height:1.6;}
+  .endbox{margin-top:40px;border-top:1px solid var(--line);padding-top:22px;}
+  .endbox p{font-size:16.5px;line-height:1.95;margin-bottom:1em;}
+  .share{margin:52px auto 0;max-width:560px;text-align:center;padding:26px 20px 4px;border-top:1px solid var(--line);}
+  .share .st{font-size:15px;font-weight:700;letter-spacing:.02em;}
+  .share .btns{margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .share button{font:inherit;cursor:pointer;border:none;border-radius:999px;padding:11px 24px;font-size:15px;font-weight:700;background:var(--orange);color:#fff;}
+  .share .hint{margin-top:12px;font-size:13px;color:var(--grey);line-height:1.7;}
+  .share .qr{width:120px;height:120px;margin-top:18px;}
+  .share .qrcap{font-size:12.5px;color:var(--grey);margin-top:6px;}
+  #share-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:#1d1d1f;color:#fff;font-size:14px;padding:10px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:50;}
+  #share-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .signoff{margin:56px auto 0;max-width:560px;text-align:center;padding-top:30px;border-top:1px solid var(--line);}
+  .signoff svg{width:52px;height:52px;}
+  .signoff .colname{font-size:16px;font-weight:700;margin-top:10px;letter-spacing:.35em;}
+  .signoff .fm{font-size:11px;letter-spacing:.3em;color:var(--grey);margin-top:5px;}
+  .signoff .tagline{font-size:14px;color:var(--grey);margin-top:12px;line-height:1.8;}
+  .signoff .backhome{display:inline-block;margin-top:16px;font-size:14.5px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--orange);padding-bottom:2px;}
+  .foot{margin:44px auto 10px;text-align:center;font-size:11px;letter-spacing:.4em;color:#c7c7cc;}
+</style>
+</head>
+<body>
+  <a class="site-nav" href="/" aria-label="回主页">
+    <svg viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+    <span class="name">看橘子哥</span>
+  </a>
+  <main class="article">
+    <p class="kicker">橘子哥手记 · 工具实测</p>
+    <h1>注册就送2.5亿token，价值100块，我先帮你们测了一周</h1>
+    <p class="meta">看橘子哥 · 2026 年 11 月 28 日<br>首发于微信公众号「看橘子哥」</p>
+    <img class="hero" src="/preview/cover-workbuddy.webp" alt="封面：橘子哥举着手机，电脑上的文档、图片、视频自己往外飞，Muse 吉祥物 Jolly 在旁边点赞">
+    <p class="lead">注册就送 2000 积分，差不多 2.5 亿 token，价值 100 块。3 分钟注册完，就能免费用。</p>
+    <p class="lead">这是我这一周测下来，对国内朋友最友好的一个 AI 入口：腾讯的 WorkBuddy。它最大的好处，是跟微信完全打通的。</p>
+    <img class="shot" src="/preview/wb-img1.png" alt="WorkBuddy 账号页：积分余额 2,691.15">
+    <p class="cap">我的积分余额，注册送的 2000 还没用完，又做任务攒了些</p>
+
+    <section class="chap">
+      <h2><span class="num">1</span>2000 积分，到底能干多少事？</h2>
+      <p>光说 token 没感觉，换算成正经活儿是这样：</p>
+      <img class="shot" src="/preview/wb-img2.png" alt="2000 积分能处理的工作量对照表">
+      <p class="cap">读 PDF、翻译合同、整理 Excel、建小网站，2000 积分能干的活儿一览</p>
+      <p>这 2000 积分也不是我瞎估的价。积分明码标价：1000 积分 50 块，所以注册送的 2000，正好价值 100 元。</p>
+      <img class="shot" src="/preview/wb-img5.png" alt="WorkBuddy 购买积分价格页">
+      <p class="cap">积分价格页，规格从 200 到 10000 积分</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">2</span>它能帮你干什么？</h2>
+      <p>写文章，写邮件，分析一段行情走势，老板催的 PPT 交给它，甚至处理图片、做个视频，目前都能干，还是免费的。</p>
+      <img class="shot" src="/preview/wb-img3.png" alt="WorkBuddy 主界面与功能标签">
+      <p class="cap">主界面一行标签：创作文档、分析数据、代码开发、生图生视频、制作 PPT</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">3</span>最香的一点：手机遥控电脑</h2>
+      <p>电脑版装好之后，移动端和微信小程序登同一个账号就行。说人话就是：你人在外面，手机上动动嘴，家里电脑上的 AI 就替你把活干了。</p>
+      <p>出差路上、健身房里、跟朋友喝着咖啡，活照样往前走。</p>
+      <img class="shot" src="/preview/wb-img4.png" alt="WorkBuddy 移动端连接弹窗：扫码下载 App 或用微信小程序">
+      <p class="cap">移动端 App 和微信小程序都能连上，远程连接开关打开就行</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">4</span>模型怎么选？</h2>
+      <p>右下角可以换模型。我平时用得最多的是 DeepSeek 的 flash 版，你就把它当 93 号汽油，日常代步完全够了。</p>
+      <p>哪天想让它更聪明，这里也能接入 Claude、GPT 这种外国货。</p>
+    </section>
+
+    <section class="chap">
+      <h2><span class="num">5</span>怎么开始？</h2>
+      <p>扫下面的码，3 分钟注册完，2000 积分直接到账。</p>
+      <img class="shot" src="/preview/wb-img6.png" alt="扫码注册 WorkBuddy 即可获取 2000 积分">
+      <p>起步别贪多，先拿它写写文章、做做 PPT，慢慢来。等你学会了，就可以去试我公众号里那些更高阶的玩法：让 AI 帮你自动薅羊毛，跟 AI 打个电话就把工作计划全安排好，还有设计方面的活，它干起来非常省心。</p>
+    </section>
+
+    <section class="endbox">
+      <p>我是橘子哥，一个专研AI落地的创新实践者。</p>
+      <p>关注橘子哥，带你看目前最落地的 AI 运用案例。</p>
+      <p>点赞、转发，也帮我把这 2000 积分送到更多人手里。</p>
+    </section>
+
+    <div class="share">
+      <div class="st">觉得有用，分享给朋友</div>
+      <div class="btns">
+        <button class="primary" id="share-btn" type="button">分享这篇</button>
+      </div>
+      <p class="hint">在微信里打开的话，点右上角「···」就能分享到朋友圈。</p>
+      <img class="qr" id="qrimg" alt="扫码打开 juzige.com">
+      <div class="qrcap">扫码打开 juzige.com</div>
+    </div>
+    <div id="share-toast"></div>
+
+    <div class="signoff">
+      <svg viewBox="0 0 100 100" role="img" aria-label="看橘子哥 Logo"><circle cx="50" cy="56" r="38" fill="#F79343"/><path d="M52 20 C58 6, 74 4, 82 8 C80 20, 68 26, 54 24 Z" fill="#7A8B6F"/></svg>
+      <div class="colname">看橘子哥</div>
+      <div class="fm">JUZIGE.COM</div>
+      <p class="tagline">分享经验：AI 实测、走访手记、橘子电台。</p>
+      <a class="backhome" href="/">← 回 juzige.com 首页</a>
+    </div>
+
+    <div class="foot">JUZIGE.COM</div>
+  </main>
+
+<script>
+  (function(){
+    var url = "https://juzige.com/preview/workbuddy.html";
+    var toast = document.getElementById('share-toast'), timer = null;
+    function showToast(msg){
+      toast.textContent = msg; toast.classList.add('show');
+      clearTimeout(timer); timer = setTimeout(function(){ toast.classList.remove('show'); }, 2600);
+    }
+    function copyLink(){
+      function done(){ if (window.umami && umami.track) umami.track('share', {via: 'copy'}); showToast('链接已复制，去分享给朋友吧'); }
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); }
+        catch(e){ showToast('复制没成功，长按地址栏复制链接'); }
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, fallback);
+      else fallback();
+    }
+    document.getElementById('share-btn').addEventListener('click', function(){
+      if (navigator.share) {
+        if (window.umami && umami.track) umami.track('share', {via: 'sheet'});
+        navigator.share({title: document.title, text: '注册就送2.5亿token，价值100块，我先帮你们测了一周', url: url})
+          .catch(function(err){ if (!err || err.name !== 'AbortError') copyLink(); });
+      } else copyLink();
+    });
+  })();
+</script>
+
+<script>
+  fetch('/assets/juzige-qr.b64').then(function(r){ return r.text(); }).then(function(t){
+    document.getElementById('qrimg').src = 'data:image/png;base64,' + t.trim();
+  }).catch(function(){});
+</script>
+</body>
+</html>
